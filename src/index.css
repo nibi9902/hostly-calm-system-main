@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600;700&display=swap');
-
-@font-face {
-  font-family: 'General Sans';
-  src: url('https://cdn.fontshare.com/wf/RVPJXBPVUQYXJFKQS7M3DLGMGEZDMSAZ/CKISNXH6GTQPKTRJJUCQ7SNTQFNMAVTB/WYZGCXD2UDRGDPVIY356HZI3FNKBCC5Q.woff2') format('woff2');
-  font-weight: 400 700;
-  font-display: swap;
-}
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
 @tailwind base;
 @tailwind components;
