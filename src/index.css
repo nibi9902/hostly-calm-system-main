@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://cdn.fontshare.com/wf/RVPJXBPVUQYXJFKQS7M3DLGMGEZDMSAZ/CKISNXH6GTQPKTRJJUCQ7SNTQFNMAVTB/WYZGCXD2UDRGDPVIY356HZI3FNKBCC5Q.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 33% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 229 65% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 230 60% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 20% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 20 100% 59%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 229 65% 52%;
+
+    --radius: 1.5rem;
+
+    /* Custom Hostly tokens */
+    --copper: 20 100% 59%;
+    --copper-foreground: 0 0% 100%;
+    --copper-light: 20 60% 96%;
+
+    --surface: 222 33% 98%;
+    --surface-elevated: 0 0% 100%;
+
+    --dark-blue: 221 66% 33%;
+
+    --font-heading: 'General Sans', 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --shadow-card: 0 10px 30px rgba(47, 79, 215, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
+    --shadow-card-hover: 0 14px 40px rgba(47, 79, 215, 0.12), 0 6px 12px rgba(0, 0, 0, 0.06);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 229 65% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── Marquee animations ── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee-left {
+  animation: marquee-left 35s linear infinite;
+}
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+}
+.marquee-pause:hover .animate-marquee-left,
+.marquee-pause:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
