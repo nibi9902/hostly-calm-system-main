@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import DemoVideo from "@/components/DemoVideo";
 import PainBlock from "@/components/PainBlock";
-import OrderBlock from "@/components/OrderBlock";
+import { GlassCards } from "@/components/ui/glass-cards";
 import StepsBlock from "@/components/StepsBlock";
 import TestimonialBlock from "@/components/TestimonialBlock";
 import TransformationBlock from "@/components/TransformationBlock";
@@ -22,7 +22,7 @@ const Index = () => {
         <HeroSection onOpenQuiz={() => setQuizOpen(true)} />
         <div className="relative">
           <PainBlock />
-          <OrderBlock />
+          <GlassCards />
         </div>
         <StepsBlock />
         <PricingBlock />

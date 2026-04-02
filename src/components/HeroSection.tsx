@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import badgeBooking from "@/assets/badge-booking.png";
+import badgeAirbnb from "@/assets/badge-airbnb.png";
+import badgeGoogle from "@/assets/badge-google.png";
 
 const appleEase = [0.22, 1, 0.36, 1] as const;
 
@@ -135,23 +138,26 @@ const HeroSection = ({ onOpenQuiz }: HeroSectionProps) => {
           transition={{ duration: 0.55, delay: 0.7, ease: appleEase }}
           className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 pt-8 mt-8 border-t border-border/25"
         >
-          <div>
-            <p className="text-base md:text-lg font-medium text-foreground/70 leading-snug">
-              Tu apartamento, finalmente en orden.
+          {/* Partner badges */}
+          <div className="flex flex-col gap-2">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/50">
+              Partner oficial de
             </p>
-            <p className="text-sm text-muted-foreground/40 mt-1.5">
-              Primer mes gratis · Sin permanencia
-            </p>
+            <div className="flex items-center gap-3 flex-wrap">
+              <img src={badgeBooking} alt="Booking.com Premier Connectivity Partner 2025" className="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300" />
+              <img src={badgeAirbnb} alt="Airbnb Preferred+ Software Partner 2025" className="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300" />
+              <img src={badgeGoogle} alt="Google Vacation Rentals Partner" className="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300" />
+            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 flex-shrink-0">
-            <a
-              href="#demo-video"
+            <button
+              onClick={onOpenQuiz}
               className="group inline-flex items-center gap-3 px-7 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-all duration-300 hover:shadow-[0_8px_32px_hsl(229_65%_52%/0.35)] hover:-translate-y-0.5 active:scale-[0.98]"
             >
-              Ver demo de 2 min
+              Pruébalo gratis
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </a>
+            </button>
             <button
               onClick={onOpenQuiz}
               className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-border bg-background/70 text-foreground font-medium text-base transition-all duration-300 hover:bg-muted hover:border-primary/30 hover:-translate-y-0.5 active:scale-[0.98] backdrop-blur-sm"

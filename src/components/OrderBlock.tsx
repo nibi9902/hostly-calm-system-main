@@ -944,8 +944,8 @@ const CardLayer = ({
     return 1 - eased * 0.08;
   });
 
-  // Rounded corners appear as card scales back (Apple-style)
-  const borderRadius = useTransform(scale, [0.92, 1], ["20px", "0px"]);
+  // Rounded corners animate subtly as card scales back
+  const borderRadius = useTransform(scale, [0.92, 1], ["28px", "28px"]);
 
   return (
     <motion.div
@@ -956,7 +956,7 @@ const CardLayer = ({
         borderRadius,
         zIndex: index + 1,
         transformOrigin: "top center",
-        boxShadow: "0 -32px 80px rgba(0,0,0,0.6), 0 -4px 20px rgba(0,0,0,0.3)",
+        boxShadow: "0 -24px 60px rgba(0,0,0,0.45), 0 -4px 16px rgba(0,0,0,0.25)",
       }}
     >
       {children}
@@ -974,19 +974,22 @@ const OrderBlock = () => {
 
   return (
     <div ref={containerRef} style={{ height: `${TOTAL_CARDS * 100}vh` }}>
-      {/* Single sticky viewport — all cards live here as absolute layers */}
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Hero — layer 0 */}
-        <CardLayer index={0} scrollYProgress={scrollYProgress}>
-          <HeroContent />
-        </CardLayer>
-
-        {/* Feature cards — layers 1–6 */}
-        {secondaryCards.map((card, i) => (
-          <CardLayer key={card.title} index={i + 1} scrollYProgress={scrollYProgress}>
-            <SecondaryCardContent card={card} index={i} />
+      {/* Sticky viewport with padding so cards float inside the page */}
+      <div className="sticky top-0 h-screen bg-background flex items-center justify-center px-4 py-6 md:px-12 md:py-10 lg:px-20 lg:py-12">
+        {/* Inner clipping container — max size, centered, rounded */}
+        <div className="relative w-full max-w-5xl rounded-[28px] overflow-hidden" style={{ height: "78vh" }}>
+          {/* Hero — layer 0 */}
+          <CardLayer index={0} scrollYProgress={scrollYProgress}>
+            <HeroContent />
           </CardLayer>
-        ))}
+
+          {/* Feature cards — layers 1–6 */}
+          {secondaryCards.map((card, i) => (
+            <CardLayer key={card.title} index={i + 1} scrollYProgress={scrollYProgress}>
+              <SecondaryCardContent card={card} index={i} />
+            </CardLayer>
+          ))}
+        </div>
       </div>
     </div>
   );
