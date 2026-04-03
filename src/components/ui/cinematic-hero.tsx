@@ -240,10 +240,74 @@ const NOTIFS = [
   },
 ];
 
-const PhoneNotificationFeed: React.FC = () => {
-  // Duplicate for seamless loop
-  const items = [...NOTIFS, ...NOTIFS];
+/* ── Static phone screen with GSAP-controlled notification cards ── */
+const PHONE_NOTIFS = [
+  { icon: '💰', iconBg: '#0d2b18', iconColor: '#34c759', label: 'Hostly · Reserva', title: 'Reserva confirmada · 620€', detail: 'Marcos · Booking · 4 noches' },
+  { icon: '✅', iconBg: '#0a1a30', iconColor: '#3b7ff5', label: 'Hostly · Check-in', title: 'Check-in completado', detail: 'Laura · Airbnb · Código 4821' },
+  { icon: '📈', iconBg: '#221200', iconColor: '#ff9500', label: 'Hostly · Revenue', title: 'Precio actualizado +40%', detail: 'Viernes 18 · Alta demanda · 264€' },
+  { icon: '🧹', iconBg: '#130d33', iconColor: '#a78bfa', label: 'Hostly · Neteja', title: 'Limpieza coordinada', detail: 'Anna López · Mañana 11:00' },
+];
 
+const PhoneScreen: React.FC = () => (
+  <div style={{ width: '100%', height: '100%', background: '#04091a', position: 'relative', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>
+    {/* Status bar */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 16px 4px' }}>
+      <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>17:15</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+        <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#34c759', boxShadow: '0 0 6px #34c75988' }} />
+      </div>
+    </div>
+    {/* Date */}
+    <div style={{ textAlign: 'center', paddingBottom: '8px' }}>
+      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', fontWeight: 500, letterSpacing: '0.02em' }}>Viernes, 18 de Abril</div>
+    </div>
+
+    {/* Notification cards — opacity/y controlled by GSAP */}
+    {PHONE_NOTIFS.map((n, i) => (
+      <div
+        key={i}
+        className={`phone-notif phone-notif-${i}`}
+        style={{
+          position: 'absolute',
+          left: '8px', right: '8px',
+          top: `${52 + i * 88}px`,
+          background: 'rgba(255,255,255,0.07)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255,255,255,0.09)',
+          borderRadius: '16px',
+          padding: '10px 12px',
+          display: 'flex',
+          gap: '10px',
+          alignItems: 'center',
+        }}
+      >
+        <div style={{
+          width: '38px', height: '38px', borderRadius: '10px', flexShrink: 0,
+          background: n.iconBg, border: `1px solid ${n.iconColor}25`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '20px', boxShadow: `0 0 10px ${n.iconColor}18`,
+        }}>{n.icon}</div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: '9px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '2px' }}>{n.label}</div>
+          <div style={{ fontSize: '13px', fontWeight: 700, color: '#fff', letterSpacing: '-0.01em', lineHeight: 1.2 }}>{n.title}</div>
+          <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginTop: '1px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{n.detail}</div>
+        </div>
+        <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.25)', flexShrink: 0 }}>ahora</div>
+      </div>
+    ))}
+
+    {/* Home indicator */}
+    <div style={{ position: 'absolute', bottom: '6px', left: '50%', transform: 'translateX(-50%)', width: '100px', height: '4px', background: 'rgba(255,255,255,0.18)', borderRadius: '2px' }} />
+  </div>
+);
+
+/* Keep NOTIFS array to avoid TS error but no longer used in render */
+const _NOTIFS_UNUSED = NOTIFS;
+void _NOTIFS_UNUSED;
+
+const PhoneNotificationFeed_UNUSED: React.FC = () => {
+  const items = [...NOTIFS, ...NOTIFS];
   return (
     <div style={{
       width: '100%', height: '100%',
@@ -396,7 +460,9 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
       gsap.set(".text-track",    { autoAlpha: 0, y: 60, scale: 0.85, filter: "blur(20px)", rotationX: -20 });
       gsap.set(".text-days",     { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
       gsap.set(".main-card",     { y: window.innerHeight + 200, autoAlpha: 1 });
-      gsap.set([".card-left-text", ".card-right-text", ".mockup-scroll-wrapper", ".floating-badge", ".phone-widget"], { autoAlpha: 0 });
+      gsap.set([".card-left-text", ".card-right-text", ".mockup-scroll-wrapper"], { autoAlpha: 0 });
+      gsap.set([".floating-badge-1", ".floating-badge-2"], { autoAlpha: 0 });
+      gsap.set(".phone-notif",   { autoAlpha: 0, y: 40 });
       gsap.set(".cta-wrapper",   { autoAlpha: 0, scale: 0.8, filter: "blur(30px)" });
 
       // Intro
@@ -418,30 +484,54 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
       });
 
       scrollTl
+        // ── Phase 0: hero text fades, card rises ──
         .to([".hero-text-wrapper", ".bg-grid-hostly"], { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 }, 0)
-        .to(".main-card",  { y: 0, ease: "power3.inOut", duration: 2 }, 0)
-        .to(".main-card",  { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 1.5 })
+        .to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0)
+
+        // ── Phase 1: card expands to fullscreen ──
+        .to(".main-card", { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 1.5 })
+
+        // ── Phase 2: iPhone appears ──
         .fromTo(".mockup-scroll-wrapper",
           { y: 300, z: -500, rotationX: 50, rotationY: -30, autoAlpha: 0, scale: 0.6 },
-          { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 2.5 }, "-=0.8"
+          { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 2 }, "-=0.5"
         )
-        .fromTo(".phone-widget",
-          { y: 40, autoAlpha: 0, scale: 0.95 },
-          { y: 0, autoAlpha: 1, scale: 1, stagger: 0.15, ease: "back.out(1.2)", duration: 1.5 }, "-=1.5"
+
+        // ── Phase 3: notificacions apareixen dins el telèfon una a una ──
+        .to(".phone-notif-0", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.4")
+        .to(".phone-notif-1", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.3")
+        .to(".phone-notif-2", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.3")
+        .to(".phone-notif-3", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.3")
+
+        // ── Pausa: totes visibles ──
+        .to({}, { duration: 1.2 })
+
+        // ── Phase 4: TRANSFORMACIÓ — notifs es converteixen en bubbles ──
+        // Les notificacions s'esvaeixen cap endins
+        .to(".phone-notif", { autoAlpha: 0, scale: 0.7, y: -20, duration: 0.7, ease: "power2.in" })
+
+        // Les bubbles "surten volant" del centre del telèfon cap a les seves posicions
+        .fromTo(".floating-badge-1",
+          { autoAlpha: 0, x: "90px", y: "110px", scale: 0.15, rotationZ: 10 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 2.2 }, "-=0.3"
         )
-        .to(".progress-ring", { strokeDashoffset: 60, duration: 2, ease: "power3.inOut" }, "-=1.2")
-        .to(".counter-val",   { innerHTML: 94, snap: { innerHTML: 1 }, duration: 2, ease: "expo.out" }, "-=2.0")
-        .fromTo(".floating-badge",
-          { y: 100, autoAlpha: 0, scale: 0.7, rotationZ: -10 },
-          { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, ease: "back.out(1.5)", duration: 1.5, stagger: 0.2 }, "-=2.0"
+        .fromTo(".floating-badge-2",
+          { autoAlpha: 0, x: "-90px", y: "-90px", scale: 0.15, rotationZ: -10 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 2.2 }, "-=1.8"
         )
-        .fromTo(".card-left-text",  { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.5")
+
+        // ── Phase 5: text entra ──
+        .fromTo(".card-left-text",  { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.2")
         .fromTo(".card-right-text", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
+
+        // ── Pausa final ──
         .to({}, { duration: 2.5 })
+
+        // ── Phase 6: sortida cap al CTA ──
         .set(".hero-text-wrapper", { autoAlpha: 0 })
         .set(".cta-wrapper", { autoAlpha: 1 })
         .to({}, { duration: 1.5 })
-        .to([".mockup-scroll-wrapper", ".floating-badge", ".card-left-text", ".card-right-text"], {
+        .to([".mockup-scroll-wrapper", ".floating-badge-1", ".floating-badge-2", ".card-left-text", ".card-right-text"], {
           scale: 0.9, y: -40, z: -200, autoAlpha: 0, ease: "power3.in", duration: 1.2, stagger: 0.05,
         })
         .to(".main-card", {
@@ -540,38 +630,36 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                   <div className="absolute top-[170px] -right-[3px] w-[3px] h-[70px] hardware-btn rounded-r-md" style={{ transform: "scaleX(-1)" }} aria-hidden="true" />
 
                   {/* Screen */}
-                  <div className="absolute inset-[7px] bg-[#f2f2f7] rounded-[2.5rem] overflow-hidden text-[#1c1c1e] z-10">
+                  <div className="absolute inset-[7px] rounded-[2.5rem] overflow-hidden z-10">
                     <div className="absolute inset-0 screen-glare z-40 pointer-events-none" aria-hidden="true" />
 
                     {/* Dynamic Island */}
                     <div className="absolute top-[5px] left-1/2 -translate-x-1/2 w-[100px] h-[28px] bg-black rounded-full z-50" />
 
-                    {/* Animated notification feed */}
-                    <div className="phone-widget w-full h-full">
-                      <PhoneNotificationFeed />
-                    </div>
+                    {/* Static notifications — GSAP controlled */}
+                    <PhoneScreen />
                   </div>
                 </div>
 
-                {/* Floating badge 1 — Reserva confirmada */}
-                <div className="floating-badge absolute top-6 lg:top-12 left-[-15px] lg:left-[-90px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30">
-                  <div className="w-9 h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
-                    <span className="text-lg" aria-hidden="true">✅</span>
+                {/* Bubble 1 — surt del telèfon cap a dalt-esquerra */}
+                <div className="floating-badge-1 absolute top-6 lg:top-12 left-[-15px] lg:left-[-90px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30">
+                  <div className="w-9 h-9 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 flex-shrink-0">
+                    <span className="text-lg" aria-hidden="true">💰</span>
                   </div>
                   <div>
-                    <p className="text-white text-xs lg:text-sm font-bold tracking-tight">Reserva confirmada</p>
-                    <p className="text-blue-200/50 text-[10px] lg:text-xs font-medium">Marcos · Booking · 620€</p>
+                    <p className="text-white text-xs lg:text-sm font-bold tracking-tight">Reserva confirmada · 620€</p>
+                    <p className="text-blue-200/50 text-[10px] lg:text-xs font-medium">Marcos · Booking · 4 noches</p>
                   </div>
                 </div>
 
-                {/* Floating badge 2 — Limpieza */}
-                <div className="floating-badge absolute bottom-12 lg:bottom-20 right-[-15px] lg:right-[-90px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30">
-                  <div className="w-9 h-9 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 flex-shrink-0">
+                {/* Bubble 2 — surt del telèfon cap a baix-dreta */}
+                <div className="floating-badge-2 absolute bottom-12 lg:bottom-20 right-[-15px] lg:right-[-90px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30">
+                  <div className="w-9 h-9 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 flex-shrink-0">
                     <span className="text-lg" aria-hidden="true">🧹</span>
                   </div>
                   <div>
-                    <p className="text-white text-xs lg:text-sm font-bold tracking-tight">Limpieza asignada</p>
-                    <p className="text-blue-200/50 text-[10px] lg:text-xs font-medium">Anna · Mañana 11:00</p>
+                    <p className="text-white text-xs lg:text-sm font-bold tracking-tight">Limpieza coordinada</p>
+                    <p className="text-blue-200/50 text-[10px] lg:text-xs font-medium">Anna López · Mañana 11:00</p>
                   </div>
                 </div>
 
