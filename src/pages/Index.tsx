@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
+import { CinematicHero } from "@/components/ui/cinematic-hero";
 import DemoVideo from "@/components/DemoVideo";
 import PainBlock from "@/components/PainBlock";
 import { GlassCards } from "@/components/ui/glass-cards";
@@ -19,7 +19,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar onOpenQuiz={() => setQuizOpen(true)} />
       <main>
-        <HeroSection onOpenQuiz={() => setQuizOpen(true)} />
+        <CinematicHero onOpenQuiz={() => setQuizOpen(true)} />
         <div className="relative">
           <PainBlock />
           <GlassCards />
