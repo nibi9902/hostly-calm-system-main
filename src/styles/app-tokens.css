@@ -1,0 +1,26 @@
+/* Tokens del dashboard real de Hostly (copiats de APP/hostlylabs1.2-main/src/index.css).
+   Només s'apliquen dins de .demo-scope per no afectar la resta de la web. */
+
+.demo-scope {
+  --demo-background: 210 20% 98%;
+  --demo-foreground: 220 14% 11%;
+  --demo-card: 0 0% 100%;
+  --demo-card-foreground: 220 14% 11%;
+  --demo-primary: 217 91% 60%;
+  --demo-primary-foreground: 0 0% 100%;
+  --demo-muted: 210 20% 96%;
+  --demo-muted-foreground: 220 9% 46%;
+  --demo-meta: 218 11% 65%;
+  --demo-accent: 217 91% 60%;
+  --demo-accent-soft: 214 100% 97%;
+  --demo-accent-border: 212 96% 78%;
+  --demo-success: 142 76% 36%;
+  --demo-success-soft: 138 76% 97%;
+  --demo-warning: 45 93% 47%;
+  --demo-warning-soft: 48 96% 89%;
+  --demo-destructive: 0 72% 51%;
+  --demo-destructive-soft: 0 93% 94%;
+  --demo-border: 220 13% 91%;
+  --demo-radius: 0.625rem;
+  --demo-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
