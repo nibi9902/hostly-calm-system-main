@@ -29,6 +29,7 @@ export function AppShell({ activeTab, children }: { activeTab: TabId; children: 
             return (
               <button
                 key={id}
+                data-cursor={`tab-${id}`}
                 className="relative text-base tracking-wide transition-all duration-300"
                 style={{
                   fontWeight: isActive ? 350 : 200,
@@ -51,7 +52,11 @@ export function AppShell({ activeTab, children }: { activeTab: TabId; children: 
 
         <div className="ml-auto flex items-center gap-2.5">
           <div className="h-6 px-2.5 rounded-full bg-[hsl(var(--demo-muted))] flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--demo-primary))]" />
+            <motion.div
+              className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--demo-primary))]"
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+            />
             <span className="text-[11px] text-[hsl(var(--demo-foreground))] font-medium">Apartament Mar</span>
           </div>
           <div className="w-px h-3.5 bg-[hsl(var(--demo-border))]" />

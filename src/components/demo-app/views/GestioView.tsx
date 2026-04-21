@@ -297,7 +297,10 @@ function TaxView({ event }: { event: EventId }) {
             transition={{ duration: 0.45, delay: 1.1, ease }}
             className="text-center"
           >
-            <button className="h-11 px-6 rounded-xl bg-[hsl(var(--demo-primary))] text-white text-sm font-medium">
+            <button
+              data-cursor="tax-cta"
+              className="h-11 px-6 rounded-xl bg-[hsl(var(--demo-primary))] text-white text-sm font-medium"
+            >
               Veure pas a pas
             </button>
           </motion.div>

@@ -1,8 +1,26 @@
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, AlertTriangle, ChevronRight, Sparkles, KeyRound } from 'lucide-react';
 import type { EventId } from '../timeline';
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+function TypingIndicator() {
+  return (
+    <div className="flex items-center gap-1 mb-2.5">
+      <div className="bg-[hsl(var(--demo-muted))] rounded-full px-3 py-2 inline-flex items-center gap-1">
+        {[0, 1, 2].map((i) => (
+          <motion.span
+            key={i}
+            className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--demo-meta))]"
+            animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }}
+            transition={{ duration: 1, repeat: Infinity, delay: i * 0.15, ease: 'easeInOut' }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 interface ConversationItem {
   id: string;
@@ -91,6 +109,18 @@ function ConversationView({ event, peer }: { event: EventId; peer: 'marta' | 'da
   // Bombolles inicials + nova segons event
   const bubbles = buildBubbles(peer, event);
 
+  // Typing indicator abans de la última bombolla "host" (IA escrivint)
+  const [showTyping, setShowTyping] = useState(true);
+  useEffect(() => {
+    setShowTyping(true);
+    const t = setTimeout(() => setShowTyping(false), 1400);
+    return () => clearTimeout(t);
+  }, [event, peer]);
+
+  const lastBubble = bubbles[bubbles.length - 1];
+  const showIndicator = showTyping && lastBubble?.side === 'host';
+  const visibleBubbles = showTyping && lastBubble?.side === 'host' ? bubbles.slice(0, -1) : bubbles;
+
   return (
     <div className="h-full flex flex-col bg-[hsl(var(--demo-card))]">
       {/* Header conversa */}
@@ -110,13 +140,14 @@ function ConversationView({ event, peer }: { event: EventId; peer: 'marta' | 'da
           </span>
         </div>
         <AnimatePresence initial={false}>
-          {bubbles.map((b, i) => (
+          {visibleBubbles.map((b, i) => (
             <motion.div
               key={b.id}
+              data-cursor={i === visibleBubbles.length - 1 ? 'bubble-latest' : undefined}
               layout
               initial={{ opacity: 0, y: 12, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.45, delay: i === bubbles.length - 1 && b.side === 'host' && event !== 'idle' ? 0.5 : 0, ease }}
+              transition={{ duration: 0.45, ease }}
               className={`flex flex-col mb-2.5 ${b.side === 'host' ? 'items-end' : 'items-start'}`}
             >
               <div
@@ -139,6 +170,16 @@ function ConversationView({ event, peer }: { event: EventId; peer: 'marta' | 'da
             </motion.div>
           ))}
         </AnimatePresence>
+        {showIndicator && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex items-start"
+          >
+            <TypingIndicator />
+          </motion.div>
+        )}
       </div>
 
       {/* Composer */}

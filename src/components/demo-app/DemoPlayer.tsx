@@ -5,6 +5,7 @@ import { ResumView } from './views/ResumView';
 import { ChatDemoView } from './views/ChatDemoView';
 import { NetejaView } from './views/NetejaView';
 import { GestioView } from './views/GestioView';
+import { VirtualCursor } from './VirtualCursor';
 import { CTAEnd } from './CTAEnd';
 import { TIMELINE } from './timeline';
 
@@ -12,7 +13,9 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function DemoPlayer() {
   const [stepIdx, setStepIdx] = useState(0);
+  const [clicking, setClicking] = useState(false);
   const timerRef = useRef<number | null>(null);
+  const clickTimerRef = useRef<number | null>(null);
 
   const step = TIMELINE[stepIdx];
   const isEnd = step?.event === 'end';
@@ -22,8 +25,18 @@ export function DemoPlayer() {
     timerRef.current = window.setTimeout(() => {
       setStepIdx((i) => Math.min(i + 1, TIMELINE.length - 1));
     }, step.duration);
+
+    // Click ripple si el step el demana
+    if (step.clickAt != null) {
+      clickTimerRef.current = window.setTimeout(() => {
+        setClicking(true);
+        window.setTimeout(() => setClicking(false), 400);
+      }, step.clickAt);
+    }
+
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
+      if (clickTimerRef.current) window.clearTimeout(clickTimerRef.current);
     };
   }, [step, isEnd]);
 
@@ -93,6 +106,13 @@ export function DemoPlayer() {
           </p>
         </motion.div>
       )}
+
+      {/* Cursor virtual */}
+      <VirtualCursor
+        targetSelector={!isEnd && step.cursor ? step.cursor : null}
+        click={clicking}
+        hidden={isEnd}
+      />
 
       {/* Progress bar global */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center">

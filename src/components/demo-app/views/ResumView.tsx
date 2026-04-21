@@ -50,7 +50,7 @@ export function ResumView({ event }: { event: EventId }) {
   const rows = event === 'new-booking' ? [NEW_RESERVATION, ...INITIAL_ROWS] : INITIAL_ROWS;
 
   return (
-    <div className="h-full bg-[hsl(var(--demo-card))] flex flex-col relative">
+    <div className="h-full bg-[hsl(var(--demo-card))] flex flex-col relative" data-cursor="toast-area">
       {/* Header */}
       <div className="shrink-0 px-8 pt-6 pb-4">
         <div className="flex items-center justify-between">
@@ -136,14 +136,17 @@ function ReservationRow({ row }: { row: ResRow }) {
   return (
     <motion.div
       layout
-      initial={row.highlight ? { opacity: 0, y: -12, height: 0 } : false}
+      data-cursor={row.highlight ? 'new-booking-row' : undefined}
+      initial={row.highlight ? { opacity: 0, y: -16, scale: 0.98 } : false}
       animate={{
         opacity: 1,
         y: 0,
-        height: 'auto',
-        backgroundColor: row.highlight ? ['hsla(217,91%,60%,0.10)', 'hsla(217,91%,60%,0)'] : 'hsla(0,0%,100%,0)',
+        scale: 1,
+        backgroundColor: row.highlight
+          ? ['hsla(217,91%,60%,0)', 'hsla(217,91%,60%,0.14)', 'hsla(217,91%,60%,0.06)', 'hsla(217,91%,60%,0)']
+          : 'hsla(0,0%,100%,0)',
       }}
-      transition={{ duration: 0.6, ease, backgroundColor: { duration: 2.4 } }}
+      transition={{ duration: 0.55, ease, backgroundColor: { duration: 2.8, times: [0, 0.25, 0.5, 1] } }}
       className={`w-full py-4 flex items-center gap-3 ${leftAccent}`}
       style={{ borderBottom: '1px solid hsl(var(--demo-border) / 0.6)' }}
     >
