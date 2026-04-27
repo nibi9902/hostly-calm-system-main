@@ -535,7 +535,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
       gsap.set(".text-days",     { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
       gsap.set(".hero-subtitle", { autoAlpha: 0, y: 24 });
       gsap.set(".main-card",     { y: window.innerHeight + 200, autoAlpha: 1 });
-      gsap.set([".card-left-text", ".card-right-text", ".mockup-scroll-wrapper"], { autoAlpha: 0 });
+      gsap.set([".card-left-text", ".mockup-scroll-wrapper"], { autoAlpha: 0 });
       gsap.set([".bubble-0",".bubble-1",".bubble-2",".bubble-3",".bubble-4",".bubble-5"], { autoAlpha: 0 });
       gsap.set(".phone-notif",   { autoAlpha: 0, y: -60, scale: 0.88 });
       gsap.set(".cta-wrapper",   { autoAlpha: 0, y: 50, filter: "blur(20px)" });
@@ -619,14 +619,13 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
 
         // ── Phase 5: text entra ──
         .fromTo(".card-left-text",  { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.2")
-        .fromTo(".card-right-text", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
 
         // ── Pausa final ──
         .to({}, { duration: 2.5 })
 
         // ── Phase 6: contingut de la targeta desapareix ──
         .to(
-          [".mockup-scroll-wrapper", ".bubble-0", ".bubble-1", ".bubble-2", ".bubble-3", ".bubble-4", ".bubble-5", ".card-left-text", ".card-right-text"],
+          [".mockup-scroll-wrapper", ".bubble-0", ".bubble-1", ".bubble-2", ".bubble-3", ".bubble-4", ".bubble-5", ".card-left-text"],
           { autoAlpha: 0, y: -30, ease: "power2.in", duration: 1.0, stagger: 0.04 },
           "+=0.5"
         )
@@ -747,16 +746,9 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         >
           <div className="card-sheen" aria-hidden="true" />
 
-          <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-3 items-center lg:gap-8 z-10 py-6 lg:py-0">
+          <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-2 items-center lg:gap-12 z-10 py-6 lg:py-0">
 
-            {/* Top (mobile) / Right (desktop): Brand */}
-            <div className="card-right-text gsap-reveal order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
-              <h2 className="text-6xl md:text-[6rem] lg:text-[8rem] font-black uppercase tracking-tighter text-card-silver">
-                Hostly
-              </h2>
-            </div>
-
-            {/* Center: iPhone mockup */}
+            {/* Center (mobile) / Right (desktop): iPhone mockup */}
             <div className="mockup-scroll-wrapper order-2 lg:order-2 relative w-full h-[380px] lg:h-[600px] flex items-center justify-center z-10" style={{ perspective: "1000px" }}>
               <div className="relative w-full h-full flex items-center justify-center transform scale-[0.65] md:scale-85 lg:scale-100">
 
@@ -799,7 +791,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 1 — UPPER-RIGHT (2a, ~22%) */}
-                <div className="bubble-1 absolute top-[22%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="bubble-1 absolute top-[22%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">🛡️</span>
                   </div>
@@ -821,7 +813,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 3 — LOWER-MID-RIGHT (4a, ~60%) */}
-                <div className="bubble-3 absolute top-[60%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="bubble-3 absolute top-[60%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">🤖</span>
                   </div>
@@ -843,7 +835,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 5 — BOTTOM-RIGHT (6a, ~95%) */}
-                <div className="bubble-5 absolute bottom-[3%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="bubble-5 absolute bottom-[3%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">💬</span>
                   </div>
