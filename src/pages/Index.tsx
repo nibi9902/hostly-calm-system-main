@@ -14,6 +14,7 @@ import FAQBlock from "@/components/FAQBlock";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import QuizModal from "@/components/QuizModal";
+import { SignupModal } from "@/components/SignupModal";
 import {
   organizationSchema,
   softwareAppSchema,
@@ -65,6 +66,7 @@ const homeFaqs = [
 
 const Index = () => {
   const [quizOpen, setQuizOpen] = useState(false);
+  const [signupOpen, setSignupOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
@@ -83,9 +85,9 @@ const Index = () => {
           ),
         ]}
       />
-      <SiteHeader onOpenQuiz={() => setQuizOpen(true)} />
+      <SiteHeader onOpenQuiz={() => setSignupOpen(true)} />
       <main>
-        <CinematicHero onOpenQuiz={() => setQuizOpen(true)} />
+        <CinematicHero onOpenQuiz={() => setSignupOpen(true)} />
         <PainBlock />
         <FeaturesBlock />
         <GlassCards />
@@ -94,10 +96,11 @@ const Index = () => {
         <TestimonialBlock />
         <PricingBlock />
         <FAQBlock />
-        <FinalCTA onOpenQuiz={() => setQuizOpen(true)} />
+        <FinalCTA onOpenQuiz={() => setSignupOpen(true)} />
       </main>
       <Footer />
       <QuizModal isOpen={quizOpen} onClose={() => setQuizOpen(false)} />
+      <SignupModal isOpen={signupOpen} onClose={() => setSignupOpen(false)} />
       <PageProgress />
     </div>
   );
