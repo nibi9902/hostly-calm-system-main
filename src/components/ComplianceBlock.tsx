@@ -92,12 +92,12 @@ export default function ComplianceBlock() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease }}
-          className="relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 md:p-12 shadow-[0_4px_32px_rgba(15,23,42,0.04)]"
+          className="relative rounded-3xl border border-slate-100 bg-white p-6 md:p-12 shadow-[0_4px_32px_rgba(15,23,42,0.04)]"
         >
           {/* Glow institucional càlid */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full"
+            className="pointer-events-none absolute top-0 right-0 w-72 h-72 rounded-full"
             style={{ background: "radial-gradient(circle, rgba(26,58,143,0.08) 0%, transparent 70%)" }}
           />
 

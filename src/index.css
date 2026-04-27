@@ -188,8 +188,4 @@
     padding-top: 4rem !important;
     padding-bottom: 4rem !important;
   }
-  /* Compliance card interior */
-  #compliance .rounded-3xl {
-    padding: 2rem 1.5rem !important;
-  }
 }
