@@ -1,25 +1,22 @@
-// Component SEO reutilitzable — emet meta tags, canonical, OG, Twitter Card i JSON-LD via Helmet.
-// Ús: <SEO title="..." description="..." path="/ruta" schemas={[...]} />
-
 import { Helmet } from "react-helmet-async";
 import { SITE, absoluteUrl } from "@/lib/seo/config";
+import { useLang } from "@/i18n/useLang";
 
 interface SEOProps {
-  /** Títol de la pàgina. Si no acaba amb "| Hostly", s'hi afegeix. */
   title: string;
-  /** Meta description (150-160 caràcters òptim). */
   description: string;
-  /** Path canonical relatiu (ex: "/funciones/check-in"). */
+  /** Path canonical relatiu sense prefix d'idioma (ex: "/funciones/check-in"). */
   path: string;
-  /** Imatge OG específica de la pàgina (fallback: og-image.png del site). */
   image?: string;
-  /** type d'Open Graph (default: "website", articles usen "article"). */
   ogType?: "website" | "article" | "product";
-  /** Schemas JSON-LD addicionals a emetre. */
   schemas?: Array<Record<string, unknown>>;
-  /** Si true, afegeix robots noindex (per pàgines privades). */
   noindex?: boolean;
 }
+
+const LANG_LOCALE: Record<string, string> = {
+  es: "es_ES",
+  ca: "ca_ES",
+};
 
 export default function SEO({
   title,
@@ -30,9 +27,20 @@ export default function SEO({
   schemas = [],
   noindex = false,
 }: SEOProps) {
-  const url = absoluteUrl(path);
+  const { lang } = useLang();
+
+  // Canonical inclou el prefix d'idioma
+  const canonicalPath = `/${lang}${path === "/" ? "" : path}`;
+  const url = absoluteUrl(canonicalPath);
   const ogImage = image ? absoluteUrl(image) : absoluteUrl(SITE.defaultOgImage);
-  const finalTitle = title.includes("Hostly") ? title : `${title} | ${SITE.name}`;
+  const hasBrand = /\bHostly\b/i.test(title);
+  const finalTitle = hasBrand ? title : `${title} | ${SITE.name}`;
+  const ogLocale = LANG_LOCALE[lang] ?? "es_ES";
+
+  // URLs hreflang per ambdós idiomes
+  const basePath = path === "/" ? "" : path;
+  const hreflangEs = absoluteUrl(`/es${basePath}`);
+  const hreflangCa = absoluteUrl(`/ca${basePath}`);
 
   return (
     <Helmet>
@@ -42,6 +50,11 @@ export default function SEO({
       <link rel="canonical" href={url} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
 
+      {/* hreflang — SEO multiidioma */}
+      <link rel="alternate" hreflang="es-ES" href={hreflangEs} />
+      <link rel="alternate" hreflang="ca-ES" href={hreflangCa} />
+      <link rel="alternate" hreflang="x-default" href={hreflangEs} />
+
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={url} />
@@ -50,10 +63,8 @@ export default function SEO({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:locale" content={SITE.locale} />
-      {SITE.alternateLocales.map((l) => (
-        <meta key={l} property="og:locale:alternate" content={l} />
-      ))}
+      <meta property="og:locale" content={ogLocale} />
+      <meta property="og:locale:alternate" content={lang === "es" ? "ca_ES" : "es_ES"} />
       <meta property="og:site_name" content={SITE.name} />
 
       {/* Twitter Card */}

@@ -1,1 +1,194 @@
-{}
+{
+  "hero": {
+    "h1_line1": "¿Gestionas apartamentos en Airbnb?",
+    "h1_line2": "¿O te gestionan ellos a ti?",
+    "subtitle": "Hostly simplifica todo lo que implica tener un piso turístico.",
+    "partner_label": "Partner oficial de",
+    "cta_tagline": "Para propietarios que quieren sistema, no caos",
+    "cta_h2_start": "Empieza",
+    "cta_h2_accent": "gratis",
+    "cta_h2_end": "hoy mismo.",
+    "cta_sub": "Sin permanencia. Sin tarjeta. Una sola app para todo tu piso.",
+    "stat_messages": "mensajes respondidos",
+    "stat_police": "registros policiales",
+    "stat_cleanings": "limpiezas coordinadas",
+    "btn_start": "Empezar gratis 14 días",
+    "btn_how": "Ver cómo funciona",
+    "card_title_1": "Hostly simplifica",
+    "card_title_2": "tu apartamento",
+    "card_title_3": "al máximo.",
+    "card_body": "Las cinco apps que usabas, las hojas de cálculo, los grupos de WhatsApp y las llamadas de última hora —",
+    "card_body_strong": "todo eso se acaba."
+  },
+  "features": {
+    "eyebrow": "Lo que reemplaza Hostly",
+    "title": "De 6 suscripciones a una."
+  },
+  "pain": {
+    "eyebrow": "Antes / Ahora",
+    "title": "Sin sistema, el negocio te gestiona a ti.",
+    "subtitle": "Las mismas tareas de cada semana. La diferencia es quién las hace.",
+    "col_before": "Sin sistema",
+    "col_after": "Con Hostly",
+    "closer_title": "De cinco apps dispersas a una sola que lo hace todo.",
+    "closer_sub": "Empieza por la parte gratis. El resto, cuando lo necesites.",
+    "closer_cta": "Crear cuenta gratis",
+    "closer_fine": "Sin tarjeta · Para siempre",
+    "pairs": [
+      {
+        "before_title": "¿Hiciste el SES de esta reserva?",
+        "before_sub": "Tú mismo · Pendiente desde el viernes",
+        "after_title": "SES enviado a Mossos",
+        "after_sub": "Automático · Sin tocar nada"
+      },
+      {
+        "before_title": "Limpieza mañana — ¿avisaste a Anna?",
+        "before_sub": "Sin responder · 3h para el check-in",
+        "after_title": "Anna notificada: mañana 11h",
+        "after_sub": "Automático · Confirmado"
+      },
+      {
+        "before_title": "Chekin + Smoobu + PriceLabs...",
+        "before_sub": "~120€ este mes · 5 facturas distintas",
+        "after_title": "40€/mes · Todo incluido",
+        "after_sub": "Un pago · Un login · Nada más"
+      },
+      {
+        "before_title": "¿Declaraste la taxa turística?",
+        "before_sub": "Otro trimestre que se cuela entre todo lo demás",
+        "after_title": "Informe listo. Te guiamos paso a paso.",
+        "after_sub": "5 minutos · Sin gestoria · Sin errores"
+      },
+      {
+        "before_title": "30 mensajes de huéspedes sin leer",
+        "before_sub": "Wifi, parking, check-out... siempre lo mismo",
+        "after_title": "Todos contestados. En segundos.",
+        "after_sub": "IA · 5 idiomas · Sin abrir el móvil"
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "Cómo funciona",
+    "title_1": "Listo en minutos.",
+    "title_2": "funcionando para siempre.",
+    "subtitle": "Cuatro pasos reales, cronometrados. El 95% de los propietarios los completan antes de comer.",
+    "footer_tagline": "Setup guiado · Onboarding 1 a 1 el primer mes · Soporte en español y catalán",
+    "list": [
+      {
+        "tag": "Primero",
+        "title": "Añade tu piso en menos de 10 minutos.",
+        "description": "Un cuestionario corto. Responde una sola vez las normas, horarios, accesos y wifi. Hostly lo recuerda por ti — el huésped lo recibirá solo cuando haga falta."
+      },
+      {
+        "tag": "Segundo",
+        "title": "Conecta Airbnb, Booking y tu cerradura.",
+        "description": "Un clic por canal. El calendario se sincroniza, los precios se ajustan, la cerradura genera códigos únicos por huésped. Todo desde un solo panel."
+      },
+      {
+        "tag": "Tercero",
+        "title": "Hostly se ocupa de todo lo que llega.",
+        "description": "Reservas, mensajes, check-ins, SES, taxa, avisos a limpieza. En tiempo real, sin que tú tengas que intervenir. Tú eliges cuándo miras."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Preguntas frecuentes",
+    "title": "Lo que nos preguntan antes de empezar.",
+    "contact_pre": "Si tienes más dudas, escríbenos a",
+    "list": [
+      {
+        "q": "¿Qué reemplaza Hostly exactamente?",
+        "a": "Hostly reemplaza Chekin (check-in y compliance), tu canal manager actual, las plantillas de mensajes manuales, el Excel de cobros y el Dropbox de contratos. Una sola app, una sola factura."
+      },
+      {
+        "q": "¿Y si solo tengo 1 o 2 apartamentos?",
+        "a": "Hostly está pensado especialmente para propietarios con 1 a 10 pisos. A 40 €/mes por apartamento reemplazas varias suscripciones y sales ganando — además del tiempo que dejas de perder."
+      },
+      {
+        "q": "¿El check-in y el envío a la policía son realmente gratis?",
+        "a": "Sí, gratis de por vida y sin condiciones. El check-in online, el registro a SES.Hospedajes, Mossos y Ertzaintza funcionan desde el plan gratuito, para todos tus apartamentos y sin límite de envíos."
+      },
+      {
+        "q": "¿Funciona con Airbnb y Booking a la vez?",
+        "a": "Sí. Hostly sincroniza calendarios, precios y reservas de Airbnb, Booking.com y otros canales en tiempo real. Sin dobles reservas ni trabajo manual."
+      },
+      {
+        "q": "¿Cuánto tarda en configurarse?",
+        "a": "Menos de 15 minutos para el primer apartamento. Respondes el cuestionario del piso una sola vez y el sistema empieza a funcionar. El onboarding 1 a 1 el primer mes te ayuda si tienes dudas."
+      },
+      {
+        "q": "¿Tengo que firmar permanencia?",
+        "a": "No. Cancelas cuando quieres, sin penalización ni llamada de retención. Si decides que no es para ti, le das a un botón."
+      },
+      {
+        "q": "¿Podré hablar con alguien si tengo un problema?",
+        "a": "Sí. El primer mes tienes onboarding 1 a 1 con nuestro equipo. Después, soporte humano en español y catalán — no un chatbot."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Un plan gratis. Otro completo.",
+    "title_sub": "Sin packs.",
+    "subtitle": "Una sola app, un solo precio. Y un tier gratis para siempre con la parte legal.",
+    "free_badge": "Gratis · Para siempre",
+    "free_price_note": "Sin tarjeta. Sin caducidad.",
+    "free_desc": "Para los que solo quieren cumplir con la policía sin pagar nada al mes.",
+    "free_cta": "Crear cuenta gratis",
+    "free_features": [
+      "Envío automático del parte a la policía",
+      "Estado de cada check-in (enviado y recibido)",
+      "Lista de huéspedes registrados por reserva",
+      "Sin límite de apartamentos",
+      "Sin caducidad. Sin tarjeta."
+    ],
+    "paid_badge": "Hostly Completo",
+    "paid_badge_recommended": "Recomendado",
+    "paid_price_per": "/mes por apt.",
+    "paid_price_bulk_prefix": "35 €/mes",
+    "paid_price_bulk_suffix": "por apartamento desde 5 apt.",
+    "paid_desc": "Todo el sistema en una app. Reemplaza Chekin, Smoobu, PriceLabs y Excel.",
+    "paid_cta": "Probar 14 días gratis",
+    "paid_fine": "Sin tarjeta · Sin permanencia · Cancela cuando quieras",
+    "paid_features": [
+      "Todo lo del plan gratis",
+      "Sincronización Airbnb + Booking en tiempo real",
+      "Mensajes con IA en WhatsApp (5 idiomas)",
+      "Coordinación automática de limpiezas",
+      "Precios dinámicos según demanda",
+      "Cierre de mes y finanzas",
+      "Onboarding 1 a 1 el primer mes",
+      "Soporte humano. No chatbot."
+    ],
+    "compare_old": "~ 120 €/mes pagando 5 apps por separado",
+    "compare_new": "· 40 €/mes con Hostly",
+    "referral_badge": "Programa de referidos",
+    "referral_num_label": "Usuarios que traes",
+    "referral_reward_label": "Apartamento gratis",
+    "referral_title": "Cada 5 propietarios que traigas, 1 apartamento tuyo deja de costarte.",
+    "referral_desc": "Mientras sigan activos en Hostly, no pagas por ese apartamento. Sin límite — trae 10 propietarios y son 2."
+  },
+  "final_cta": {
+    "eyebrow": "Para propietarios que quieren sistema, no caos",
+    "title": "Empieza gratis. 14 días.",
+    "subtitle": "Sin tarjeta · Sin permanencia · Cancela cuando quieras",
+    "btn_start": "Empezar gratis 14 días",
+    "btn_demo": "Ver demo en vivo",
+    "stat_messages": "Mensajes con IA en 5 idiomas",
+    "stat_police": "Registro policial automatizado",
+    "stat_cleanings": "Limpiezas coordinadas en un clic",
+    "partners": "Partner oficial de"
+  },
+  "footer": {
+    "tagline": "Simplifica la gestión de tu apartamento turístico.",
+    "links": {
+      "faq": "Preguntas frecuentes",
+      "privacidad": "Privacidad",
+      "cookies": "Cookies",
+      "terminos": "Términos",
+      "aviso": "Aviso legal",
+      "sobre": "Sobre Hostly",
+      "contacto": "Contacto"
+    },
+    "copyright": "© 2026 Hostly™ · Orden operativo para propietarios de apartamentos turísticos."
+  }
+}

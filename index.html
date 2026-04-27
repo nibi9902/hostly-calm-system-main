@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,300;1,400;1,500&display=swap" />
 
     <!-- SEO Primary -->
-    <title>¿Gestionas apartamentos en Airbnb? ¿O te gestionan ellos a ti? | Hostly</title>
+    <title>Simplifica la gestión de tu apartamento turístico | Hostly</title>
     <meta name="description" content="Hostly simplifica todo lo que implica tener un piso turístico. Reservas, check-in, mensajes, limpiezas y compliance en una sola app. 14 días gratis, sin tarjeta." />
     <link rel="canonical" href="https://hostlylabs.com" />
     <meta name="robots" content="index, follow" />
@@ -49,14 +49,13 @@
 
     <!--
       ============================================================
-      TODO · GA4 — Google Analytics 4 no configurat
+      GA4 — Google Analytics 4
       ============================================================
-      Crea una propietat a https://analytics.google.com i substitueix
-      G-XXXXXXXXXX pel Measurement ID real (format: G-ABC1234567).
-
-      Sense aquest canvi, l'app no envia events a producció
-      (src/lib/analytics.ts queda inactiu).
+      Quan tinguis el Measurement ID real (format: G-ABC1234567), substitueix
+      G-XXXXXXXXXX a sota i descomenta. Mentrestant queda comentat per evitar
+      requests fallits a Google Analytics amb un ID inexistent.
     -->
+    <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -64,6 +63,7 @@
       gtag('js', new Date());
       gtag('config', 'G-XXXXXXXXXX', { send_page_view: true });
     </script>
+    -->
   </head>
 
   <body>

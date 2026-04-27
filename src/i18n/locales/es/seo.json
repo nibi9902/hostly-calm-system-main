@@ -1,1 +1,18 @@
-{}
+{
+  "home": {
+    "title": "Simplifica la gestión de tu apartamento turístico | Hostly",
+    "description": "Hostly simplifica todo lo que implica tener un piso turístico. Reservas, check-in, mensajes, limpiezas y compliance en una sola app. 14 días gratis, sin tarjeta."
+  },
+  "funcionalidades": {
+    "title": "Funcionalidades | Hostly",
+    "description": "Descubre todas las funcionalidades de Hostly: check-in automatizado, mensajería con IA, coordinación de limpiezas, precios dinámicos y más."
+  },
+  "blog": {
+    "title": "Blog | Hostly",
+    "description": "Consejos, guías y recursos para propietarios y gestores de apartamentos turísticos."
+  },
+  "alternativas": {
+    "title": "Alternativas | Hostly",
+    "description": "Compara Hostly con otras soluciones de gestión de apartamentos turísticos."
+  }
+}

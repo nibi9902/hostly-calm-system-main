@@ -51,7 +51,7 @@ export function SiteHeader({ onOpenQuiz }: SiteHeaderProps) {
                 aria-pressed={lang === l}
                 aria-label={l === 'es' ? 'Español' : 'Català'}
                 className={cn(
-                  'px-2.5 py-1 rounded-full transition-colors',
+                  'px-3 py-1.5 rounded-full transition-colors min-w-[36px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
                   lang === l ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900',
                 )}
               >

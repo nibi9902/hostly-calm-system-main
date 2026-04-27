@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { LangLink } from "@/i18n/LangLink";
+import { useTranslation } from "react-i18next";
 
 interface FinalCTAProps {
   onOpenQuiz?: () => void;
 }
 
 const FinalCTA = ({ onOpenQuiz }: FinalCTAProps) => {
+  const { t } = useTranslation("home");
   return (
     <section
       id="cta-final"
@@ -37,15 +39,15 @@ const FinalCTA = ({ onOpenQuiz }: FinalCTAProps) => {
         className="max-w-3xl mx-auto text-center relative z-10"
       >
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40 mb-5">
-          Para propietarios que quieren sistema, no caos
+          {t("final_cta.eyebrow")}
         </p>
 
         <h2 className="text-4xl md:text-6xl font-bold tracking-[-0.04em] leading-[1.0] mb-6 text-white">
-          Empieza gratis. 14 días.
+          {t("final_cta.title")}
         </h2>
 
         <p className="text-lg md:text-xl text-white/60 mb-10 max-w-lg mx-auto leading-relaxed">
-          Sin tarjeta · Sin permanencia · Cancela cuando quieras
+          {t("final_cta.subtitle")}
         </p>
 
         {/* CTAs */}
@@ -54,7 +56,7 @@ const FinalCTA = ({ onOpenQuiz }: FinalCTAProps) => {
             onClick={onOpenQuiz}
             className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base transition-all duration-300 hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
           >
-            Empezar gratis 14 días
+            {t("final_cta.btn_start")}
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </button>
           <LangLink
@@ -62,22 +64,22 @@ const FinalCTA = ({ onOpenQuiz }: FinalCTAProps) => {
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/25 text-white/80 font-medium text-base transition-all duration-300 hover:border-white/50 hover:text-white"
           >
             <Play className="w-4 h-4 fill-current" />
-            Ver demo en vivo
+            {t("final_cta.btn_demo")}
           </LangLink>
         </div>
 
         {/* Stats */}
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/35 text-sm mb-10">
-          <span>💬 7.983 mensajes respondidos</span>
+          <span>💬 {t("final_cta.stat_messages")}</span>
           <span>·</span>
-          <span>🛡️ 4.271 registros policiales</span>
+          <span>🛡️ {t("final_cta.stat_police")}</span>
           <span>·</span>
-          <span>🧹 3.548 limpiezas coordinadas</span>
+          <span>🧹 {t("final_cta.stat_cleanings")}</span>
         </div>
 
         {/* Partner logos */}
         <div className="flex items-center justify-center gap-2 text-white/30 text-xs font-medium uppercase tracking-widest">
-          <span>Partner oficial de</span>
+          <span>{t("final_cta.partners")}</span>
           <span className="text-white/50 font-semibold ml-1">Airbnb</span>
           <span>·</span>
           <span className="text-white/50 font-semibold">Booking.com</span>

@@ -1,1 +1,18 @@
-{}
+{
+  "home": {
+    "title": "Simplifica la gestió del teu apartament turístic | Hostly",
+    "description": "Hostly simplifica tot el que implica tenir un pis turístic. Reserves, check-in, missatges, neteges i compliance en una sola app. 14 dies gratis, sense targeta."
+  },
+  "funcionalidades": {
+    "title": "Funcionalitats | Hostly",
+    "description": "Descobreix totes les funcionalitats de Hostly: check-in automatitzat, missatgeria amb IA, coordinació de neteges, preus dinàmics i més."
+  },
+  "blog": {
+    "title": "Blog | Hostly",
+    "description": "Consells, guies i recursos per a propietaris i gestors d'apartaments turístics."
+  },
+  "alternativas": {
+    "title": "Alternatives | Hostly",
+    "description": "Compara Hostly amb altres solucions de gestió d'apartaments turístics."
+  }
+}

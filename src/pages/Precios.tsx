@@ -43,6 +43,8 @@ const PreciosPage = () => {
       description="Un plan gratis para siempre con la parte legal. Un plan completo de 40 €/mes por apartamento. Sin packs, sin add-ons, sin sorpresas."
       path="/precios"
     >
+      {/* H1 semàntic per SEO — visualment ocult, el header del PricingBlock és l'H2 */}
+      <h1 className="sr-only">Precios de Hostly — Un plan gratis y un plan completo de 40 €/mes por apartamento</h1>
 
       {/* Pricing block — el PricingBlock ja té el seu propi header, evitem duplicar-lo */}
       <PricingBlock />

@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { LangLink } from "@/i18n/LangLink";
+import { useTranslation } from "react-i18next";
 import badgeBooking from "@/assets/badge-booking.webp";
 import badgeAirbnb from "@/assets/badge-airbnb.webp";
 import badgeGoogle from "@/assets/badge-google.webp";
@@ -502,6 +503,7 @@ export interface CinematicHeroProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHeroProps) {
+  const { t } = useTranslation("home");
   const containerRef  = useRef<HTMLDivElement>(null);
   const mainCardRef   = useRef<HTMLDivElement>(null);
   const mockupRef     = useRef<HTMLDivElement>(null);
@@ -664,16 +666,17 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
       <div className="film-grain" aria-hidden="true" />
       <div className="bg-grid-hostly absolute inset-0 z-0 pointer-events-none opacity-60" aria-hidden="true" />
 
-      {/* ── Background: hero tagline ── */}
+      {/* ── Background: hero tagline (un únic H1 amb dues parts visuals per SEO) ── */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform">
-        <h1 className="text-track gsap-reveal text-3d-hostly text-[2.25rem] leading-[1.05] md:text-6xl lg:text-[5rem] font-bold tracking-tight mb-2">
-          ¿Gestionas apartamentos en Airbnb?
-        </h1>
-        <h1 className="text-days gsap-reveal text-silver-hostly text-[2.25rem] leading-[1.05] md:text-6xl lg:text-[5rem] font-extrabold tracking-tighter">
-          ¿O te gestionan ellos a ti?
-        </h1>
+        <h1 className="sr-only">{t("hero.h1_line1")} {t("hero.h1_line2")}</h1>
+        <span aria-hidden="true" className="text-track gsap-reveal text-3d-hostly text-[2.25rem] leading-[1.05] md:text-6xl lg:text-[5rem] font-bold tracking-tight mb-2">
+          {t("hero.h1_line1")}
+        </span>
+        <span aria-hidden="true" className="text-days gsap-reveal text-silver-hostly text-[2.25rem] leading-[1.05] md:text-6xl lg:text-[5rem] font-extrabold tracking-tighter">
+          {t("hero.h1_line2")}
+        </span>
         <p className="hero-subtitle gsap-reveal text-base md:text-xl text-slate-500 max-w-2xl mt-6 md:mt-8 font-normal leading-relaxed">
-          Hostly simplifica todo lo que implica tener un piso turístico.
+          {t("hero.subtitle")}
         </p>
       </div>
 
@@ -683,7 +686,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         {/* Partner badges */}
         <div className="mb-12 md:mb-14 w-full max-w-3xl">
           <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400 mb-5">
-            Partner oficial de
+            {t("hero.partner_label")}
           </p>
           <div className="flex items-center justify-center gap-5 md:gap-7 flex-wrap">
             <div className="flex items-center justify-center px-7 py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-200 transition-colors">
@@ -699,26 +702,26 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         </div>
 
         <p className="text-xs font-bold tracking-[0.18em] uppercase text-blue-600 mb-5">
-          Para propietarios que quieren sistema, no caos
+          {t("hero.cta_tagline")}
         </p>
         <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold mb-5 tracking-tight text-card-dark leading-[1.15]">
-          Empieza <span className="font-accent text-[1.6em] text-[#1a3a8f] pr-1">gratis</span> hoy mismo.
+          {t("hero.cta_h2_start")} <span className="font-accent text-[1.6em] text-[#1a3a8f] pr-1">{t("hero.cta_h2_accent")}</span> {t("hero.cta_h2_end")}
         </h2>
         <p className="text-slate-500 text-lg md:text-2xl mb-12 md:mb-14 max-w-2xl mx-auto font-light leading-relaxed">
-          Sin permanencia. Sin tarjeta. Una sola app para todo tu piso.
+          {t("hero.cta_sub")}
         </p>
 
         {/* Stats pills — 3 horitzontals amb més gap */}
         <div className="flex items-center justify-center gap-4 md:gap-5 mb-12 w-full max-w-4xl flex-wrap">
           {[
-            { icon: '💬', num: '7.983', label: 'mensajes respondidos' },
-            { icon: '🛡️', num: '4.271', label: 'registros policiales' },
-            { icon: '🧹', num: '3.548', label: 'limpiezas coordinadas' },
+            { icon: '💬', num: '7.983', labelKey: 'hero.stat_messages' },
+            { icon: '🛡️', num: '4.271', labelKey: 'hero.stat_police' },
+            { icon: '🧹', num: '3.548', labelKey: 'hero.stat_cleanings' },
           ].map((s) => (
-            <div key={s.label} className="flex items-center justify-center gap-2.5 px-7 py-3 rounded-full border border-slate-200 bg-white text-sm whitespace-nowrap">
+            <div key={s.labelKey} className="flex items-center justify-center gap-2.5 px-7 py-3 rounded-full border border-slate-200 bg-white text-sm whitespace-nowrap">
               <span className="text-base">{s.icon}</span>
               <span className="font-bold text-slate-900">{s.num}</span>
-              <span className="text-slate-500">{s.label}</span>
+              <span className="text-slate-500">{t(s.labelKey)}</span>
             </div>
           ))}
         </div>
@@ -728,13 +731,13 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
             onClick={onOpenQuiz}
             className="btn-hostly-primary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-bold"
           >
-            Empezar gratis 14 días
+            {t("hero.btn_start")}
           </button>
           <LangLink
             to="/demo"
             className="btn-hostly-secondary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-semibold"
           >
-            Ver cómo funciona
+            {t("hero.btn_how")}
           </LangLink>
         </div>
       </div>
@@ -859,13 +862,13 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
             {/* Bottom (mobile) / Left (desktop): Description */}
             <div className="card-left-text gsap-reveal order-3 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
               <h3 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-0 lg:mb-5 tracking-tight">
-                Hostly simplifica<br />
-                tu apartamento<br />
-                <span className="italic">al máximo.</span>
+                {t("hero.card_title_1")}<br />
+                {t("hero.card_title_2")}<br />
+                <span className="italic">{t("hero.card_title_3")}</span>
               </h3>
               <p className="hidden md:block text-blue-100/60 text-sm md:text-base lg:text-lg font-normal leading-relaxed max-w-sm lg:max-w-none">
-                Las cinco apps que usabas, las hojas de cálculo, los grupos de WhatsApp y las llamadas de última hora —<br />
-                <span className="text-white font-semibold">todo eso se acaba.</span>
+                {t("hero.card_body")}<br />
+                <span className="text-white font-semibold">{t("hero.card_body_strong")}</span>
               </p>
             </div>
 

@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Check, Wifi, KeyRound, Euro, CalendarDays, Lock, Shield, Sparkles, MessageSquare, TrendingUp, ArrowUpRight } from "lucide-react";
 
 const appleEase = [0.22, 1, 0.36, 1] as const;
@@ -9,33 +10,12 @@ const BRAND_BLUE = "#1a3a8f";
 const BRAND_SOFT = "#2563EB";
 const GRAD_QUICK = "linear-gradient(135deg, #FF7A75 0%, #FFA97A 100%)"; // gradient quick-actions de l'app real
 
-/* ── Step data ── */
-const steps = [
-  {
-    num: "01",
-    tag: "Primero",
-    title: "Añade tu piso en menos de 10 minutos.",
-    description:
-      "Un cuestionario corto. Responde una sola vez las normas, horarios, accesos y wifi. Hostly lo recuerda por ti — el huésped lo recibirá solo cuando haga falta.",
-    visual: "setup",
-  },
-  {
-    num: "02",
-    tag: "Segundo",
-    title: "Conecta Airbnb, Booking y tu cerradura.",
-    description:
-      "Un clic por canal. El calendario se sincroniza, los precios se ajustan, la cerradura genera códigos únicos por huésped. Todo desde un solo panel.",
-    visual: "integrations",
-  },
-  {
-    num: "03",
-    tag: "Tercero",
-    title: "Hostly se ocupa de todo lo que llega.",
-    description:
-      "Reservas, mensajes, check-ins, SES, taxa, avisos a limpieza. En tiempo real, sin que tú tengas que intervenir. Tú eliges cuándo miras.",
-    visual: "live",
-  },
-];
+/* ── Step visual configs (non-translated) ── */
+const STEP_VISUALS = [
+  { num: "01", visual: "setup" },
+  { num: "02", visual: "integrations" },
+  { num: "03", visual: "live" },
+] as const;
 
 /* ─────────────────────────────────────────────────────────
    MOCKUPS — inspirats en el llenguatge visual real de Hostly
@@ -548,7 +528,9 @@ const PhoneFrame = ({ children }: { children?: React.ReactNode }) => (
 /* ─────────────────────────────────────────────────────────
    STEP ROW
 ───────────────────────────────────────────────────────── */
-const StepRow = ({ step, index }: { step: typeof steps[0]; index: number }) => {
+type StepData = { num: string; visual: string; tag: string; title: string; description: string };
+
+const StepRow = ({ step, index }: { step: StepData; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "start 30%"] });
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -682,6 +664,15 @@ const StepRow = ({ step, index }: { step: typeof steps[0]; index: number }) => {
    MAIN
 ───────────────────────────────────────────────────────── */
 const StepsBlock = () => {
+  const { t } = useTranslation("home");
+  const stepList = t("steps.list", { returnObjects: true }) as Array<{ tag: string; title: string; description: string }>;
+  const steps: StepData[] = STEP_VISUALS.map((sv, i) => ({
+    ...sv,
+    tag: stepList[i]?.tag ?? "",
+    title: stepList[i]?.title ?? "",
+    description: stepList[i]?.description ?? "",
+  }));
+
   const headerRef = useRef(null);
   const { scrollYProgress: headerProgress } = useScroll({
     target: headerRef,
@@ -704,20 +695,20 @@ const StepsBlock = () => {
             fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em",
             textTransform: "uppercase", color: BRAND_BLUE, marginBottom: "16px",
           }}>
-            Cómo funciona
+            {t("steps.eyebrow")}
           </p>
           <h2 style={{
             fontSize: "clamp(2rem, 5vw, 3.8rem)", fontWeight: 800,
             letterSpacing: "-0.04em", lineHeight: 1.1,
             color: "#0B0F1A", marginBottom: "18px",
           }}>
-            Listo en minutos.<br />
+            {t("steps.title_1")}<br />
             <span className="font-accent" style={{ color: BRAND_BLUE, fontWeight: 300, fontSize: "1.15em" }}>
-              funcionando para siempre.
+              {t("steps.title_2")}
             </span>
           </h2>
           <p style={{ fontSize: "1.1rem", color: "#64748b", lineHeight: 1.6, maxWidth: "520px", margin: "0 auto" }}>
-            Cuatro pasos reales, cronometrados. El 95% de los propietarios los completan antes de comer.
+            {t("steps.subtitle")}
           </p>
         </motion.div>
 
@@ -765,7 +756,7 @@ const StepsBlock = () => {
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#16a34a" }} />
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#16a34a" }} />
             </span>
-            <span>Setup guiado · Onboarding 1 a 1 el primer mes · Soporte en español y catalán</span>
+            <span>{t("steps.footer_tagline")}</span>
           </div>
         </motion.div>
 

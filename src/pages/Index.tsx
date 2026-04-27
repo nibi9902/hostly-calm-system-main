@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import PageProgress from "@/components/PageProgress";
 import SEO from "@/components/SEO";
@@ -13,8 +13,11 @@ import PricingBlock from "@/components/PricingBlock";
 import FAQBlock from "@/components/FAQBlock";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
-import QuizModal from "@/components/QuizModal";
-import { SignupModal } from "@/components/SignupModal";
+
+// Lazy: només es carreguen quan l'usuari obre el modal — redueix el chunk inicial
+const QuizModal   = lazy(() => import("@/components/QuizModal"));
+const SignupModal = lazy(() => import("@/components/SignupModal").then((m) => ({ default: m.SignupModal })));
+import { useTranslation } from "react-i18next";
 import {
   organizationSchema,
   softwareAppSchema,
@@ -22,65 +25,31 @@ import {
   howToSchema,
 } from "@/lib/seo/schemas";
 
-const setupSteps = [
-  { name: "Añade tu piso", text: "Un cuestionario corto. Responde una sola vez las normas, horarios, accesos y wifi. Listo en menos de 10 minutos." },
-  { name: "Conecta Airbnb, Booking y tu cerradura", text: "Un clic por canal. El calendario se sincroniza, los precios se ajustan y la cerradura genera códigos únicos por huésped." },
-  { name: "Hostly se ocupa de todo lo que llega", text: "Reservas, mensajes, check-ins, SES, taxa, avisos a limpieza. En tiempo real, sin que tú tengas que intervenir." },
-  { name: "Abres la app y todo está en orden", text: "Ingresos del mes, ocupación, check-ins hechos e incidencias en una sola vista. Sin Excel, sin pestañas, sin WhatsApp." },
-];
-
-const homeFaqs = [
-  {
-    q: "¿Qué reemplaza Hostly exactamente?",
-    a: "Hostly reemplaza Chekin (check-in y compliance), tu canal manager actual, las plantillas de mensajes manuales, el Excel de cobros y el Dropbox de contratos. Una sola app, una sola factura.",
-  },
-  {
-    q: "¿Cómo funciona el trial de 14 días?",
-    a: "Puedes usar Hostly completo durante 14 días sin tarjeta de crédito. Si no te convence, no debes nada.",
-  },
-  {
-    q: "¿Qué es el check-in gratis para siempre?",
-    a: "El check-in online, el registro policial (SES), el NRUA y la taxa turística están incluidos sin coste adicional en cualquier plan de pago. No hay límite de check-ins ni precio por unidad.",
-  },
-  {
-    q: "¿Funciona con Airbnb y Booking a la vez?",
-    a: "Sí. Hostly sincroniza calendarios, precios y reservas de Airbnb, Booking.com y otros canales en tiempo real. Sin dobles reservas.",
-  },
-  {
-    q: "¿Y si solo tengo 1 apartamento?",
-    a: "Hostly está pensado especialmente para propietarios con 1 a 10 apartamentos. A 40€/mes por apartamento, reemplazas varias suscripciones y sales ganando.",
-  },
-  {
-    q: "¿Cumplís con SES, NRUA, policía y taxa turística?",
-    a: "Sí. El registro policial (SES.Hospedajes), la comunicación a Mossos o Ertzaintza, el NRUA y la recogida de taxa turística están automatizados dentro de Hostly y son gratuitos para siempre.",
-  },
-  {
-    q: "¿Qué pasa si no me gusta?",
-    a: "Puedes cancelar cuando quieras, sin permanencia ni penalización. Los 14 días de prueba no requieren tarjeta.",
-  },
-  {
-    q: "¿Tenéis soporte en español y catalán?",
-    a: "Sí. Nuestro equipo atiende en español y catalán. El primer mes hacemos onboarding 1 a 1 contigo.",
-  },
-];
-
 const Index = () => {
   const [quizOpen, setQuizOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
+  const { t: tSeo } = useTranslation("seo");
+  const { t: tHome } = useTranslation("home");
+
+  const homeFaqs = (tHome("faq.list", { returnObjects: true }) as Array<{ q: string; a: string }>)
+    .map((f) => ({ q: f.q, a: f.a }));
+
+  const setupSteps = (tHome("steps.list", { returnObjects: true }) as Array<{ tag: string; title: string; description: string }>)
+    .map((s) => ({ name: s.title, text: s.description }));
 
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="Simplifica la gestión de tu apartamento turístico | Hostly"
-        description="Hostly simplifica todo lo que implica tener un piso turístico. Reservas, check-in, mensajes, limpiezas y compliance en una sola app. 14 días gratis, sin tarjeta."
+        title={tSeo("home.title")}
+        description={tSeo("home.description")}
         path="/"
         schemas={[
           softwareAppSchema(),
           organizationSchema(),
           faqPageSchema(homeFaqs),
           howToSchema(
-            "Cómo configurar Hostly para tu apartamento turístico",
-            "Configura Hostly en menos de 15 minutos y automatiza check-ins, mensajes, limpiezas y compliance.",
+            tHome("steps.title_1"),
+            tHome("steps.subtitle"),
             setupSteps
           ),
         ]}
@@ -99,8 +68,10 @@ const Index = () => {
         <FinalCTA onOpenQuiz={() => setSignupOpen(true)} />
       </main>
       <Footer />
-      <QuizModal isOpen={quizOpen} onClose={() => setQuizOpen(false)} />
-      <SignupModal isOpen={signupOpen} onClose={() => setSignupOpen(false)} />
+      <Suspense fallback={null}>
+        {quizOpen && <QuizModal isOpen={quizOpen} onClose={() => setQuizOpen(false)} />}
+        {signupOpen && <SignupModal isOpen={signupOpen} onClose={() => setSignupOpen(false)} />}
+      </Suspense>
       <PageProgress />
     </div>
   );

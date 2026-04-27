@@ -18,4 +18,32 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Chunk warning size: 600KB (no més estricte per features.js que té contingut pesat)
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React core — canvi rar, cache molt llarg
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          // UI libs grans separades per cache eficient
+          // (lucide-react NO es chunk manual perquè trenca el tree-shake — només inclou les icones realment usades)
+          "framer-vendor": ["framer-motion"],
+          "radix-vendor": [
+            "@radix-ui/react-accordion",
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-tooltip",
+            "@radix-ui/react-tabs",
+            "@radix-ui/react-popover",
+          ],
+          // Animacions complexes — només a hero/landing
+          "gsap-vendor": ["gsap"],
+          // i18n
+          "i18n-vendor": ["i18next", "react-i18next", "i18next-browser-languagedetector"],
+          // Supabase
+          "supabase-vendor": ["@supabase/supabase-js"],
+        },
+      },
+    },
+  },
 }));
