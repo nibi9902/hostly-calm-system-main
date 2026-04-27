@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Inici",
+    "funcionalidades": "Funcionalitats",
+    "alternativas": "Alternatives",
+    "blog": "Blog",
+    "guia": "Guia",
+    "sobre": "Sobre Hostly",
+    "demo": "Demanar demo",
+    "login": "Iniciar sessió"
+  },
+  "footer": {
+    "tagline": "L'app que simplifica tot el que implica tenir un pis turístic.",
+    "product": "Producte",
+    "company": "Empresa",
+    "legal": "Legal",
+    "links": {
+      "funcionalidades": "Funcionalitats",
+      "precios": "Preus",
+      "alternativas": "Alternatives",
+      "blog": "Blog",
+      "sobre": "Sobre nosaltres",
+      "contacto": "Contacte",
+      "privacidad": "Política de privacitat",
+      "terminos": "Termes i condicions",
+      "cookies": "Cookies",
+      "aviso": "Avís legal"
+    },
+    "rights": "Tots els drets reservats.",
+    "madeIn": "Fet a Catalunya amb obsessió ibèrica."
+  },
+  "actions": {
+    "more": "Saber-ne més",
+    "tryNow": "Provar gratis",
+    "back": "Tornar",
+    "next": "Següent",
+    "close": "Tancar"
+  },
+  "lang": {
+    "switcher": "Idioma",
+    "es": "Español",
+    "ca": "Català"
+  }
+}

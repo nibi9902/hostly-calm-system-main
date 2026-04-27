@@ -1,5 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+/* Fonts carregades via <link> a index.html per rendiment (preconnect + descoberta primerenca) */
+
+/* Classe d'accent caligràfic */
+.font-accent {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
 
 @tailwind base;
 @tailwind components;
@@ -61,6 +68,24 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 229 65% 52%;
+
+    /* ── Hostly Design Tokens ── */
+    --hostly-primary: #1a3a8f;
+    --hostly-primary-dark: #0f1f5c;
+    --hostly-primary-light: #3b5fd9;
+    --hostly-success: #22c55e;
+    --hostly-bg: #ffffff;
+    --hostly-bg-subtle: #f8fafc;
+    --hostly-text: #0f172a;
+    --hostly-text-muted: #64748b;
+    --hostly-border: #e2e8f0;
+    --hostly-radius-sm: 6px;
+    --hostly-radius-md: 12px;
+    --hostly-radius-lg: 20px;
+    --hostly-radius-full: 999px;
+    --hostly-shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --hostly-shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --hostly-shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
   }
 }
 

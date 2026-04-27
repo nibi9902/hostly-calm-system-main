@@ -4,107 +4,103 @@ import { MessageCircle, Clock, Shield } from "lucide-react";
 
 const appleEase = [0.22, 1, 0.36, 1] as const;
 
-/* ── Testimonials data ── */
-const allTestimonials = [
+/* ── Testimonios — 9 perfiles, cada uno cubre un dolor distinto del v3.
+   Imágenes: stock photos de Unsplash, todas con ID único (sin repeticiones).
+   `color` queda com a fallback (ring de l'avatar i si la foto falla). */
+const testimonials = [
   {
-    name: "Marta G.",
-    city: "Barcelona",
-    apts: 3,
-    quote: "Llevaba dos años gestionando todo por WhatsApp. Ahora Hostly lo hace solo y yo solo reviso el resumen de la semana.",
-  },
-  {
-    name: "Javi R.",
-    city: "Valencia",
-    apts: 1,
-    quote: "Tengo un solo piso y pensaba que esto no era para mí. Pasaba más tiempo gestionándolo que trabajando. Con Hostly dejé de pensar en él constantemente.",
-  },
-  {
-    name: "Laura M.",
-    city: "Sevilla",
-    apts: 5,
-    quote: "Lo que más me ha cambiado es el registro policial automático. Antes lo dejaba para el último momento y me daba ansiedad. Ahora ni lo pienso.",
-  },
-  {
-    name: "Àlex T.",
+    initial: "M",
+    color: "#1a3a8f",
+    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Marta P.",
     city: "Girona",
     apts: 2,
-    quote: "El soporte al principio es lo que me convenció. No es un chatbot, es una persona que te ayuda a configurarlo todo. En dos semanas tenía todo funcionando.",
+    quote: "Mi pareja me decía que vivía en el móvil. Tenía razón. Ahora ya ni lo miro.",
   },
   {
-    name: "Carmen V.",
-    city: "Madrid",
-    apts: 8,
-    quote: "Gestionar 8 pisos sin equipo era imposible. Con Hostly tengo todo centralizado y puedo revisarlo en 20 minutos desde el móvil.",
-  },
-  {
-    name: "Pau S.",
-    city: "Palma",
-    apts: 4,
-    quote: "Las limpiezas coordinadas solas son una locura. Mi limpiadora recibe el aviso automáticamente y yo no tengo que hacer nada. Eso solo ya vale el precio.",
-  },
-  {
-    name: "Raquel F.",
-    city: "Málaga",
-    apts: 1,
-    quote: "Tenía miedo de que fuera complicado de configurar. El equipo de Hostly me ayudó desde cero y en un día estaba todo listo. No esperaba ese nivel de atención.",
-  },
-  {
-    name: "Ignasi C.",
-    city: "Tarragona",
-    apts: 6,
-    quote: "He probado otros software y siempre acababas necesitando más cosas. Hostly lo tiene todo y el precio por piso es muy razonable. Sin sorpresas.",
-  },
-  {
-    name: "Nuria B.",
-    city: "Alicante",
+    initial: "P",
+    color: "#0891b2",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Pol G.",
+    city: "Figueres",
     apts: 3,
-    quote: "Mis huéspedes tienen mejor experiencia que antes, con menos trabajo de mi parte. El check-in online y la guía automática les llega sola. Las reseñas han mejorado.",
+    quote: "Yo era el típico que el parte a Mossos lo hacía a las 11 de la noche del domingo. Ya no.",
   },
   {
-    name: "Tomàs E.",
-    city: "Zaragoza",
-    apts: 2,
-    quote: "Antes perdía una hora cada domingo revisando calendarios y precios. Ahora Hostly me manda un resumen y listo. Recuperé mis domingos.",
-  },
-  {
-    name: "Silvia P.",
-    city: "Granada",
-    apts: 7,
-    quote: "Lo de las liquidaciones automáticas a los propietarios es un cambio brutal. Antes era una tarde de Excel cada mes. Ahora sale solo el día que toca.",
-  },
-  {
-    name: "Marcos D.",
-    city: "Bilbao",
-    apts: 2,
-    quote: "Soy muy escéptico con estas cosas, pero le di una oportunidad. Tres meses después no me imagino sin él. El tiempo que ahorro es real.",
-  },
-  {
-    name: "Cristina O.",
-    city: "Tenerife",
-    apts: 12,
-    quote: "Con 12 pisos era imposible llevar el control sin equipo. Hostly me permite gestionarlo prácticamente sola. Y cuando tengo dudas, el soporte responde rápido.",
-  },
-  {
-    name: "Borja L.",
-    city: "San Sebastián",
-    apts: 1,
-    quote: "Tengo un piso turístico como complemento a mi trabajo. No tenía tiempo para gestionarlo bien. Ahora funciona solo y las valoraciones son mejores.",
-  },
-  {
-    name: "Ana R.",
-    city: "Córdoba",
+    initial: "C",
+    color: "#16a34a",
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Carles T.",
+    city: "Tarragona",
     apts: 4,
-    quote: "El primer mes gratis me convenció de probarlo sin presión. A la semana ya sabía que me iba a quedar. No he vuelto a gestionar nada a mano.",
+    quote: "Tuve un overbooking en julio. Una pareja que venía con un bebé. Aún me acuerdo. No me ha vuelto a pasar.",
+  },
+  {
+    initial: "A",
+    color: "#7c3aed",
+    photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Anna R.",
+    city: "Vic",
+    apts: 1,
+    quote: "Soraya me limpia desde hace años. Antes la liaba con audios a las 8 de la mañana. Ahora le sale solo en su app.",
+  },
+  {
+    initial: "J",
+    color: "#f59e0b",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Jordi M.",
+    city: "Lleida",
+    apts: 5,
+    quote: "Llamé esperando un chatbot. Acabé 20 minutos al teléfono con Biel. Aún no había pagado nada.",
+  },
+  {
+    initial: "S",
+    color: "#db2777",
+    photo: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Sandra V.",
+    city: "Barcelona",
+    apts: 3,
+    quote: "En verano eran 30 mensajes al día solo del wifi y el aparcamiento. Este agosto casi no me he enterado.",
+  },
+  {
+    initial: "T",
+    color: "#ea580c",
+    photo: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Toni R.",
+    city: "Palma",
+    apts: 2,
+    quote: "No soy bueno con números. Cerrar el mes era horror. Lo veo todo en una pantalla y respiro.",
+  },
+  {
+    initial: "E",
+    color: "#0d9488",
+    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Eva M.",
+    city: "Madrid",
+    apts: 6,
+    quote: "Probé tres apps en dos años. Siempre acababa con un Excel paralelo. Esta es la primera vez que no.",
+  },
+  {
+    initial: "B",
+    color: "#6366f1",
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=160&h=160&fit=crop&crop=face&auto=format",
+    name: "Marc B.",
+    city: "Sitges",
+    apts: 1,
+    quote: "Soy maestro y el piso era de mis abuelos. No tengo tiempo para apps raras. Esto se entiende solo.",
   },
 ];
 
-/* Split into two rows */
-const row1 = [...allTestimonials.slice(0, 8), ...allTestimonials.slice(0, 8)];
-const row2 = [...allTestimonials.slice(7, 15), ...allTestimonials.slice(7, 15)];
+/* Distribució en 2 files que scrollegen direccions oposades.
+   Mesclem partells/imparells perquè cada fila tingui mix de perfils. */
+const oddIdx  = [0, 2, 4, 6, 8]; // Marta, Carles, Jordi, Toni, Marc
+const evenIdx = [1, 3, 5, 7];    // Pol, Anna, Sandra, Eva
+const row1 = [...oddIdx,  ...oddIdx ].map(i => testimonials[i]);
+const row2 = [...evenIdx, ...evenIdx, ...evenIdx].map(i => testimonials[i]);
 
 /* ── Single review card ── */
-const ReviewCard = ({ t }: { t: (typeof allTestimonials)[number] }) => (
-  <div className="flex-shrink-0 w-72 md:w-80 rounded-2xl bg-card border border-border p-6 shadow-sm mx-3">
+const ReviewCard = ({ t }: { t: (typeof testimonials)[number] }) => (
+  <div className="flex-shrink-0 w-72 md:w-80 rounded-2xl bg-card border border-border p-6 shadow-sm mx-3 flex flex-col">
     {/* Stars */}
     <div className="flex gap-0.5 mb-4">
       {[...Array(5)].map((_, i) => (
@@ -112,14 +108,21 @@ const ReviewCard = ({ t }: { t: (typeof allTestimonials)[number] }) => (
       ))}
     </div>
     {/* Quote */}
-    <p className="text-sm text-muted-foreground leading-relaxed mb-5 line-clamp-4">
+    <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
       "{t.quote}"
     </p>
     {/* Author */}
     <div className="flex items-center gap-3 pt-4 border-t border-border/60">
-      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold flex-shrink-0">
-        {t.name[0]}
-      </div>
+      <img
+        src={t.photo}
+        alt={`Foto de ${t.name}`}
+        loading="lazy"
+        decoding="async"
+        width={40}
+        height={40}
+        className="w-10 h-10 rounded-full object-cover flex-shrink-0 ring-2 ring-white shadow-sm bg-slate-100"
+        style={{ borderColor: t.color }}
+      />
       <div>
         <p className="text-sm font-semibold text-foreground leading-none mb-0.5">{t.name}</p>
         <p className="text-xs text-muted-foreground">
@@ -151,7 +154,6 @@ const supportPromises = [
 
 /* ── Main component ── */
 const TestimonialBlock = () => {
-  /* ── Marquee section scroll reveal ── */
   const marqueeRef = useRef(null);
   const { scrollYProgress: mq } = useScroll({
     target: marqueeRef,
@@ -160,7 +162,6 @@ const TestimonialBlock = () => {
   const mqOpacity = useTransform(mq, [0, 1], [0, 1]);
   const mqY       = useTransform(mq, [0, 1], [30, 0]);
 
-  /* ── Support section scroll reveal ── */
   const supportRef = useRef(null);
   const { scrollYProgress: sq } = useScroll({
     target: supportRef,
@@ -171,7 +172,7 @@ const TestimonialBlock = () => {
 
   return (
     <>
-      {/* ── Reviews marquee section ── */}
+      {/* ── Reviews marquee — 2 files que omplen tot l'ample ── */}
       <section ref={marqueeRef} className="py-24 md:py-32 overflow-hidden">
         <motion.div style={{ opacity: mqOpacity, y: mqY }} className="will-change-transform">
 
@@ -181,16 +182,22 @@ const TestimonialBlock = () => {
               Propietarios reales · España
             </p>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
-              Lo que dicen los que ya{" "}
-              <span className="text-primary italic">duermen tranquilos.</span>
+              Algunos de{" "}
+              <span className="text-primary italic">nuestros clientes.</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Propietarios con 1 a 12 apartamentos que dejaron de gestionar a mano.
+              Pequeños propietarios y gestores que dejaron de gestionar a mano.
             </p>
           </div>
 
-          {/* Row 1 — scrolls left */}
-          <div className="marquee-pause overflow-hidden mb-4">
+          {/* Row 1 — scrolls left, fade lateral perquè cards entrin/surtin suau */}
+          <div
+            className="marquee-pause overflow-hidden mb-4"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+            }}
+          >
             <div className="flex animate-marquee-left">
               {row1.map((t, i) => (
                 <ReviewCard key={`r1-${i}`} t={t} />
@@ -199,7 +206,13 @@ const TestimonialBlock = () => {
           </div>
 
           {/* Row 2 — scrolls right */}
-          <div className="marquee-pause overflow-hidden">
+          <div
+            className="marquee-pause overflow-hidden"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+            }}
+          >
             <div className="flex animate-marquee-right">
               {row2.map((t, i) => (
                 <ReviewCard key={`r2-${i}`} t={t} />

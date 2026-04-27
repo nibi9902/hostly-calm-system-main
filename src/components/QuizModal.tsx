@@ -126,7 +126,7 @@ interface QuizModalProps {
   onClose: () => void;
 }
 
-type ScreenType = "intro" | "question" | "loading" | "lead" | "result";
+type ScreenType = "intro" | "question" | "loading" | "lead" | "result" | "booking" | "booked";
 
 const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
   const [screen, setScreen] = useState<ScreenType>("intro");
@@ -155,6 +155,17 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
   const horasMes = Math.round(horas * 4.3 * 10) / 10;
   const horasAno = Math.round(horas * 52);
   const level = getLevelLabel(pa);
+
+  /* ── Calendly event listener ── */
+  useEffect(() => {
+    const handleMessage = (e: MessageEvent) => {
+      if (e.data?.event === "calendly.event_scheduled") {
+        setScreen("booked");
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   /* ── Loading animation ── */
   useEffect(() => {
@@ -272,10 +283,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
   };
 
   const handleCTA = () => {
-    onClose();
-    setTimeout(() => {
-      document.getElementById("cta-final")?.scrollIntoView({ behavior: "smooth" });
-    }, 300);
+    setScreen("booking");
   };
 
   const slideVariants = {
@@ -308,7 +316,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
             transition={{ duration: 0.35, ease: appleEase }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
-            <div className="relative w-full max-w-lg bg-background rounded-3xl shadow-2xl border border-border overflow-hidden pointer-events-auto">
+            <div className={`relative w-full bg-background rounded-3xl shadow-2xl border border-border overflow-hidden pointer-events-auto transition-all duration-300 ${screen === "booking" ? "max-w-2xl" : "max-w-lg"}`}>
               {/* Close */}
               {screen !== "loading" && (
                 <button
@@ -643,7 +651,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           onClick={handleCTA}
                           className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--primary)/0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
                         >
-                          Quiero recuperar esas horas <ArrowRight className="w-4 h-4" />
+                          Reservar mi llamada gratuita <ArrowRight className="w-4 h-4" />
                         </button>
                         <button
                           onClick={handleReset}
@@ -652,6 +660,87 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           Repetir
                         </button>
                       </div>
+                    </motion.div>
+                  )}
+
+                  {/* ── BOOKING ── */}
+                  {screen === "booking" && (
+                    <motion.div
+                      key="booking"
+                      custom={1}
+                      variants={slideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.32, ease: appleEase }}
+                      className="flex flex-col flex-1 gap-4"
+                    >
+                      <div className="text-center">
+                        <h3 className="text-lg font-bold text-foreground mb-1.5 tracking-tight">
+                          Hablemos. Sin compromiso, sin presión.
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto">
+                          Elige el momento que mejor te vaya. En 15 minutos vemos juntos tu caso, resolvemos dudas y te acompañamos desde el primer paso.
+                        </p>
+                      </div>
+                      <div className="w-full rounded-2xl overflow-hidden border border-border bg-muted/20" style={{ minHeight: '380px' }}>
+                        <iframe
+                          src="https://calendly.com/bielalsinailla/llamada-con-biel-hostly?hide_gdpr_banner=1&background_color=fafafa&text_color=0f172a&primary_color=3b5998"
+                          width="100%"
+                          height="100%"
+                          frameBorder="0"
+                          style={{ minHeight: '380px', border: 'none' }}
+                          title="Reservar llamada con Hostly"
+                        />
+                      </div>
+                      <p className="text-[11px] text-muted-foreground/60 text-center">
+                        Es una conversación personal, no una demo comercial.
+                      </p>
+                    </motion.div>
+                  )}
+
+                  {/* ── BOOKED (confirmation) ── */}
+                  {screen === "booked" && (
+                    <motion.div
+                      key="booked"
+                      custom={1}
+                      variants={slideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.32, ease: appleEase }}
+                      className="flex flex-col flex-1 items-center justify-center text-center gap-6 py-8"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-green-50 border border-green-200 flex items-center justify-center">
+                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
+                          ¡Perfecto! Ya tienes tu llamada reservada.
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto">
+                          Te enviaremos un recordatorio por email. Mientras tanto, si te surge cualquier duda, escríbenos sin problema.
+                        </p>
+                      </div>
+                      <div className="rounded-2xl bg-primary/5 border border-primary/15 p-5 max-w-sm w-full">
+                        <p className="text-sm text-foreground font-medium mb-1">
+                          ¿Qué pasará en la llamada?
+                        </p>
+                        <ul className="text-sm text-muted-foreground leading-relaxed space-y-1.5 text-left">
+                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> Vemos tu caso concreto juntos</li>
+                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> Resolvemos todas tus dudas</li>
+                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> Si encaja, te ayudamos a empezar</li>
+                        </ul>
+                      </div>
+                      <p className="text-muted-foreground/60 text-xs">
+                        Nos vemos pronto. Estamos aquí para ayudarte.
+                      </p>
+                      <button
+                        onClick={onClose}
+                        className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--primary)/0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+                      >
+                        Cerrar
+                      </button>
                     </motion.div>
                   )}
 

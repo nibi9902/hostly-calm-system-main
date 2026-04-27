@@ -168,7 +168,7 @@ const DemoPreview = ({ onOpenModal }: { onOpenModal: () => void }) => {
             className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-foreground/90 text-background text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
           >
             <Play className="w-3 h-3" />
-            Ver demo (2 min)
+            Ver demo (1 min)
           </motion.div>
         )}
       </AnimatePresence>
@@ -238,7 +238,7 @@ const DemoVideo = () => {
                   onClick={() => setIsOpen(true)}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
                 >
-                  Ver demo completa (2 min) →
+                  Ver demo completa (1 min) →
                 </button>
                 <button
                   onClick={() => {

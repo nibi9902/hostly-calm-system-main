@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "funcionalidades": "Funcionalidades",
+    "alternativas": "Alternativas",
+    "blog": "Blog",
+    "guia": "Guía",
+    "sobre": "Sobre Hostly",
+    "demo": "Solicitar demo",
+    "login": "Iniciar sesión"
+  },
+  "footer": {
+    "tagline": "La app que simplifica todo lo que implica tener un piso turístico.",
+    "product": "Producto",
+    "company": "Empresa",
+    "legal": "Legal",
+    "links": {
+      "funcionalidades": "Funcionalidades",
+      "precios": "Precios",
+      "alternativas": "Alternativas",
+      "blog": "Blog",
+      "sobre": "Sobre nosotros",
+      "contacto": "Contacto",
+      "privacidad": "Política de privacidad",
+      "terminos": "Términos y condiciones",
+      "cookies": "Cookies",
+      "aviso": "Aviso legal"
+    },
+    "rights": "Todos los derechos reservados.",
+    "madeIn": "Hecho en Cataluña con obsesión ibérica."
+  },
+  "actions": {
+    "more": "Saber más",
+    "tryNow": "Probar gratis",
+    "back": "Volver",
+    "next": "Siguiente",
+    "close": "Cerrar"
+  },
+  "lang": {
+    "switcher": "Idioma",
+    "es": "Español",
+    "ca": "Català"
+  }
+}

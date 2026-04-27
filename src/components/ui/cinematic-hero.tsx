@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { LangLink } from "@/i18n/LangLink";
+import badgeBooking from "@/assets/badge-booking.webp";
+import badgeAirbnb from "@/assets/badge-airbnb.webp";
+import badgeGoogle from "@/assets/badge-google.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,15 +57,15 @@ const INJECTED_STYLES = `
       drop-shadow(0px 4px 8px rgba(0,0,0,0.6));
   }
 
-  /* Deep navy card — Hostly brand */
+  /* Navy card — Hostly brand */
   .hostly-depth-card {
-    background: linear-gradient(145deg, #0f2a6e 0%, #080f1f 100%);
+    background: linear-gradient(145deg, #1a4fa8 0%, #0d2260 100%);
     box-shadow:
-      0 40px 100px -20px rgba(0,0,0,0.9),
-      0 20px 40px -20px rgba(0,0,0,0.8),
-      inset 0 1px 2px rgba(255,255,255,0.15),
-      inset 0 -2px 4px rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.04);
+      0 40px 100px -20px rgba(0,0,0,0.7),
+      0 20px 40px -20px rgba(0,0,0,0.5),
+      inset 0 1px 2px rgba(255,255,255,0.25),
+      inset 0 -2px 4px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
     position: relative;
   }
 
@@ -94,14 +99,14 @@ const INJECTED_STYLES = `
   }
 
   .floating-ui-badge {
-    background: linear-gradient(135deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     box-shadow:
-      0 0 0 1px rgba(255,255,255,0.1),
-      0 25px 50px -12px rgba(0,0,0,0.8),
-      inset 0 1px 1px rgba(255,255,255,0.2),
-      inset 0 -1px 1px rgba(0,0,0,0.5);
+      0 0 0 1px rgba(255,255,255,0.2),
+      0 25px 50px -12px rgba(0,0,0,0.5),
+      inset 0 1px 1px rgba(255,255,255,0.35),
+      inset 0 -1px 1px rgba(0,0,0,0.2);
   }
 
   .btn-hostly-primary {
@@ -140,6 +145,55 @@ const INJECTED_STYLES = `
     border-color: rgba(255,255,255,0.25);
   }
   .btn-hostly-secondary:active { transform: translateY(1px); }
+
+  /* Variants per fons clar — CTA final */
+  .text-card-dark {
+    background: linear-gradient(180deg, #0f172a 0%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: translateZ(0);
+    filter:
+      drop-shadow(0px 4px 8px rgba(15,23,42,0.08))
+      drop-shadow(0px 1px 2px rgba(15,23,42,0.04));
+  }
+
+  .btn-hostly-primary-light {
+    background: linear-gradient(180deg, #1e40af 0%, #1d3f9e 100%);
+    color: #ffffff;
+    box-shadow:
+      0 0 0 1px rgba(30,64,175,0.3),
+      0 2px 4px rgba(30,64,175,0.2),
+      0 12px 24px -4px rgba(30,64,175,0.35),
+      inset 0 1px 1px rgba(255,255,255,0.2),
+      inset 0 -3px 6px rgba(0,0,0,0.15);
+    transition: all 0.4s cubic-bezier(0.25,1,0.5,1);
+  }
+  .btn-hostly-primary-light:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 0 0 1px rgba(30,64,175,0.3),
+      0 6px 12px -2px rgba(30,64,175,0.25),
+      0 20px 32px -6px rgba(30,64,175,0.4),
+      inset 0 1px 1px rgba(255,255,255,0.2);
+  }
+  .btn-hostly-primary-light:active { transform: translateY(1px); }
+
+  .btn-hostly-secondary-light {
+    background: linear-gradient(180deg, rgba(15,23,42,0.04) 0%, rgba(15,23,42,0.02) 100%);
+    color: #0f172a;
+    border: 1px solid rgba(15,23,42,0.15);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.06),
+      inset 0 1px 1px rgba(255,255,255,0.8);
+    transition: all 0.4s cubic-bezier(0.25,1,0.5,1);
+  }
+  .btn-hostly-secondary-light:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(180deg, rgba(15,23,42,0.07) 0%, rgba(15,23,42,0.04) 100%);
+    border-color: rgba(15,23,42,0.25);
+  }
+  .btn-hostly-secondary-light:active { transform: translateY(1px); }
 
   .progress-ring {
     transform: rotate(-90deg);
@@ -242,14 +296,34 @@ const NOTIFS = [
 
 /* ── Static phone screen with GSAP-controlled notification cards ── */
 const PHONE_NOTIFS = [
-  { icon: '💰', iconBg: '#0d2b18', iconColor: '#34c759', label: 'Hostly · Reserva', title: 'Reserva confirmada · 620€', detail: 'Marcos · Booking · 4 noches' },
-  { icon: '✅', iconBg: '#0a1a30', iconColor: '#3b7ff5', label: 'Hostly · Check-in', title: 'Check-in completado', detail: 'Laura · Airbnb · Código 4821' },
-  { icon: '📈', iconBg: '#221200', iconColor: '#ff9500', label: 'Hostly · Revenue', title: 'Precio actualizado +40%', detail: 'Viernes 18 · Alta demanda · 264€' },
-  { icon: '🧹', iconBg: '#130d33', iconColor: '#a78bfa', label: 'Hostly · Neteja', title: 'Limpieza coordinada', detail: 'Anna López · Mañana 11:00' },
+  // 1a — Compliance proactiu
+  { icon: '🗓️', iconBg: '#0d2b18', iconColor: '#34c759', label: 'Hostly · Fiscal',
+    title: 'Taxa turística · vence en 24h',
+    detail: 'Informe de junio listo · pago en 1 clic' },
+  // 2a — Operació autònoma
+  { icon: '🛡️', iconBg: '#0a1a30', iconColor: '#3b7ff5', label: 'Hostly · Check-in',
+    title: 'Check-in de Miguel completado',
+    detail: 'SES enviado a Mossos · 4 € de taxa cobrados' },
+  // 3a — Coordinació de neteja
+  { icon: '🧹',  iconBg: '#1a1040', iconColor: '#5856d6', label: 'Hostly · Neteges',
+    title: 'Limpieza confirmada · Anna',
+    detail: 'Coordinada automáticamente · mañana 11h' },
+  // 4a — Hoste respost automàticament
+  { icon: '🤖',  iconBg: '#0f1f3a', iconColor: '#3b7ff5', label: 'Hostly · IA',
+    title: 'Pol ha obtenido respuesta de la IA',
+    detail: 'Wifi + 3 restaurantes recomendados · sin tu intervención' },
+  // 5a — Revenue intel·ligent
+  { icon: '📈',  iconBg: '#221200', iconColor: '#ff9500', label: 'Hostly · Precio',
+    title: 'Festival local detectado en tu zona',
+    detail: 'Precio del 15–19 jun ajustado a 235 €/noche' },
+  // 6a — Equip humà
+  { icon: '💬',  iconBg: '#130d33', iconColor: '#a78bfa', label: 'Hostly · Asesor',
+    title: 'Tu asesora Laura · plan de abril',
+    detail: '3 ajustes para subir ingresos un 12%' },
 ];
 
 const PhoneScreen: React.FC = () => (
-  <div style={{ width: '100%', height: '100%', background: '#04091a', position: 'relative', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>
+  <div style={{ width: '100%', height: '100%', background: 'linear-gradient(160deg, #0d2260 0%, #0a1a50 100%)', position: 'relative', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>
     {/* Status bar */}
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 16px 4px' }}>
       <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>17:15</span>
@@ -271,10 +345,10 @@ const PhoneScreen: React.FC = () => (
           position: 'absolute',
           left: '8px', right: '8px',
           top: `${52 + i * 88}px`,
-          background: 'rgba(255,255,255,0.07)',
+          background: 'rgba(255,255,255,0.13)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255,255,255,0.09)',
+          border: '1px solid rgba(255,255,255,0.18)',
           borderRadius: '16px',
           padding: '10px 12px',
           display: 'flex',
@@ -459,24 +533,26 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
 
       gsap.set(".text-track",    { autoAlpha: 0, y: 60, scale: 0.85, filter: "blur(20px)", rotationX: -20 });
       gsap.set(".text-days",     { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
+      gsap.set(".hero-subtitle", { autoAlpha: 0, y: 24 });
       gsap.set(".main-card",     { y: window.innerHeight + 200, autoAlpha: 1 });
       gsap.set([".card-left-text", ".card-right-text", ".mockup-scroll-wrapper"], { autoAlpha: 0 });
-      gsap.set([".floating-badge-1", ".floating-badge-2"], { autoAlpha: 0 });
-      gsap.set(".phone-notif",   { autoAlpha: 0, y: 40 });
-      gsap.set(".cta-wrapper",   { autoAlpha: 0, scale: 0.8, filter: "blur(30px)" });
+      gsap.set([".bubble-0",".bubble-1",".bubble-2",".bubble-3",".bubble-4",".bubble-5"], { autoAlpha: 0 });
+      gsap.set(".phone-notif",   { autoAlpha: 0, y: -60, scale: 0.88 });
+      gsap.set(".cta-wrapper",   { autoAlpha: 0, y: 50, filter: "blur(20px)" });
 
       // Intro
       const introTl = gsap.timeline({ delay: 0.3 });
       introTl
-        .to(".text-track", { duration: 1.8, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" })
-        .to(".text-days",  { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0");
+        .to(".text-track",    { duration: 1.8, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" })
+        .to(".text-days",     { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0")
+        .to(".hero-subtitle", { duration: 1.0, autoAlpha: 1, y: 0, ease: "expo.out" }, "-=0.4");
 
       // Scroll-driven
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=7000",
+          end: "+=12000",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -497,27 +573,48 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
           { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 2 }, "-=0.5"
         )
 
-        // ── Phase 3: notificacions apareixen dins el telèfon una a una ──
-        .to(".phone-notif-0", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.4")
-        .to(".phone-notif-1", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.3")
-        .to(".phone-notif-2", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.3")
-        .to(".phone-notif-3", { autoAlpha: 1, y: 0, duration: 0.7, ease: "back.out(1.3)" }, "+=0.3")
-
-        // ── Pausa: totes visibles ──
-        .to({}, { duration: 1.2 })
-
-        // ── Phase 4: TRANSFORMACIÓ — notifs es converteixen en bubbles ──
-        // Les notificacions s'esvaeixen cap endins
-        .to(".phone-notif", { autoAlpha: 0, scale: 0.7, y: -20, duration: 0.7, ease: "power2.in" })
-
-        // Les bubbles "surten volant" del centre del telèfon cap a les seves posicions
-        .fromTo(".floating-badge-1",
-          { autoAlpha: 0, x: "90px", y: "110px", scale: 0.15, rotationZ: 10 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 2.2 }, "-=0.3"
+        // ── Phase 3+4: cada notif apareix → ES QUEDA 1.6s llegible → es transforma en bubble → següent ──
+        // 0
+        .to(".phone-notif-0", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.8")
+        .to(".phone-notif-0", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
+        .fromTo(".bubble-0",
+          { autoAlpha: 0, x: "160px", y: "220px", scale: 0.15, rotationZ: 8 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
         )
-        .fromTo(".floating-badge-2",
-          { autoAlpha: 0, x: "-90px", y: "-90px", scale: 0.15, rotationZ: -10 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 2.2 }, "-=1.8"
+        // 1
+        .to(".phone-notif-1", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
+        .to(".phone-notif-1", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
+        .fromTo(".bubble-1",
+          { autoAlpha: 0, x: "-160px", y: "180px", scale: 0.15, rotationZ: -8 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
+        )
+        // 2
+        .to(".phone-notif-2", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
+        .to(".phone-notif-2", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
+        .fromTo(".bubble-2",
+          { autoAlpha: 0, x: "180px", y: "60px", scale: 0.15, rotationZ: 5 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
+        )
+        // 3 — mid-right: surt del telèfon cap a la dreta
+        .to(".phone-notif-3", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
+        .to(".phone-notif-3", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
+        .fromTo(".bubble-3",
+          { autoAlpha: 0, x: "-180px", y: "0px", scale: 0.15, rotationZ: -5 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
+        )
+        // 4 — bottom-left: surt del telèfon cap avall-esquerra
+        .to(".phone-notif-4", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
+        .to(".phone-notif-4", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
+        .fromTo(".bubble-4",
+          { autoAlpha: 0, x: "150px", y: "-180px", scale: 0.15, rotationZ: 6 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
+        )
+        // 5 — bottom-right: surt del telèfon cap avall-dreta (simètric a bubble-4)
+        .to(".phone-notif-5", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
+        .to(".phone-notif-5", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
+        .fromTo(".bubble-5",
+          { autoAlpha: 0, x: "-150px", y: "-180px", scale: 0.15, rotationZ: -6 },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
         )
 
         // ── Phase 5: text entra ──
@@ -527,21 +624,29 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         // ── Pausa final ──
         .to({}, { duration: 2.5 })
 
-        // ── Phase 6: sortida cap al CTA ──
-        .set(".hero-text-wrapper", { autoAlpha: 0 })
-        .set(".cta-wrapper", { autoAlpha: 1 })
-        .to({}, { duration: 1.5 })
-        .to([".mockup-scroll-wrapper", ".floating-badge-1", ".floating-badge-2", ".card-left-text", ".card-right-text"], {
-          scale: 0.9, y: -40, z: -200, autoAlpha: 0, ease: "power3.in", duration: 1.2, stagger: 0.05,
-        })
+        // ── Phase 6: contingut de la targeta desapareix ──
+        .to(
+          [".mockup-scroll-wrapper", ".bubble-0", ".bubble-1", ".bubble-2", ".bubble-3", ".bubble-4", ".bubble-5", ".card-left-text", ".card-right-text"],
+          { autoAlpha: 0, y: -30, ease: "power2.in", duration: 1.0, stagger: 0.04 },
+          "+=0.5"
+        )
+
+        // ── Targeta s'enretira (invers de l'entrada) ──
         .to(".main-card", {
           width: isMobile ? "92vw" : "85vw",
-          height: isMobile ? "92vh" : "85vh",
+          height: isMobile ? "88vh" : "82vh",
           borderRadius: isMobile ? "32px" : "40px",
           ease: "expo.inOut", duration: 1.8,
-        }, "pullback")
-        .to(".cta-wrapper", { scale: 1, filter: "blur(0px)", ease: "expo.inOut", duration: 1.8 }, "pullback")
-        .to(".main-card", { y: -window.innerHeight - 300, ease: "power3.in", duration: 1.5 });
+        })
+        .to(".main-card", { y: window.innerHeight + 300, ease: "power3.in", duration: 1.5 })
+
+        // ── CTA apareix sobre el fons blanc (com el primer hero) ──
+        .to(".cta-wrapper", { autoAlpha: 1, y: 0, filter: "blur(0px)", ease: "expo.out", duration: 1.8,
+          onStart: () => window.dispatchEvent(new CustomEvent('hostly:hero-cta-visible')),
+        })
+
+        // ── Pausa: l'usuari llegeix el CTA ──
+        .to({}, { duration: 4.0 });
 
     }, containerRef);
 
@@ -561,38 +666,76 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
 
       {/* ── Background: hero tagline ── */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform">
-        <h1 className="text-track gsap-reveal text-3d-hostly text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tight mb-2">
-          Tu apartamento debería
+        <h1 className="text-track gsap-reveal text-3d-hostly text-[2.25rem] leading-[1.05] md:text-6xl lg:text-[5rem] font-bold tracking-tight mb-2">
+          ¿Gestionas apartamentos en Airbnb?
         </h1>
-        <h1 className="text-days gsap-reveal text-silver-hostly text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter">
-          trabajar sin ti.
+        <h1 className="text-days gsap-reveal text-silver-hostly text-[2.25rem] leading-[1.05] md:text-6xl lg:text-[5rem] font-extrabold tracking-tighter">
+          ¿O te gestionan ellos a ti?
         </h1>
+        <p className="hero-subtitle gsap-reveal text-base md:text-xl text-slate-500 max-w-2xl mt-6 md:mt-8 font-normal leading-relaxed">
+          Hostly simplifica todo lo que implica tener un piso turístico.
+        </p>
       </div>
 
-      {/* ── Background: CTA final ── */}
-      <div className="cta-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 gsap-reveal pointer-events-auto will-change-transform">
-        <p className="text-xs font-bold tracking-[0.15em] uppercase text-blue-400 mb-6">
+      {/* ── CTA final — fons blanc, text fosc ── */}
+      <div className="cta-wrapper absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6 md:px-12 lg:px-20 gsap-reveal pointer-events-auto will-change-transform">
+
+        {/* Partner badges */}
+        <div className="mb-12 md:mb-14 w-full max-w-3xl">
+          <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400 mb-5">
+            Partner oficial de
+          </p>
+          <div className="flex items-center justify-center gap-5 md:gap-7 flex-wrap">
+            <div className="flex items-center justify-center px-7 py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-200 transition-colors">
+              <img src={badgeBooking} alt="Booking.com Premier Connectivity Partner 2025" className="h-12 md:h-14 w-auto opacity-80 hover:opacity-100 transition-opacity" loading="lazy" decoding="async" />
+            </div>
+            <div className="flex items-center justify-center px-7 py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-200 transition-colors">
+              <img src={badgeAirbnb} alt="Airbnb Preferred+ Software Partner 2025" className="h-12 md:h-14 w-auto opacity-80 hover:opacity-100 transition-opacity" loading="lazy" decoding="async" />
+            </div>
+            <div className="flex items-center justify-center px-7 py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-200 transition-colors">
+              <img src={badgeGoogle} alt="Google Vacation Rentals Partner" className="h-12 md:h-14 w-auto opacity-80 hover:opacity-100 transition-opacity" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+
+        <p className="text-xs font-bold tracking-[0.18em] uppercase text-blue-600 mb-5">
           Para propietarios que quieren sistema, no caos
         </p>
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-card-silver">
-          Empieza gratis hoy.
+        <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold mb-5 tracking-tight text-card-dark leading-[1.15]">
+          Empieza <span className="font-accent text-[1.6em] text-[#1a3a8f] pr-1">gratis</span> hoy mismo.
         </h2>
-        <p className="text-blue-100/60 text-lg md:text-xl mb-12 max-w-xl mx-auto font-light leading-relaxed">
-          Sin permanencia. Sin comisiones. Solo sistema que trabaja por ti.
+        <p className="text-slate-500 text-lg md:text-2xl mb-12 md:mb-14 max-w-2xl mx-auto font-light leading-relaxed">
+          Sin permanencia. Sin tarjeta. Una sola app para todo tu piso.
         </p>
+
+        {/* Stats pills — 3 horitzontals amb més gap */}
+        <div className="flex items-center justify-center gap-4 md:gap-5 mb-12 w-full max-w-4xl flex-wrap">
+          {[
+            { icon: '💬', num: '7.983', label: 'mensajes respondidos' },
+            { icon: '🛡️', num: '4.271', label: 'registros policiales' },
+            { icon: '🧹', num: '3.548', label: 'limpiezas coordinadas' },
+          ].map((s) => (
+            <div key={s.label} className="flex items-center justify-center gap-2.5 px-7 py-3 rounded-full border border-slate-200 bg-white text-sm whitespace-nowrap">
+              <span className="text-base">{s.icon}</span>
+              <span className="font-bold text-slate-900">{s.num}</span>
+              <span className="text-slate-500">{s.label}</span>
+            </div>
+          ))}
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={onOpenQuiz}
-            className="btn-hostly-primary flex items-center justify-center gap-3 px-10 py-4 rounded-[1.25rem] text-base font-bold"
+            className="btn-hostly-primary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-bold"
           >
-            Pruébalo gratis
+            Empezar gratis 14 días
           </button>
-          <button
-            onClick={() => document.getElementById("steps")?.scrollIntoView({ behavior: "smooth" })}
-            className="btn-hostly-secondary flex items-center justify-center gap-3 px-10 py-4 rounded-[1.25rem] text-base font-semibold"
+          <LangLink
+            to="/demo"
+            className="btn-hostly-secondary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-semibold"
           >
             Ver cómo funciona
-          </button>
+          </LangLink>
         </div>
       </div>
 
@@ -641,25 +784,72 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                   </div>
                 </div>
 
-                {/* Bubble 1 — surt del telèfon cap a dalt-esquerra */}
-                <div className="floating-badge-1 absolute top-6 lg:top-12 left-[-15px] lg:left-[-90px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30">
-                  <div className="w-9 h-9 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 flex-shrink-0">
-                    <span className="text-lg" aria-hidden="true">💰</span>
+                {/* Zigzag vertical — cada bombolla té la seva pròpia franja d'alçada,
+                    alternant esquerra-dreta. Ordre d'aparició flueix top→bottom. */}
+
+                {/* Bubble 0 — TOP-LEFT (1a, ~5%) */}
+                <div className="bubble-0 absolute top-[3%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[170px] lg:min-w-[215px]">
+                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 flex-shrink-0">
+                    <span className="text-base lg:text-lg" aria-hidden="true">🗓️</span>
                   </div>
                   <div>
-                    <p className="text-white text-xs lg:text-sm font-bold tracking-tight">Reserva confirmada · 620€</p>
-                    <p className="text-blue-200/50 text-[10px] lg:text-xs font-medium">Marcos · Booking · 4 noches</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Taxa turística · vence en 24h</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Informe de junio listo · pago en 1 clic</p>
                   </div>
                 </div>
 
-                {/* Bubble 2 — surt del telèfon cap a baix-dreta */}
-                <div className="floating-badge-2 absolute bottom-12 lg:bottom-20 right-[-15px] lg:right-[-90px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30">
-                  <div className="w-9 h-9 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 flex-shrink-0">
-                    <span className="text-lg" aria-hidden="true">🧹</span>
+                {/* Bubble 1 — UPPER-RIGHT (2a, ~22%) */}
+                <div className="bubble-1 absolute top-[22%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
+                    <span className="text-base lg:text-lg" aria-hidden="true">🛡️</span>
                   </div>
                   <div>
-                    <p className="text-white text-xs lg:text-sm font-bold tracking-tight">Limpieza coordinada</p>
-                    <p className="text-blue-200/50 text-[10px] lg:text-xs font-medium">Anna López · Mañana 11:00</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Check-in de Miguel completado</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">SES enviado a Mossos · 4 € de taxa cobrados</p>
+                  </div>
+                </div>
+
+                {/* Bubble 2 — MID-LEFT (3a, ~41%) */}
+                <div className="bubble-2 absolute top-[41%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[165px] lg:min-w-[215px]">
+                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-violet-500/20 flex items-center justify-center border border-violet-400/30 flex-shrink-0">
+                    <span className="text-base lg:text-lg" aria-hidden="true">🧹</span>
+                  </div>
+                  <div>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Limpieza confirmada · Anna</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Coordinada automáticamente · mañana 11h</p>
+                  </div>
+                </div>
+
+                {/* Bubble 3 — LOWER-MID-RIGHT (4a, ~60%) */}
+                <div className="bubble-3 absolute top-[60%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
+                    <span className="text-base lg:text-lg" aria-hidden="true">🤖</span>
+                  </div>
+                  <div>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Pol ha obtenido respuesta de la IA</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Wifi + 3 restaurantes recomendados · sin tu intervención</p>
+                  </div>
+                </div>
+
+                {/* Bubble 4 — LOWER-LEFT (5a, ~79%) */}
+                <div className="bubble-4 absolute top-[79%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-orange-500/20 flex items-center justify-center border border-orange-400/30 flex-shrink-0">
+                    <span className="text-base lg:text-lg" aria-hidden="true">📈</span>
+                  </div>
+                  <div>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Festival local detectado en tu zona</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Precio del 15–19 jun ajustado a 235 €/noche</p>
+                  </div>
+                </div>
+
+                {/* Bubble 5 — BOTTOM-RIGHT (6a, ~95%) */}
+                <div className="bubble-5 absolute bottom-[3%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 flex-shrink-0">
+                    <span className="text-base lg:text-lg" aria-hidden="true">💬</span>
+                  </div>
+                  <div>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Tu asesora Laura · plan de abril</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">3 ajustes para subir ingresos un 12%</p>
                   </div>
                 </div>
 
@@ -669,10 +859,13 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
             {/* Bottom (mobile) / Left (desktop): Description */}
             <div className="card-left-text gsap-reveal order-3 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
               <h3 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-0 lg:mb-5 tracking-tight">
-                Sistema. No herramienta.
+                Hostly simplifica<br />
+                tu apartamento<br />
+                <span className="italic">al máximo.</span>
               </h3>
               <p className="hidden md:block text-blue-100/60 text-sm md:text-base lg:text-lg font-normal leading-relaxed max-w-sm lg:max-w-none">
-                <span className="text-white font-semibold">Hostly</span> gestiona check-ins, limpiezas, precios y registros policiales. Configura una vez. Desconéctate para siempre.
+                Las cinco apps que usabas, las hojas de cálculo, los grupos de WhatsApp y las llamadas de última hora —<br />
+                <span className="text-white font-semibold">todo eso se acaba.</span>
               </p>
             </div>
 

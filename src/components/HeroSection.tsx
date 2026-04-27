@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import badgeBooking from "@/assets/badge-booking.png";
-import badgeAirbnb from "@/assets/badge-airbnb.png";
-import badgeGoogle from "@/assets/badge-google.png";
+import badgeBooking from "@/assets/badge-booking.webp";
+import badgeAirbnb from "@/assets/badge-airbnb.webp";
+import badgeGoogle from "@/assets/badge-google.webp";
 
 const appleEase = [0.22, 1, 0.36, 1] as const;
 

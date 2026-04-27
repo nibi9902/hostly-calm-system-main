@@ -1,15 +1,145 @@
-import { useEffect } from 'react';
-import { DemoPlayer } from '@/components/demo-app/DemoPlayer';
-import '@/styles/app-tokens.css';
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { LangLink } from "@/i18n/LangLink";
+import PageShell from "@/components/PageShell";
 
 export default function Demo() {
-  useEffect(() => {
-    const prev = document.title;
-    document.title = 'Demo — Hostly';
-    return () => {
-      document.title = prev;
-    };
-  }, []);
+  return (
+    <PageShell
+      title="Demo — Hostly"
+      description="Mira cómo funciona Hostly en 1 minuto. Check-in automático, limpiezas coordinadas, mensajes con IA y finanzas desde una sola app."
+      path="/demo"
+    >
+      {/* Hero fosc — no tot en blanc, fons naval que dona profunditat */}
+      <section
+        className="relative flex flex-col items-center justify-center px-6 pt-24 pb-20 md:pt-32 md:pb-24 overflow-hidden"
+        style={{ background: "linear-gradient(160deg, #0c1a4a 0%, #0f172a 60%, #111827 100%)" }}
+      >
+        {/* Glow blau ambient */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(ellipse 60% 50% at 50% 25%, rgba(37,99,235,0.18) 0%, transparent 70%)" }}
+        />
+        {/* Textura de punts */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+        />
 
-  return <DemoPlayer />;
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 w-full max-w-5xl mx-auto text-center"
+        >
+          {/* Eyebrow */}
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40 mb-5">
+            Demo · 1 minuto
+          </p>
+
+          {/* Headline */}
+          <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-4">
+            Así funciona Hostly.
+          </h1>
+          <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto mb-10">
+            Check-in automático, limpiezas coordinadas, mensajes con IA y finanzas
+            en un solo lugar. Sin cinco apps distintas.
+          </p>
+
+          {/* Video — framing premium amb chrome de browser */}
+          <div
+            className="relative w-full rounded-2xl overflow-hidden"
+            style={{
+              boxShadow: "0 0 0 1px rgba(255,255,255,0.08), 0 40px 80px -10px rgba(0,0,0,0.6), 0 8px 32px rgba(0,0,0,0.4)",
+            }}
+          >
+            {/* Chrome de browser */}
+            <div
+              className="flex items-center gap-2 px-4 py-2.5"
+              style={{ background: "rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+            >
+              <div className="flex gap-1.5 flex-shrink-0">
+                <div className="w-3 h-3 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
+                <div className="w-3 h-3 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
+                <div className="w-3 h-3 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
+              </div>
+              <div
+                className="flex-1 mx-3 h-6 rounded-md flex items-center justify-center"
+                style={{ background: "rgba(255,255,255,0.05)" }}
+              >
+                <span className="text-[11px] text-white/30 font-mono">app.hostlylabs.com</span>
+              </div>
+            </div>
+
+            {/* Video */}
+            <video
+              src="/assets/demos/hostly-demo.mp4"
+              controls
+              autoPlay
+              muted
+              playsInline
+              className="w-full block"
+              style={{ background: "#0f172a" }}
+            />
+          </div>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+            <a
+              href="https://app.hostlylabs.com/signup"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-[#0c1a4a] font-semibold text-sm hover:bg-white/90 transition-colors shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
+            >
+              Empezar gratis
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <LangLink
+              to="/precios"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/20 text-white/75 font-medium text-sm hover:border-white/40 hover:text-white transition-colors"
+            >
+              Ver precios
+            </LangLink>
+          </div>
+          <p className="text-white/25 text-xs mt-4">
+            Sin tarjeta · Sin permanencia · 14 días de prueba
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Contextualització — fons blanc, 3 punts clau del que es veu al vídeo */}
+      <section className="py-16 md:py-20 px-6 md:px-12 lg:px-20 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary/70 mb-10 text-center">
+            Lo que ves en el vídeo
+          </p>
+          <div className="grid sm:grid-cols-3 gap-8 md:gap-12">
+            {[
+              {
+                icon: "🛡️",
+                title: "Check-in y SES automático",
+                desc: "El huésped firma online. El parte llega a Mossos o Policía Nacional sin que toques nada. Gratis para siempre.",
+              },
+              {
+                icon: "🤖",
+                title: "Mensajes con IA",
+                desc: "WhatsApp contestado en segundos, en el idioma del huésped. Tú solo entras cuando hace falta.",
+              },
+              {
+                icon: "📊",
+                title: "Todo en un solo panel",
+                desc: "Reservas, limpiezas, precios y finanzas. Sin saltar entre cinco apps ni recordar cinco contraseñas.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="flex flex-col gap-3">
+                <span className="text-3xl">{item.icon}</span>
+                <h3 className="font-bold text-foreground text-sm leading-snug">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
 }

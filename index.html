@@ -2,25 +2,69 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostly — Haz que funcione por ti</title>
-    <meta name="description" content="Sistema 360° para la gestión de apartamentos turísticos. Automatiza gestión, limpieza y comunicación.">
+
+    <!-- Font preconnect + load — descoberta primerenca, evita @import dins CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,300;1,400;1,500&display=swap" />
+
+    <!-- SEO Primary -->
+    <title>¿Gestionas apartamentos en Airbnb? ¿O te gestionan ellos a ti? | Hostly</title>
+    <meta name="description" content="Hostly simplifica todo lo que implica tener un piso turístico. Reservas, check-in, mensajes, limpiezas y compliance en una sola app. 14 días gratis, sin tarjeta." />
+    <link rel="canonical" href="https://hostlylabs.com" />
+    <meta name="robots" content="index, follow" />
     <meta name="author" content="Hostly" />
-    
-    
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/" />
+    <link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca" />
+    <link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hostlylabs.com" />
+    <meta property="og:title" content="Hostly — Una app para todo tu piso turístico" />
+    <meta property="og:description" content="Deja de pagar Chekin, Excel y 3 suscripciones más. Hostly lo hace todo desde una sola app. Check-in y compliance gratis para siempre. 14 días gratis." />
+    <meta property="og:image" content="https://hostlylabs.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="ca_ES" />
+    <meta property="og:site_name" content="Hostly" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    
-  
-  
-  
-  <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/nWpWGo6NP7hpU7cDb8o2FDzZDvq2/social-images/social-1771453764595-Hostly_logo_fons1.webp">
-  <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/nWpWGo6NP7hpU7cDb8o2FDzZDvq2/social-images/social-1771453764595-Hostly_logo_fons1.webp">
-  <meta property="og:title" content="Hostly — Haz que funcione por ti">
-  <meta name="twitter:title" content="Hostly — Haz que funcione por ti">
-  <meta property="og:description" content="Sistema 360° para la gestión de apartamentos turísticos. Automatiza gestión, limpieza y comunicación.">
-  <meta name="twitter:description" content="Sistema 360° para la gestión de apartamentos turísticos. Automatiza gestión, limpieza y comunicación.">
-</head>
+    <meta name="twitter:site" content="@hostlylabs" />
+    <meta name="twitter:title" content="Hostly — Una app para todo tu piso turístico" />
+    <meta name="twitter:description" content="Check-in, compliance, mensajes, limpiezas y precios. Todo en Hostly. 14 días gratis, sin tarjeta." />
+    <meta name="twitter:image" content="https://hostlylabs.com/og-image.png" />
+
+    <!-- Els schemas JSON-LD (SoftwareApplication, Organization, FAQPage) s'emeten
+         per pàgina via react-helmet-async. Veure src/lib/seo/schemas.ts. -->
+
+    <!--
+      ============================================================
+      TODO · GA4 — Google Analytics 4 no configurat
+      ============================================================
+      Crea una propietat a https://analytics.google.com i substitueix
+      G-XXXXXXXXXX pel Measurement ID real (format: G-ABC1234567).
+
+      Sense aquest canvi, l'app no envia events a producció
+      (src/lib/analytics.ts queda inactiu).
+    -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { send_page_view: true });
+    </script>
+  </head>
 
   <body>
     <div id="root"></div>
