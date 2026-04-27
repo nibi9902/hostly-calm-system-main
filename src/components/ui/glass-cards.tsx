@@ -370,7 +370,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
                 </span>
               )}
             </div>
-            <h3 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.1rem)', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-0.03em', color: card.textColor, marginBottom: '1rem' }}>
+            <h3 className="glass-card-title" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.1rem)', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-0.03em', color: card.textColor, marginBottom: '1rem' }}>
               {card.title}
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: card.mutedColor, maxWidth: '380px', marginBottom: '1.5rem' }}>

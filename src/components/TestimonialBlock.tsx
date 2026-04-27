@@ -100,7 +100,7 @@ const row2 = [...evenIdx, ...evenIdx, ...evenIdx].map(i => testimonials[i]);
 
 /* ── Single review card ── */
 const ReviewCard = ({ t }: { t: (typeof testimonials)[number] }) => (
-  <div className="flex-shrink-0 w-72 md:w-80 rounded-2xl bg-card border border-border p-6 shadow-sm mx-3 flex flex-col">
+  <div className="flex-shrink-0 w-[260px] md:w-80 rounded-2xl bg-card border border-border p-5 md:p-6 shadow-sm mx-2 flex flex-col">
     {/* Stars */}
     <div className="flex gap-0.5 mb-4">
       {[...Array(5)].map((_, i) => (
@@ -194,8 +194,8 @@ const TestimonialBlock = () => {
           <div
             className="marquee-pause overflow-hidden mb-4"
             style={{
-              maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
-              WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+              maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
             }}
           >
             <div className="flex animate-marquee-left">
@@ -209,8 +209,8 @@ const TestimonialBlock = () => {
           <div
             className="marquee-pause overflow-hidden"
             style={{
-              maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
-              WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+              maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
             }}
           >
             <div className="flex animate-marquee-right">

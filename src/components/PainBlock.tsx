@@ -139,7 +139,7 @@ const Bubble = ({
 );
 
 const PainBlock = () => (
-  <section id="pain" className="py-20 md:py-28 px-6 md:px-12 lg:px-20 bg-background">
+  <section id="pain" className="py-14 md:py-28 px-5 md:px-12 lg:px-20 bg-background">
     <div className="max-w-5xl mx-auto">
 
       {/* ── Header — problema + transformació, alineat amb H1 de la web ── */}
@@ -153,7 +153,7 @@ const PainBlock = () => (
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary/70 mb-4">
           Antes / Ahora
         </p>
-        <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.05] mb-4">
+        <h2 className="text-2xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.05] mb-4">
           Sin sistema, el negocio<br className="hidden md:block" /> te gestiona a ti.
         </h2>
         <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto">

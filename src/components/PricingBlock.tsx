@@ -53,7 +53,7 @@ const PricingBlock = () => {
         <div className="grid lg:grid-cols-2 gap-5 md:gap-6 mb-10">
 
           {/* ─── TIER GRATIS ─── */}
-          <div className="relative rounded-3xl bg-card border border-border p-8 md:p-10 flex flex-col">
+          <div className="relative rounded-3xl bg-card border border-border p-6 md:p-10 flex flex-col">
             {/* Eyebrow */}
             <div className="flex items-center gap-2 mb-6">
               <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#16a34a] bg-[#dcfce7] px-2.5 py-1 rounded-full">
@@ -99,7 +99,7 @@ const PricingBlock = () => {
 
           {/* ─── TIER COMPLET ─── */}
           <div
-            className="relative rounded-3xl p-8 md:p-10 flex flex-col text-white overflow-hidden"
+            className="relative rounded-3xl p-6 md:p-10 flex flex-col text-white overflow-hidden"
             style={{ background: "linear-gradient(160deg, #1a3a8f 0%, #2563EB 100%)" }}
           >
             {/* Glow accent */}

@@ -136,8 +136,24 @@
   animation-play-state: paused;
 }
 
+/* ── Hero — mobile ── */
+@media (max-width: 767px) {
+  /* Redueix el padding del hero exterior */
+  .cinematic-hero-outer {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
+
 /* ── Glass Cards — mobile overrides ── */
 @media (max-width: 767px) {
+  .glass-card-wrapper {
+    height: 58vh !important;
+    min-height: 360px !important;
+    max-height: 480px !important;
+    width: 94% !important;
+    top: 0 !important; /* elimina offset vertical que deixa espai buit */
+  }
   .glass-card-body {
     display: flex !important;
     flex-direction: column !important;
@@ -146,19 +162,34 @@
     display: none !important;
   }
   .glass-card-left {
-    padding: 2rem 1.5rem 1.75rem !important;
-    justify-content: flex-start !important;
+    padding: 2.25rem 1.75rem 2rem !important;
+    justify-content: space-between !important;
+    flex: 1 !important;
   }
-  .glass-card-wrapper {
-    height: auto !important;
-    min-height: 280px !important;
-    max-height: none !important;
+  .glass-card-title {
+    font-size: 2rem !important;
+    margin-bottom: 0.75rem !important;
   }
-  .glass-sticky-container {
-    height: auto !important;
-    min-height: unset !important;
-    position: relative !important;
-    align-items: flex-start !important;
-    padding: 1rem 0 !important;
+}
+
+/* ── Seccions — reducció de padding vertical en mòbil ── */
+@media (max-width: 767px) {
+  /* StepsBlock py-24 és excessiu en mòbil */
+  #steps {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  /* FAQ i altres seccions amb py-20/28 */
+  #faq {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  #compliance {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  /* Compliance card interior */
+  #compliance .rounded-3xl {
+    padding: 2rem 1.5rem !important;
   }
 }
