@@ -535,7 +535,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
       gsap.set(".text-days",     { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
       gsap.set(".hero-subtitle", { autoAlpha: 0, y: 24 });
       gsap.set(".main-card",     { y: window.innerHeight + 200, autoAlpha: 1 });
-      gsap.set([".card-left-text", ".mockup-scroll-wrapper"], { autoAlpha: 0 });
+      gsap.set([".card-left-text", ".card-right-text", ".mockup-scroll-wrapper"], { autoAlpha: 0 });
       gsap.set([".bubble-0",".bubble-1",".bubble-2",".bubble-3",".bubble-4",".bubble-5"], { autoAlpha: 0 });
       gsap.set(".phone-notif",   { autoAlpha: 0, y: -60, scale: 0.88 });
       gsap.set(".cta-wrapper",   { autoAlpha: 0, y: 50, filter: "blur(20px)" });
@@ -619,13 +619,14 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
 
         // ── Phase 5: text entra ──
         .fromTo(".card-left-text",  { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.2")
+        .fromTo(".card-right-text", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
 
         // ── Pausa final ──
         .to({}, { duration: 2.5 })
 
         // ── Phase 6: contingut de la targeta desapareix ──
         .to(
-          [".mockup-scroll-wrapper", ".bubble-0", ".bubble-1", ".bubble-2", ".bubble-3", ".bubble-4", ".bubble-5", ".card-left-text"],
+          [".mockup-scroll-wrapper", ".bubble-0", ".bubble-1", ".bubble-2", ".bubble-3", ".bubble-4", ".bubble-5", ".card-left-text", ".card-right-text"],
           { autoAlpha: 0, y: -30, ease: "power2.in", duration: 1.0, stagger: 0.04 },
           "+=0.5"
         )
@@ -746,9 +747,16 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         >
           <div className="card-sheen" aria-hidden="true" />
 
-          <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-2 items-center lg:gap-12 z-10 py-6 lg:py-0">
+          <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-3 items-center lg:gap-8 z-10 py-6 lg:py-0">
 
-            {/* Center (mobile) / Right (desktop): iPhone mockup */}
+            {/* Top (mobile) / Right (desktop): Brand */}
+            <div className="card-right-text gsap-reveal order-1 lg:order-3 hidden lg:flex justify-end z-40 w-full overflow-hidden">
+              <h2 className="text-[5.5rem] xl:text-[6.5rem] font-black uppercase tracking-tighter text-card-silver leading-none whitespace-nowrap">
+                Hostly
+              </h2>
+            </div>
+
+            {/* Center: iPhone mockup */}
             <div className="mockup-scroll-wrapper order-2 lg:order-2 relative w-full h-[380px] lg:h-[600px] flex items-center justify-center z-10" style={{ perspective: "1000px" }}>
               <div className="relative w-full h-full flex items-center justify-center transform scale-[0.65] md:scale-85 lg:scale-100">
 
