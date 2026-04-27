@@ -749,9 +749,9 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
 
           <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-3 items-center lg:gap-8 z-10 py-6 lg:py-0">
 
-            {/* Top (mobile) / Right (desktop): Brand */}
-            <div className="card-right-text gsap-reveal order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
-              <h2 className="text-3xl md:text-[6rem] lg:text-[8rem] font-black uppercase tracking-tighter text-card-silver">
+            {/* Top (mobile) / Right (desktop): Brand — element decoratiu subtil */}
+            <div className="card-right-text gsap-reveal order-1 lg:order-3 hidden lg:flex justify-end z-10 w-full overflow-hidden">
+              <h2 className="text-[5rem] xl:text-[6.5rem] font-black uppercase tracking-tighter text-card-silver opacity-60 select-none">
                 Hostly
               </h2>
             </div>
