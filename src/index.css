@@ -135,3 +135,30 @@
 .marquee-pause:hover .animate-marquee-right {
   animation-play-state: paused;
 }
+
+/* ── Glass Cards — mobile overrides ── */
+@media (max-width: 767px) {
+  .glass-card-body {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .glass-card-right {
+    display: none !important;
+  }
+  .glass-card-left {
+    padding: 2rem 1.5rem 1.75rem !important;
+    justify-content: flex-start !important;
+  }
+  .glass-card-wrapper {
+    height: auto !important;
+    min-height: 280px !important;
+    max-height: none !important;
+  }
+  .glass-sticky-container {
+    height: auto !important;
+    min-height: unset !important;
+    position: relative !important;
+    align-items: flex-start !important;
+    padding: 1rem 0 !important;
+  }
+}

@@ -329,10 +329,12 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
   return (
     <div
       ref={containerRef}
+      className="glass-sticky-container"
       style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'sticky', top: 0 }}
     >
       <div
         ref={cardRef}
+        className="glass-card-wrapper"
         style={{ position: 'relative', width: '92%', maxWidth: '1200px', height: '78vh', maxHeight: '720px', minHeight: '620px', borderRadius: '28px', isolation: 'isolate', top: `calc(-4vh + ${index * 20}px)`, transformOrigin: 'top' }}
       >
         {/* Conic border glow */}
@@ -343,7 +345,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
         }} />
 
         {/* Card body */}
-        <div style={{
+        <div className="glass-card-body" style={{
           position: 'relative', width: '100%', height: '100%',
           display: 'grid', gridTemplateColumns: '2fr 3fr',
           borderRadius: '28px', background: card.bg,
@@ -356,7 +358,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)', pointerEvents: 'none', borderRadius: '28px 28px 0 0' }} />
 
           {/* Left: text */}
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 3rem 3rem 3.5rem', position: 'relative', zIndex: 1 }}>
+          <div className="glass-card-left" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 3rem 3rem 3.5rem', position: 'relative', zIndex: 1 }}>
             {/* Row amb el badge + freeBadge */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
               <span style={{ display: 'inline-block', fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '4px 12px', borderRadius: '6px', width: 'fit-content', background: card.color.replace('0.9', '0.1'), color: solid, border: `1px solid ${card.color.replace('0.9', '0.2')}` }}>
@@ -481,7 +483,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
           </div>
 
           {/* Right: screenshot integrat amb browser mockup (O portrait + chat bubble si variant='photo') */}
-          <div style={{
+          <div className="glass-card-right" style={{
             position: 'relative',
             zIndex: 1,
             padding: '2rem 2.5rem 2rem 0.5rem',

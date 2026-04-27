@@ -743,7 +743,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
       <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none" style={{ perspective: "1500px" }}>
         <div
           ref={mainCardRef}
-          className="main-card hostly-depth-card relative overflow-hidden gsap-reveal flex items-center justify-center pointer-events-auto w-[92vw] md:w-[85vw] h-[92vh] md:h-[85vh] rounded-[32px] md:rounded-[40px]"
+          className="main-card hostly-depth-card relative overflow-hidden gsap-reveal flex items-center justify-center pointer-events-auto w-[92vw] md:w-[85vw] h-[80vh] md:h-[85vh] rounded-[32px] md:rounded-[40px]"
         >
           <div className="card-sheen" aria-hidden="true" />
 
@@ -751,7 +751,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
 
             {/* Top (mobile) / Right (desktop): Brand */}
             <div className="card-right-text gsap-reveal order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
-              <h2 className="text-6xl md:text-[6rem] lg:text-[8rem] font-black uppercase tracking-tighter text-card-silver">
+              <h2 className="text-3xl md:text-[6rem] lg:text-[8rem] font-black uppercase tracking-tighter text-card-silver">
                 Hostly
               </h2>
             </div>
@@ -788,7 +788,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     alternant esquerra-dreta. Ordre d'aparició flueix top→bottom. */}
 
                 {/* Bubble 0 — TOP-LEFT (1a, ~5%) */}
-                <div className="bubble-0 absolute top-[3%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[170px] lg:min-w-[215px]">
+                <div className="bubble-0 absolute top-[3%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[170px] lg:min-w-[215px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">🗓️</span>
                   </div>
@@ -799,7 +799,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 1 — UPPER-RIGHT (2a, ~22%) */}
-                <div className="bubble-1 absolute top-[22%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="bubble-1 absolute top-[22%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">🛡️</span>
                   </div>
@@ -810,7 +810,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 2 — MID-LEFT (3a, ~41%) */}
-                <div className="bubble-2 absolute top-[41%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[165px] lg:min-w-[215px]">
+                <div className="bubble-2 absolute top-[41%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[165px] lg:min-w-[215px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-violet-500/20 flex items-center justify-center border border-violet-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">🧹</span>
                   </div>
@@ -821,7 +821,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 3 — LOWER-MID-RIGHT (4a, ~60%) */}
-                <div className="bubble-3 absolute top-[60%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="bubble-3 absolute top-[60%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">🤖</span>
                   </div>
@@ -832,7 +832,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 4 — LOWER-LEFT (5a, ~79%) */}
-                <div className="bubble-4 absolute top-[79%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="bubble-4 absolute top-[79%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-orange-500/20 flex items-center justify-center border border-orange-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">📈</span>
                   </div>
@@ -843,7 +843,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                 </div>
 
                 {/* Bubble 5 — BOTTOM-RIGHT (6a, ~95%) */}
-                <div className="bubble-5 absolute bottom-[3%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="bubble-5 absolute bottom-[3%] right-[-10px] lg:right-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
                   <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 flex-shrink-0">
                     <span className="text-base lg:text-lg" aria-hidden="true">💬</span>
                   </div>
