@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { LangLink } from "@/i18n/LangLink";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /* Llista del que inclou la cuenta gratis — sense que res del NO-gratis es filtri */
@@ -21,6 +22,7 @@ const bodies = [
 ];
 
 export default function ComplianceBlock() {
+  const { open: openSignup } = useSignupModal();
   return (
     <section
       id="compliance"
@@ -121,13 +123,11 @@ export default function ComplianceBlock() {
               </p>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <a
-                  href="https://app.hostlylabs.com/signup"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#1a3a8f] text-white font-semibold text-sm hover:bg-[#142d6e] transition-colors shadow-[0_4px_14px_rgba(26,58,143,0.25)]"
+                <button type="button" onClick={openSignup} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#1a3a8f] text-white font-semibold text-sm hover:bg-[#142d6e] transition-colors shadow-[0_4px_14px_rgba(26,58,143,0.25)]"
                 >
                   Crear cuenta gratis
                   <ArrowRight className="w-4 h-4" />
-                </a>
+                </button>
                 <p className="text-xs text-slate-400 font-medium">
                   Sin tarjeta · Sin caducidad
                 </p>

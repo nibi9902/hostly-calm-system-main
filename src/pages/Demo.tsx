@@ -3,7 +3,9 @@ import { ArrowRight } from "lucide-react";
 import { LangLink } from "@/i18n/LangLink";
 import PageShell from "@/components/PageShell";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 export default function Demo() {
+  const { open: openSignup } = useSignupModal();
   return (
     <PageShell
       title="Demo — Hostly"
@@ -87,13 +89,11 @@ export default function Demo() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <a
-              href="https://app.hostlylabs.com/signup"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-[#0c1a4a] font-semibold text-sm hover:bg-white/90 transition-colors shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
+            <button type="button" onClick={openSignup} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-[#0c1a4a] font-semibold text-sm hover:bg-white/90 transition-colors shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
             >
               Empezar gratis
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
             <LangLink
               to="/precios"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/20 text-white/75 font-medium text-sm hover:border-white/40 hover:text-white transition-colors"

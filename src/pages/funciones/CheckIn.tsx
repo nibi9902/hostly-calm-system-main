@@ -5,6 +5,7 @@ import { faqPageSchema, breadcrumbSchema } from "@/lib/seo/schemas";
 import RelatedArticles from "@/components/RelatedArticles";
 import { featureToArticles } from "@/lib/data/relatedContent";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const replaces = [
@@ -35,6 +36,7 @@ const faqs = [
 const PAGE_FAQS = faqs.map((f) => ({ q: f.q, a: f.a }));
 
 export default function CheckIn() {
+  const { open: openSignup } = useSignupModal();
   return (
     <PageShell
       title="Check-in automático gratis para siempre | Hostly"
@@ -63,13 +65,11 @@ export default function CheckIn() {
               SES.Hospedajes, NRUA, registro policial y taxa turística incluidos en Hostly.
               Gratis para siempre, sin límite de check-ins.
             </p>
-            <a
-              href="https://app.hostlylabs.com/signup"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1a3a8f] text-white font-semibold text-base hover:shadow-[0_8px_30px_rgba(26,58,143,0.3)] hover:-translate-y-0.5 transition-all duration-300"
+            <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1a3a8f] text-white font-semibold text-base hover:shadow-[0_8px_30px_rgba(26,58,143,0.3)] hover:-translate-y-0.5 transition-all duration-300"
             >
               Empezar gratis 14 días
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
             <p className="text-sm text-slate-400 mt-3">Sin tarjeta. Cancela cuando quieras.</p>
           </motion.div>
         </div>
@@ -177,13 +177,11 @@ export default function CheckIn() {
           Empieza gratis. 14 días.
         </h2>
         <p className="text-white/60 text-lg mb-10 max-w-lg mx-auto">Sin tarjeta. Sin Chekin. Sin gestoria.</p>
-        <a
-          href="https://app.hostlylabs.com/signup"
-          className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
+        <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
         >
           Empezar gratis 14 días
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </button>
       </section>
     </PageShell>
   );

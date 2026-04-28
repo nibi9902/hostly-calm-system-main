@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, ArrowRight, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { BlogPost } from '@/lib/blog';
 import { blogPosts } from '@/lib/blog';
@@ -13,12 +13,18 @@ import SEO from '@/components/SEO';
 import { blogPostingSchema, breadcrumbSchema } from '@/lib/seo/schemas';
 import { track, trackArticleScrollDepth } from '@/lib/analytics';
 import { articleToFeature } from '@/lib/data/relatedContent';
+import { useTranslation } from 'react-i18next';
+import { useLang } from '@/i18n/useLang';
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 interface Props { post: BlogPost }
 
 export default function ArticleLayout({ post }: Props) {
+  const { open: openSignup } = useSignupModal();
+  const { t } = useTranslation('blog');
+  const { lang } = useLang();
   const [quizOpen, setQuizOpen] = useState(false);
 
   // Scroll-depth tracking — manté analytics, sense tocar els meta tags (gestio via SEO component)
@@ -56,7 +62,7 @@ export default function ArticleLayout({ post }: Props) {
           }),
           breadcrumbSchema([
             { name: 'Hostly', url: '/' },
-            { name: 'Blog', url: '/blog' },
+            { name: t('index.breadcrumb'), url: '/blog' },
             { name: post.title, url: `/blog/${post.slug}` },
           ]),
         ]}
@@ -72,9 +78,24 @@ export default function ArticleLayout({ post }: Props) {
               <LangLink to="/" className="hover:text-slate-600 transition-colors">Hostly</LangLink>
               <span>/</span>
               <LangLink to="/blog" className="hover:text-slate-600 transition-colors flex items-center gap-1">
-                <ArrowLeft className="w-3.5 h-3.5" /> Blog
+                <ArrowLeft className="w-3.5 h-3.5" /> {t('index.breadcrumb')}
               </LangLink>
             </div>
+
+            {/* Avís CA — articles encara no traduïts */}
+            {lang === 'ca' && (
+              <div className="mb-8 flex items-start gap-3 p-4 rounded-xl border border-amber-200 bg-amber-50/60">
+                <Info className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold text-amber-900 leading-snug">
+                    {t('article.ca_notice_title')}
+                  </p>
+                  <p className="text-sm text-amber-800/80 leading-relaxed mt-1">
+                    {t('article.ca_notice_body')}
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Keyword pill */}
             {post.keywords[0] && (
@@ -96,17 +117,17 @@ export default function ArticleLayout({ post }: Props) {
               {post.publishedAt && (
                 <span className="flex items-center gap-1.5">
                   <Calendar className="w-4 h-4" />
-                  {new Date(post.publishedAt).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  {new Date(post.publishedAt).toLocaleDateString(lang === 'ca' ? 'ca-ES' : 'es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </span>
               )}
               {post.readingTime && (
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4" />
-                  {post.readingTime} min de lectura
+                  {t('article.min_read_full', { count: post.readingTime })}
                 </span>
               )}
               <span className="ml-auto text-xs font-medium text-[#1a3a8f] bg-[#eff6ff] px-2.5 py-1 rounded-full">
-                Actualizado 2026
+                {t('article.updated_2026')}
               </span>
             </div>
           </motion.div>
@@ -154,21 +175,24 @@ export default function ArticleLayout({ post }: Props) {
         <div className="max-w-3xl mx-auto px-6 md:px-8 mt-16 mb-4">
           <div className="rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-6" style={{ background: 'linear-gradient(135deg, #0f1f5c 0%, #1a3a8f 100%)' }}>
             <div className="flex-1 text-center md:text-left">
-              <p className="text-xs font-bold uppercase tracking-[0.15em] text-white/50 mb-2">Hostly</p>
+              <p className="text-xs font-bold uppercase tracking-[0.15em] text-white/50 mb-2">{t('article.cta_eyebrow')}</p>
               <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
-                Lo que describes aquí, Hostly lo hace solo.
+                {t('article.cta_title')}
               </h2>
               <p className="text-white/60 text-sm leading-relaxed">
-                SES, NRUA, mensajes y limpiezas. 14 días gratis, sin tarjeta.
+                {t('article.cta_body')}
               </p>
             </div>
-            <a
-              href="https://app.hostlylabs.com/signup"
-              onClick={() => track('cta_primary_click', { location: 'article', slug: post.slug })}
+            <button
+              type="button"
+              onClick={() => {
+                track('cta_primary_click', { location: 'article', slug: post.slug });
+                openSignup();
+              }}
               className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0f1f5c] font-semibold text-sm hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
             >
-              Empezar gratis <ArrowRight className="w-4 h-4" />
-            </a>
+              {t('article.cta_button')} <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
@@ -191,7 +215,7 @@ export default function ArticleLayout({ post }: Props) {
         {/* Articles relacionats */}
         {related.length > 0 && (
           <div className="max-w-3xl mx-auto px-6 md:px-8 mt-16">
-            <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-6">También te puede interesar</p>
+            <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-6">{t('article.related_label')}</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {related.map((p, i) => (
                 <motion.a

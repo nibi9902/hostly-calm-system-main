@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import PricingBlock from "@/components/PricingBlock";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const faqs = [
@@ -37,6 +38,7 @@ const faqs = [
 ];
 
 const PreciosPage = () => {
+  const { open: openSignup } = useSignupModal();
   return (
     <PageShell
       title="Precios — Hostly"
@@ -104,13 +106,11 @@ const PreciosPage = () => {
           <p className="text-white/75 text-lg mb-8">
             Crea tu cuenta, conecta un apartamento y empieza a enviar partes a la policía automáticamente. Sin tarjeta. Para siempre.
           </p>
-          <a
-            href="https://app.hostlylabs.com/signup"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-primary font-semibold text-base hover:bg-white/90 transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+          <button type="button" onClick={openSignup} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-primary font-semibold text-base hover:bg-white/90 transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
           >
             Crear cuenta gratis
             <ArrowRight className="w-5 h-5" />
-          </a>
+          </button>
           <p className="text-white/50 text-sm mt-4">
             Sin tarjeta · Sin caducidad · Sin compromiso
           </p>

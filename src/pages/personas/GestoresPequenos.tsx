@@ -3,9 +3,11 @@ import { ArrowRight } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import { breadcrumbSchema } from "@/lib/seo/schemas";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function GestoresPequenos() {
+  const { open: openSignup } = useSignupModal();
   return (
     <PageShell
       title="Hostly para gestores pequeños de apartamentos"
@@ -24,13 +26,11 @@ export default function GestoresPequenos() {
               Canal manager por aquí. Chekin por allá. Excel para los cobros. Dropbox para contratos.
               WhatsApp con huéspedes y otro con las limpiadoras. Hostly cierra todo eso en una sola app.
             </p>
-            <a
-              href="https://app.hostlylabs.com/signup"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1a3a8f] text-white font-semibold text-base hover:shadow-[0_8px_30px_rgba(26,58,143,0.3)] hover:-translate-y-0.5 transition-all duration-300"
+            <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1a3a8f] text-white font-semibold text-base hover:shadow-[0_8px_30px_rgba(26,58,143,0.3)] hover:-translate-y-0.5 transition-all duration-300"
             >
               Empezar gratis 14 días
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
             <p className="text-sm text-slate-400 mt-3">Sin tarjeta. Sin permanencia. 37€/ap desde 5 pisos.</p>
           </motion.div>
         </div>
@@ -67,13 +67,11 @@ export default function GestoresPequenos() {
           Empieza gratis. 14 días.
         </h2>
         <p className="text-white/60 text-lg mb-10 max-w-lg mx-auto">37 €/ap desde 5 pisos. Sin tarjeta.</p>
-        <a
-          href="https://app.hostlylabs.com/signup"
-          className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
+        <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
         >
           Empezar gratis 14 días
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </button>
       </section>
     </PageShell>
   );

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 type Notif = {
@@ -63,6 +64,7 @@ const Bubble = ({
 );
 
 const PainBlock = () => {
+  const { open: openSignup } = useSignupModal();
   const { t } = useTranslation("home");
   const pairs = t("pain.pairs", { returnObjects: true }) as Array<{
     before_title: string;
@@ -171,13 +173,11 @@ const PainBlock = () => {
           <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
             {t("pain.closer_sub")}
           </p>
-          <a
-            href="https://app.hostlylabs.com/signup"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors shadow-[0_4px_14px_rgba(26,58,143,0.25)]"
+          <button type="button" onClick={openSignup} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors shadow-[0_4px_14px_rgba(26,58,143,0.25)]"
           >
             {t("pain.closer_cta")}
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </button>
           <p className="text-xs text-muted-foreground/70 mt-3">
             {t("pain.closer_fine")}
           </p>

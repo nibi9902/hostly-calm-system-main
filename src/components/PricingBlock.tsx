@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const PricingBlock = () => {
+  const { open: openSignup } = useSignupModal();
   const { t } = useTranslation("home");
   const freeFeatures = t("pricing.free_features", { returnObjects: true }) as string[];
   const paidFeatures = t("pricing.paid_features", { returnObjects: true }) as string[];
@@ -70,13 +72,11 @@ const PricingBlock = () => {
             </ul>
 
             {/* CTA */}
-            <a
-              href="https://app.hostlylabs.com/signup"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-border bg-background text-foreground font-semibold text-sm hover:bg-muted transition-colors"
+            <button type="button" onClick={openSignup} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-border bg-background text-foreground font-semibold text-sm hover:bg-muted transition-colors"
             >
               {t("pricing.free_cta")}
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
 
           {/* ─── TIER COMPLET ─── */}
@@ -129,13 +129,11 @@ const PricingBlock = () => {
               </ul>
 
               {/* CTA */}
-              <a
-                href="https://app.hostlylabs.com/signup"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#1a3a8f] font-semibold text-sm hover:bg-white/90 transition-colors shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
+              <button type="button" onClick={openSignup} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#1a3a8f] font-semibold text-sm hover:bg-white/90 transition-colors shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
               >
                 {t("pricing.paid_cta")}
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </button>
               <p className="text-xs text-white/60 mt-3 text-center">
                 {t("pricing.paid_fine")}
               </p>

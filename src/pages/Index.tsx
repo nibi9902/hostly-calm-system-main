@@ -16,8 +16,8 @@ import Footer from "@/components/Footer";
 
 // Lazy: només es carreguen quan l'usuari obre el modal — redueix el chunk inicial
 const QuizModal   = lazy(() => import("@/components/QuizModal"));
-const SignupModal = lazy(() => import("@/components/SignupModal").then((m) => ({ default: m.SignupModal })));
 import { useTranslation } from "react-i18next";
+import { useSignupModal } from "@/contexts/SignupModalContext";
 import {
   organizationSchema,
   softwareAppSchema,
@@ -27,7 +27,7 @@ import {
 
 const Index = () => {
   const [quizOpen, setQuizOpen] = useState(false);
-  const [signupOpen, setSignupOpen] = useState(false);
+  const { open: openSignup } = useSignupModal();
   const { t: tSeo } = useTranslation("seo");
   const { t: tHome } = useTranslation("home");
 
@@ -54,9 +54,9 @@ const Index = () => {
           ),
         ]}
       />
-      <SiteHeader onOpenQuiz={() => setSignupOpen(true)} />
+      <SiteHeader onOpenQuiz={openSignup} />
       <main>
-        <CinematicHero onOpenQuiz={() => setSignupOpen(true)} />
+        <CinematicHero onOpenQuiz={openSignup} />
         <PainBlock />
         <FeaturesBlock />
         <GlassCards />
@@ -65,12 +65,11 @@ const Index = () => {
         <TestimonialBlock />
         <PricingBlock />
         <FAQBlock />
-        <FinalCTA onOpenQuiz={() => setSignupOpen(true)} />
+        <FinalCTA onOpenQuiz={openSignup} />
       </main>
       <Footer />
       <Suspense fallback={null}>
         {quizOpen && <QuizModal isOpen={quizOpen} onClose={() => setQuizOpen(false)} />}
-        {signupOpen && <SignupModal isOpen={signupOpen} onClose={() => setSignupOpen(false)} />}
       </Suspense>
       <PageProgress />
     </div>

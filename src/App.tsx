@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useParams, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGS, DEFAULT_LANG, type Lang } from "./i18n/config";
+import { SignupModalProvider } from "./contexts/SignupModalContext";
 
 // Crítiques (part del first-paint)
 import Index from "./pages/Index";
@@ -93,6 +94,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <SignupModalProvider>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* Arrel → idioma detectat */}
@@ -160,6 +162,7 @@ const App = () => (
             <Route path="*" element={<LegacyRedirect />} />
           </Routes>
         </Suspense>
+        </SignupModalProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

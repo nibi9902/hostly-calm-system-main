@@ -2,12 +2,14 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import * as icons from 'lucide-react';
 import type { Feature } from '@/lib/data/features';
-import { FEATURES } from '@/lib/data/features';
+import { useFeatures } from '@/lib/data/useFeatures';
+import { useTranslation } from 'react-i18next';
 import PageShell from '@/components/PageShell';
 import MiniDemo from './MiniDemo';
 import { faqPageSchema, breadcrumbSchema, howToSchema } from '@/lib/seo/schemas';
 import { LangLink } from '@/i18n/LangLink';
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 // Mapa dinàmic de Lucide icons
@@ -18,9 +20,12 @@ interface Props {
 }
 
 export default function FeaturePage({ feature }: Props) {
+  const { open: openSignup } = useSignupModal();
+  const { t } = useTranslation('funcionalidades');
+  const allFeatures = useFeatures();
   const Icon = IconMap[feature.iconName] ?? icons.Sparkles;
   const related = feature.relatedFeatures
-    .map((s) => FEATURES.find((f) => f.slug === s))
+    .map((s) => allFeatures.find((f) => f.slug === s))
     .filter((f): f is Feature => Boolean(f));
 
   const faqsForSchema = feature.faqs.map((f) => ({ q: f.question, a: f.answer }));
@@ -39,7 +44,7 @@ export default function FeaturePage({ feature }: Props) {
         ),
         breadcrumbSchema([
           { name: 'Hostly', url: '/' },
-          { name: 'Funcionalidades', url: '/funcionalidades' },
+          { name: t('page.breadcrumb_features'), url: '/funcionalidades' },
           { name: feature.name, url: `/funcionalidades/${feature.slug}` },
         ]),
       ]}
@@ -53,9 +58,9 @@ export default function FeaturePage({ feature }: Props) {
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
               {/* Breadcrumb */}
               <nav aria-label="breadcrumb" className="flex items-center gap-2 text-sm text-slate-400 mb-6">
-                <LangLink to="/" className="hover:text-slate-600 transition-colors">Hostly</LangLink>
+                <LangLink to="/" className="hover:text-slate-600 transition-colors">{t('page.breadcrumb_home')}</LangLink>
                 <span>/</span>
-                <LangLink to="/funcionalidades" className="hover:text-slate-600 transition-colors">Funcionalidades</LangLink>
+                <LangLink to="/funcionalidades" className="hover:text-slate-600 transition-colors">{t('page.breadcrumb_features')}</LangLink>
                 <span>/</span>
                 <span className="text-slate-600">{feature.name}</span>
               </nav>
@@ -78,13 +83,11 @@ export default function FeaturePage({ feature }: Props) {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://app.hostlylabs.com/signup"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1a3a8f] text-white font-semibold text-base hover:shadow-[0_8px_30px_rgba(26,58,143,0.3)] hover:-translate-y-0.5 transition-all duration-300"
+                <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1a3a8f] text-white font-semibold text-base hover:shadow-[0_8px_30px_rgba(26,58,143,0.3)] hover:-translate-y-0.5 transition-all duration-300"
                 >
                   {feature.hero.primaryCta}
                   <ArrowRight className="w-4 h-4" />
-                </a>
+                </button>
                 <a
                   href="/#precios"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-slate-200 text-slate-700 font-semibold text-base hover:bg-slate-50 transition-all duration-300"
@@ -124,7 +127,7 @@ export default function FeaturePage({ feature }: Props) {
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, ease }}>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">
-              El problema
+              {t('page.problem_eyebrow')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] tracking-tight mb-6 leading-tight">
               {feature.problem.title}
@@ -147,10 +150,10 @@ export default function FeaturePage({ feature }: Props) {
             className="mb-12"
           >
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">
-              Cómo funciona
+              {t('page.how_eyebrow')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] tracking-tight leading-tight">
-              {feature.howItWorks.length} pasos y lo tienes funcionando.
+              {t('page.how_title', { count: feature.howItWorks.length })}
             </h2>
           </motion.div>
 
@@ -191,10 +194,10 @@ export default function FeaturePage({ feature }: Props) {
             className="mb-12"
           >
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">
-              Qué te da de diferente
+              {t('page.advantages_eyebrow')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] tracking-tight leading-tight">
-              Detalles que otros no tienen.
+              {t('page.advantages_title')}
             </h2>
           </motion.div>
 
@@ -227,10 +230,10 @@ export default function FeaturePage({ feature }: Props) {
             className="mb-12"
           >
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">
-              Casos reales
+              {t('page.usage_eyebrow')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] tracking-tight leading-tight">
-              Esto es lo que pasa cuando llega el momento.
+              {t('page.usage_title')}
             </h2>
           </motion.div>
 
@@ -258,10 +261,10 @@ export default function FeaturePage({ feature }: Props) {
           <div className="max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, ease }} className="mb-10">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">
-                Funciona mejor con
+                {t('page.related_eyebrow')}
               </p>
               <h2 className="text-3xl font-bold text-[#0f172a] tracking-tight">
-                Otras funcionalidades que lo potencian.
+                {t('page.related_title')}
               </h2>
             </motion.div>
 
@@ -269,9 +272,9 @@ export default function FeaturePage({ feature }: Props) {
               {related.map((rf) => {
                 const RIcon = IconMap[rf.iconName] ?? icons.Sparkles;
                 return (
-                  <a
+                  <LangLink
                     key={rf.slug}
-                    href={`/funcionalidades/${rf.slug}`}
+                    to={`/funcionalidades/${rf.slug}`}
                     className="group flex flex-col gap-3 p-6 rounded-2xl border border-slate-100 bg-white hover:border-[#1a3a8f]/20 hover:shadow-md transition-all duration-200"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[#eff6ff] flex items-center justify-center">
@@ -282,9 +285,9 @@ export default function FeaturePage({ feature }: Props) {
                     </h3>
                     <p className="text-sm text-slate-500 leading-relaxed line-clamp-2">{rf.shortDescription}</p>
                     <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#1a3a8f] mt-auto">
-                      Ver más <ArrowRight className="w-3.5 h-3.5" />
+                      {t('page.related_cta')} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
-                  </a>
+                  </LangLink>
                 );
               })}
             </div>
@@ -296,9 +299,9 @@ export default function FeaturePage({ feature }: Props) {
       <section className="py-20 px-6 md:px-12 lg:px-20 bg-[#f8fafc]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, ease }} className="mb-10">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">Preguntas frecuentes</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">{t('page.faqs_eyebrow')}</p>
             <h2 className="text-3xl font-bold text-[#0f172a] tracking-tight">
-              Lo que quizá te estás preguntando.
+              {t('page.faqs_title')}
             </h2>
           </motion.div>
 
@@ -327,15 +330,13 @@ export default function FeaturePage({ feature }: Props) {
           {feature.hero.primaryCta}
         </h2>
         <p className="text-white/60 text-lg mb-10 max-w-xl mx-auto">
-          14 días gratis. Sin tarjeta. Check-in y compliance incluidos para siempre.
+          {t('page.final_subtitle')}
         </p>
-        <a
-          href="https://app.hostlylabs.com/signup"
-          className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
+        <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
         >
-          Empezar gratis 14 días
+          {t('page.final_cta')}
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </button>
       </section>
     </PageShell>
   );

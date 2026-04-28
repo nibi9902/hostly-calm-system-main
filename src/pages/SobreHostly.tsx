@@ -3,6 +3,7 @@ import { ArrowRight, Mail } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import { breadcrumbSchema } from "@/lib/seo/schemas";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const values = [
@@ -25,6 +26,7 @@ const values = [
 ];
 
 export default function SobreHostly() {
+  const { open: openSignup } = useSignupModal();
   return (
     <PageShell
       title="Sobre Hostly — La app que simplifica tener un piso turístico"
@@ -169,13 +171,11 @@ export default function SobreHostly() {
               <Mail className="w-4 h-4" />
               hola@hostlylabs.com
             </a>
-            <a
-              href="https://app.hostlylabs.com/signup"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-slate-200 text-[#0f172a] font-medium text-base hover:bg-[#f8fafc] hover:-translate-y-0.5 transition-all duration-300"
+            <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-slate-200 text-[#0f172a] font-medium text-base hover:bg-[#f8fafc] hover:-translate-y-0.5 transition-all duration-300"
             >
               Empezar gratis 14 días
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
         </div>
       </section>

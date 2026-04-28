@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import { faqPageSchema, breadcrumbSchema } from "@/lib/seo/schemas";
 
+import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const comparison = [
@@ -35,6 +36,7 @@ const chekinFaqs = [
 ];
 
 export default function ComparativaChekin() {
+  const { open: openSignup } = useSignupModal();
   return (
     <PageShell
       title="Chekin vs Hostly — Check-in turístico en España | Hostly"
@@ -195,13 +197,11 @@ export default function ComparativaChekin() {
         <p className="text-white/60 text-lg mb-10 max-w-xl mx-auto">
           14 días gratis. Sin tarjeta. Si no simplifica nada, no nos debes nada.
         </p>
-        <a
-          href="https://app.hostlylabs.com/signup"
-          className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
+        <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300"
         >
           Empezar gratis 14 días
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </button>
       </section>
     </PageShell>
   );
