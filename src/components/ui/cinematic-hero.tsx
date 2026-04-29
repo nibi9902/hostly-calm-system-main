@@ -296,34 +296,22 @@ const NOTIFS = [
 ];
 
 /* ── Static phone screen with GSAP-controlled notification cards ── */
-const PHONE_NOTIFS = [
-  // 1a — Compliance proactiu
-  { icon: '🗓️', iconBg: '#0d2b18', iconColor: '#34c759', label: 'Hostly · Fiscal',
-    title: 'Taxa turística · vence en 24h',
-    detail: 'Informe de junio listo · pago en 1 clic' },
-  // 2a — Operació autònoma
-  { icon: '🛡️', iconBg: '#0a1a30', iconColor: '#3b7ff5', label: 'Hostly · Check-in',
-    title: 'Check-in de Miguel completado',
-    detail: 'SES enviado a Mossos · 4 € de taxa cobrados' },
-  // 3a — Coordinació de neteja
-  { icon: '🧹',  iconBg: '#1a1040', iconColor: '#5856d6', label: 'Hostly · Neteges',
-    title: 'Limpieza confirmada · Anna',
-    detail: 'Coordinada automáticamente · mañana 11h' },
-  // 4a — Hoste respost automàticament
-  { icon: '🤖',  iconBg: '#0f1f3a', iconColor: '#3b7ff5', label: 'Hostly · IA',
-    title: 'Pol ha obtenido respuesta de la IA',
-    detail: 'Wifi + 3 restaurantes recomendados · sin tu intervención' },
-  // 5a — Revenue intel·ligent
-  { icon: '📈',  iconBg: '#221200', iconColor: '#ff9500', label: 'Hostly · Precio',
-    title: 'Festival local detectado en tu zona',
-    detail: 'Precio del 15–19 jun ajustado a 235 €/noche' },
-  // 6a — Equip humà
-  { icon: '💬',  iconBg: '#130d33', iconColor: '#a78bfa', label: 'Hostly · Asesor',
-    title: 'Tu asesora Laura · plan de abril',
-    detail: '3 ajustes para subir ingresos un 12%' },
+const PHONE_NOTIF_META = [
+  { icon: '🗓️', iconBg: '#0d2b18', iconColor: '#34c759', label: 'Hostly · Fiscal' },
+  { icon: '🛡️', iconBg: '#0a1a30', iconColor: '#3b7ff5', label: 'Hostly · Check-in' },
+  { icon: '🧹', iconBg: '#1a1040', iconColor: '#5856d6', label: 'Hostly · Neteges' },
+  { icon: '🤖', iconBg: '#0f1f3a', iconColor: '#3b7ff5', label: 'Hostly · IA' },
+  { icon: '📈', iconBg: '#221200', iconColor: '#ff9500', label: 'Hostly · Precio' },
+  { icon: '💬', iconBg: '#130d33', iconColor: '#a78bfa', label: 'Hostly · Asesor' },
 ];
 
-const PhoneScreen: React.FC = () => (
+const PhoneScreen: React.FC = () => {
+  const { t } = useTranslation("home");
+  interface PhoneNotif { title: string; detail: string }
+  const notifsData = t("hero.phone_notifs", { returnObjects: true }) as PhoneNotif[];
+  const PHONE_NOTIFS = PHONE_NOTIF_META.map((meta, i) => ({ ...meta, ...notifsData[i] }));
+
+  return (
   <div style={{ width: '100%', height: '100%', background: 'linear-gradient(160deg, #0d2260 0%, #0a1a50 100%)', position: 'relative', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>
     {/* Status bar */}
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 16px 4px' }}>
@@ -334,7 +322,7 @@ const PhoneScreen: React.FC = () => (
     </div>
     {/* Date */}
     <div style={{ textAlign: 'center', paddingBottom: '8px' }}>
-      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', fontWeight: 500, letterSpacing: '0.02em' }}>Viernes, 18 de Abril</div>
+      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', fontWeight: 500, letterSpacing: '0.02em' }}>{t("hero.phone_date")}</div>
     </div>
 
     {/* Notification cards — opacity/y controlled by GSAP */}
@@ -368,14 +356,15 @@ const PhoneScreen: React.FC = () => (
           <div style={{ fontSize: '13px', fontWeight: 700, color: '#fff', letterSpacing: '-0.01em', lineHeight: 1.2 }}>{n.title}</div>
           <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginTop: '1px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{n.detail}</div>
         </div>
-        <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.25)', flexShrink: 0 }}>ahora</div>
+        <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.25)', flexShrink: 0 }}>{t("hero.phone_now")}</div>
       </div>
     ))}
 
     {/* Home indicator */}
     <div style={{ position: 'absolute', bottom: '6px', left: '50%', transform: 'translateX(-50%)', width: '100px', height: '4px', background: 'rgba(255,255,255,0.18)', borderRadius: '2px' }} />
   </div>
-);
+  );
+};
 
 /* Keep NOTIFS array to avoid TS error but no longer used in render */
 const _NOTIFS_UNUSED = NOTIFS;
@@ -504,6 +493,8 @@ export interface CinematicHeroProps extends React.HTMLAttributes<HTMLDivElement>
 
 export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHeroProps) {
   const { t } = useTranslation("home");
+  interface BubbleItem { title: string; detail: string }
+  const bubbles = t("hero.bubbles", { returnObjects: true }) as BubbleItem[];
   const containerRef  = useRef<HTMLDivElement>(null);
   const mainCardRef   = useRef<HTMLDivElement>(null);
   const mockupRef     = useRef<HTMLDivElement>(null);
@@ -796,8 +787,8 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     <span className="text-base lg:text-lg" aria-hidden="true">🗓️</span>
                   </div>
                   <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Taxa turística · vence en 24h</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Informe de junio listo · pago en 1 clic</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[0]?.title}</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[0]?.detail}</p>
                   </div>
                 </div>
 
@@ -807,8 +798,8 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     <span className="text-base lg:text-lg" aria-hidden="true">🛡️</span>
                   </div>
                   <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Check-in de Miguel completado</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">SES enviado a Mossos · 4 € de taxa cobrados</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[1]?.title}</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[1]?.detail}</p>
                   </div>
                 </div>
 
@@ -818,8 +809,8 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     <span className="text-base lg:text-lg" aria-hidden="true">🧹</span>
                   </div>
                   <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Limpieza confirmada · Anna</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Coordinada automáticamente · mañana 11h</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[2]?.title}</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[2]?.detail}</p>
                   </div>
                 </div>
 
@@ -829,8 +820,8 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     <span className="text-base lg:text-lg" aria-hidden="true">🤖</span>
                   </div>
                   <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Pol ha obtenido respuesta de la IA</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Wifi + 3 restaurantes recomendados · sin tu intervención</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[3]?.title}</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[3]?.detail}</p>
                   </div>
                 </div>
 
@@ -840,8 +831,8 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     <span className="text-base lg:text-lg" aria-hidden="true">📈</span>
                   </div>
                   <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Festival local detectado en tu zona</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">Precio del 15–19 jun ajustado a 235 €/noche</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[4]?.title}</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[4]?.detail}</p>
                   </div>
                 </div>
 
@@ -851,8 +842,8 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     <span className="text-base lg:text-lg" aria-hidden="true">💬</span>
                   </div>
                   <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">Tu asesora Laura · plan de abril</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">3 ajustes para subir ingresos un 12%</p>
+                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[5]?.title}</p>
+                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[5]?.detail}</p>
                   </div>
                 </div>
 

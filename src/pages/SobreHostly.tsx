@@ -1,41 +1,27 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import PageShell from "@/components/PageShell";
 import { breadcrumbSchema } from "@/lib/seo/schemas";
 
 import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const values = [
-  {
-    title: "Una sola app, no cinco",
-    body: "El propietario no debería necesitar saber qué es un channel manager. Debería tener una app que lo haga todo.",
-  },
-  {
-    title: "La opción por defecto es correcta",
-    body: "El 95% de las configuraciones tienen que funcionar sin tocar nada. Hostly toma decisiones por ti cuando la respuesta es obvia.",
-  },
-  {
-    title: "Proactivo, no reactivo",
-    body: "No te avisamos cuando ya ha pasado el problema. Te avisamos antes. La taxa turística que vence mañana. El precio que conviene subir esta semana.",
-  },
-  {
-    title: "Ibérico de verdad",
-    body: "SES.Hospedajes, Mossos, Ertzaintza, NRUA, taxa turística. No traducciones de un producto americano. Construido para el mercado español desde el primer día.",
-  },
-];
-
 export default function SobreHostly() {
   const { open: openSignup } = useSignupModal();
+  const { t } = useTranslation("common");
+
+  const values = t("sobre.values", { returnObjects: true }) as Array<{ title: string; body: string }>;
+
   return (
     <PageShell
-      title="Sobre Hostly — La app que simplifica tener un piso turístico"
-      description="Hostly nació de la frustración de gestionar apartamentos turísticos con cinco herramientas distintas. Somos un equipo ibérico obsesionado con simplificar todo lo que implica tener un piso turístico."
+      title={t("sobre.meta_title")}
+      description={t("sobre.meta_description")}
       path="/sobre-hostly"
       schemas={[
         breadcrumbSchema([
           { name: "Hostly", url: "/" },
-          { name: "Sobre Hostly", url: "/sobre-hostly" },
+          { name: t("sobre.eyebrow"), url: "/sobre-hostly" },
         ]),
       ]}
     >
@@ -48,15 +34,13 @@ export default function SobreHostly() {
             transition={{ duration: 0.6, ease }}
           >
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-5">
-              Sobre Hostly
+              {t("sobre.eyebrow")}
             </p>
             <h1 className="text-4xl md:text-6xl font-bold text-[#0f172a] tracking-tight leading-[1.05] mb-6">
-              Nació de vivirlo.
+              {t("sobre.hero_heading")}
             </h1>
             <p className="text-lg md:text-xl text-slate-500 leading-relaxed">
-              Hostly no surgió en una oficina ni de un estudio de mercado.
-              Surgió de la frustración de gestionar apartamentos turísticos
-              con cinco herramientas distintas y no poder desconectar nunca.
+              {t("sobre.hero_body")}
             </p>
           </motion.div>
         </div>
@@ -72,24 +56,11 @@ export default function SobreHostly() {
             transition={{ duration: 0.55, ease }}
             className="prose prose-slate prose-lg max-w-none"
           >
-            <p>
-              Tenía mis propios apartamentos en Airbnb y Booking. El canal manager aquí,
-              Chekin allá, las plantillas de mensajes en otro sitio, el Excel de cobros abierto
-              siempre, el grupo de WhatsApp con la limpiadora.
-            </p>
-            <p>
-              Cada reserva implicaba tocar seis herramientas distintas. Cada check-in,
-              entrar a SES.Hospedajes a mano. Cada fin de mes, una tarde de Excel.
-              Y la sensación constante de que si me despistaba, algo se rompía.
-            </p>
-            <p>
-              No encontré ninguna herramienta que lo hiciera todo de forma sencilla
-              para el mercado español. Las que existían eran complejas, caras,
-              o no entendían la burocracia ibérica.
-            </p>
+            <p>{t("sobre.story_p1")}</p>
+            <p>{t("sobre.story_p2")}</p>
+            <p>{t("sobre.story_p3")}</p>
             <p className="font-semibold text-[#0f172a]">
-              Así que lo construí yo. Primero para mí. Luego, cuando funcionó,
-              para todos los que estaban en la misma situación.
+              {t("sobre.story_p4")}
             </p>
           </motion.div>
         </div>
@@ -109,12 +80,10 @@ export default function SobreHostly() {
               B
             </div>
             <div>
-              <p className="font-bold text-[#0f172a] text-lg mb-0.5">Biel Alsina</p>
-              <p className="text-sm text-slate-400 mb-4">Fundador · Barcelona</p>
+              <p className="font-bold text-[#0f172a] text-lg mb-0.5">{t("sobre.founder_name")}</p>
+              <p className="text-sm text-slate-400 mb-4">{t("sobre.founder_role")}</p>
               <p className="text-slate-600 text-sm leading-relaxed italic">
-                "Hostly no nació en una oficina. Nació de la frustración de gestionar
-                mis propios apartamentos y no poder desconectar nunca.
-                Lo construí para mí — y funciona."
+                {t("sobre.founder_quote")}
               </p>
             </div>
           </motion.div>
@@ -125,10 +94,10 @@ export default function SobreHostly() {
       <section className="py-20 px-6 md:px-12 lg:px-20">
         <div className="max-w-3xl mx-auto">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1a3a8f] mb-4">
-            Cómo pensamos
+            {t("sobre.values_eyebrow")}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0f172a] tracking-tight mb-12">
-            Los principios que guían cada decisión.
+            {t("sobre.values_heading")}
           </h2>
           <div className="space-y-8">
             {values.map((v, i) => (
@@ -157,11 +126,10 @@ export default function SobreHostly() {
       <section className="py-20 px-6 md:px-12 lg:px-20 bg-[#f8fafc] border-t border-slate-100">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-[#0f172a] tracking-tight mb-4">
-            ¿Hablamos?
+            {t("sobre.contact_heading")}
           </h2>
           <p className="text-slate-500 text-lg leading-relaxed mb-8 max-w-xl">
-            Si tienes pisos en Airbnb o Booking y crees que Hostly puede ayudarte,
-            escríbenos. Respondemos rápido y en castellano o catalán.
+            {t("sobre.contact_body")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
@@ -173,7 +141,7 @@ export default function SobreHostly() {
             </a>
             <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-slate-200 text-[#0f172a] font-medium text-base hover:bg-[#f8fafc] hover:-translate-y-0.5 transition-all duration-300"
             >
-              Empezar gratis 14 días
+              {t("sobre.contact_cta_start")}
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

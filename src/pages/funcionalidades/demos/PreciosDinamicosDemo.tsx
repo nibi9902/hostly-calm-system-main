@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight, ChevronDown, Sparkles, TrendingUp } from 'lucide-react';
 import { usePlaybackFrame, spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 
 const colors = {
   bg: '#F9FAFB',
@@ -56,6 +57,7 @@ const stripeWidth = (span: number) => `calc(${span} * (100% - ${6*GAP}px) / 7 + 
     60+ → tot estàtic
 ─────────────────────────────────────────────────────────────── */
 function PreciosDinamicosView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const calP    = spring(frame - 0,  fps, { damping: 20, stiffness: 160 });
   const notifP  = spring(frame - 10, fps, { damping: 16, stiffness: 180, mass: 0.8 });
 
@@ -72,14 +74,14 @@ function PreciosDinamicosView({ frame, fps }: { frame: number; fps: number }) {
       {/* ── Header ── */}
       <div style={{ opacity: calP, transform: `translateY(${(1-calP)*6}px)` }}>
         <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:10 }}>
-          <span style={{ fontSize:17, fontWeight:700, color:colors.foreground, letterSpacing:-0.3 }}>Precios dinámicos</span>
+          <span style={{ fontSize:17, fontWeight:700, color:colors.foreground, letterSpacing:-0.3 }}>{t('precios.dynamicPrices')}</span>
           <div style={{
             display:'flex', alignItems:'center', gap:4,
             padding:'2px 8px', borderRadius:999,
             background:colors.primarySoft, color:colors.primary,
             fontSize:9, fontWeight:700, letterSpacing:0.3,
           }}>
-            <Sparkles size={9} /> Automático
+            <Sparkles size={9} /> {t('precios.automaticBadge')}
           </div>
         </div>
 
@@ -230,15 +232,15 @@ function PreciosDinamicosView({ frame, fps }: { frame: number; fps: number }) {
             <div style={{ fontSize:9, fontWeight:700, color:colors.mutedFg, letterSpacing:0.8 }}>
               HOSTLY IA
             </div>
-            <div style={{ marginLeft:'auto', fontSize:9, color:colors.meta }}>ahora</div>
+            <div style={{ marginLeft:'auto', fontSize:9, color:colors.meta }}>{t('precios.notifNow')}</div>
           </div>
 
           {/* Title */}
           <div style={{ fontSize:13, fontWeight:700, color:colors.foreground, lineHeight:1.3, marginBottom:4 }}>
-            Semana Santa detectada
+            {t('precios.easterDetected')}
           </div>
           <div style={{ fontSize:10, color:colors.mutedFg, lineHeight:1.5, marginBottom:10 }}>
-            Precios ajustados para maximizar ingresos.
+            {t('precios.pricesAdjusted')}
           </div>
 
           {/* Delta strip */}
@@ -248,7 +250,7 @@ function PreciosDinamicosView({ frame, fps }: { frame: number; fps: number }) {
           }}>
             <TrendingUp size={14} color={colors.primary} strokeWidth={2.2} style={{ flexShrink:0 }} />
             <div style={{ flex:1 }}>
-              <div style={{ fontSize:9, color:colors.mutedFg, marginBottom:3 }}>24–28 abr.</div>
+              <div style={{ fontSize:9, color:colors.mutedFg, marginBottom:3 }}>{t('precios.surgeRange')}</div>
               <div style={{ display:'flex', alignItems:'baseline', gap:6 }}>
                 <span style={{ fontSize:11, color:colors.meta, textDecoration:'line-through' }}>170€</span>
                 <span style={{ fontSize:15, fontWeight:800, color:colors.foreground, fontVariantNumeric:'tabular-nums' }}>
@@ -270,7 +272,7 @@ function PreciosDinamicosView({ frame, fps }: { frame: number; fps: number }) {
               boxShadow:`0 0 5px ${colors.green}`,
               animation:'pulse 1.8s ease-in-out infinite',
             }} />
-            Sincronizado · Airbnb + Booking
+            {t('precios.syncedWith')}
           </div>
         </div>
       )}

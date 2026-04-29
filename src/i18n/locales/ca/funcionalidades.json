@@ -1,1 +1,31 @@
-{}
+{
+  "index": {
+    "eyebrow": "Funcionalitats",
+    "title_1": "Tot el que fa Hostly,",
+    "title_2": "una funcionalitat alhora.",
+    "subtitle_count": "{{count}} funcionalitats integrades en una sola app. Sense add-ons, sense subscripcions extra, sense sorpreses. El que veus és el que tens des del primer dia.",
+    "card_eyebrow": "Hostly ·",
+    "card_cta": "Veure funcionalitat",
+    "final_title": "Tot això, per 40 €/apartament.",
+    "final_subtitle": "14 dies gratis. Sense targeta. Check-in i compliance gratis per sempre.",
+    "final_cta": "Començar gratis 14 dies"
+  },
+  "page": {
+    "breadcrumb_home": "Hostly",
+    "breadcrumb_features": "Funcionalitats",
+    "problem_eyebrow": "El problema",
+    "how_eyebrow": "Com funciona",
+    "how_title": "{{count}} passos i el tens funcionant.",
+    "advantages_eyebrow": "Què et dóna de diferent",
+    "advantages_title": "Detalls que altres no tenen.",
+    "usage_eyebrow": "Casos reals",
+    "usage_title": "Això és el que passa quan arriba el moment.",
+    "related_eyebrow": "Funciona millor amb",
+    "related_title": "Altres funcionalitats que el potencien.",
+    "related_cta": "Veure més",
+    "faqs_eyebrow": "Preguntes freqüents",
+    "faqs_title": "El que potser t'estàs preguntant.",
+    "final_subtitle": "14 dies gratis. Sense targeta. Check-in i compliance inclosos per sempre.",
+    "final_cta": "Començar gratis 14 dies"
+  }
+}

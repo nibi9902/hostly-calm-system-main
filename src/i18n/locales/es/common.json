@@ -7,7 +7,20 @@
     "guia": "Guía",
     "sobre": "Sobre Hostly",
     "demo": "Solicitar demo",
-    "login": "Iniciar sesión"
+    "login": "Iniciar sesión",
+    "aria_open_menu": "Abrir menú",
+    "aria_close_menu": "Cerrar menú"
+  },
+  "page_progress": {
+    "nav_aria": "Navegación por secciones",
+    "sections": {
+      "pain": "Sin Hostly / Con Hostly",
+      "features": "Lo que reemplaza",
+      "funciones": "Funciones",
+      "steps": "Cómo funciona",
+      "soporte": "Soporte",
+      "precios": "Precios"
+    }
   },
   "footer": {
     "tagline": "La app que simplifica todo lo que implica tener un piso turístico.",
@@ -40,5 +53,191 @@
     "switcher": "Idioma",
     "es": "Español",
     "ca": "Català"
+  },
+  "not_found": {
+    "title": "Página no encontrada · Hostly",
+    "badge": "Error 404",
+    "heading": "Aquí no hay nada.",
+    "body": "La página que buscas no existe o se ha movido. Vuelve al inicio o explora la web desde ahí.",
+    "go_home": "Volver al inicio",
+    "go_back": "Página anterior"
+  },
+  "sobre": {
+    "meta_title": "Sobre Hostly — La app que simplifica tener un piso turístico",
+    "meta_description": "Hostly nació de la frustración de gestionar apartamentos turísticos con cinco herramientas distintas. Somos un equipo ibérico obsesionado con simplificar todo lo que implica tener un piso turístico.",
+    "eyebrow": "Sobre Hostly",
+    "hero_heading": "Nació de vivirlo.",
+    "hero_body": "Hostly no surgió en una oficina ni de un estudio de mercado. Surgió de la frustración de gestionar apartamentos turísticos con cinco herramientas distintas y no poder desconectar nunca.",
+    "story_p1": "Tenía mis propios apartamentos en Airbnb y Booking. El canal manager aquí, Chekin allá, las plantillas de mensajes en otro sitio, el Excel de cobros abierto siempre, el grupo de WhatsApp con la limpiadora.",
+    "story_p2": "Cada reserva implicaba tocar seis herramientas distintas. Cada check-in, entrar a SES.Hospedajes a mano. Cada fin de mes, una tarde de Excel. Y la sensación constante de que si me despistaba, algo se rompía.",
+    "story_p3": "No encontré ninguna herramienta que lo hiciera todo de forma sencilla para el mercado español. Las que existían eran complejas, caras, o no entendían la burocracia ibérica.",
+    "story_p4": "Así que lo construí yo. Primero para mí. Luego, cuando funcionó, para todos los que estaban en la misma situación.",
+    "founder_name": "Biel Alsina",
+    "founder_role": "Fundador · Barcelona",
+    "founder_quote": "\"Hostly no nació en una oficina. Nació de la frustración de gestionar mis propios apartamentos y no poder desconectar nunca. Lo construí para mí — y funciona.\"",
+    "values_eyebrow": "Cómo pensamos",
+    "values_heading": "Los principios que guían cada decisión.",
+    "values": [
+      {
+        "title": "Una sola app, no cinco",
+        "body": "El propietario no debería necesitar saber qué es un channel manager. Debería tener una app que lo haga todo."
+      },
+      {
+        "title": "La opción por defecto es correcta",
+        "body": "El 95% de las configuraciones tienen que funcionar sin tocar nada. Hostly toma decisiones por ti cuando la respuesta es obvia."
+      },
+      {
+        "title": "Proactivo, no reactivo",
+        "body": "No te avisamos cuando ya ha pasado el problema. Te avisamos antes. La taxa turística que vence mañana. El precio que conviene subir esta semana."
+      },
+      {
+        "title": "Ibérico de verdad",
+        "body": "SES.Hospedajes, Mossos, Ertzaintza, NRUA, taxa turística. No traducciones de un producto americano. Construido para el mercado español desde el primer día."
+      }
+    ],
+    "contact_heading": "¿Hablamos?",
+    "contact_body": "Si tienes pisos en Airbnb o Booking y crees que Hostly puede ayudarte, escríbenos. Respondemos rápido y en castellano o catalán.",
+    "contact_cta_start": "Empezar gratis 14 días"
+  },
+  "demo": {
+    "meta_title": "Demo — Hostly",
+    "meta_description": "Mira cómo funciona Hostly en 1 minuto. Check-in automático, limpiezas coordinadas, mensajes con IA y finanzas desde una sola app.",
+    "eyebrow": "Demo · 1 minuto",
+    "heading": "Así funciona Hostly.",
+    "subheading": "Check-in automático, limpiezas coordinadas, mensajes con IA y finanzas en un solo lugar. Sin cinco apps distintas.",
+    "cta_start": "Empezar gratis",
+    "cta_pricing": "Ver precios",
+    "disclaimer": "Sin tarjeta · Sin permanencia · 14 días de prueba",
+    "video_section_eyebrow": "Lo que ves en el vídeo",
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "Check-in y SES automático",
+        "desc": "El huésped firma online. El parte llega a Mossos o Policía Nacional sin que toques nada. Gratis para siempre."
+      },
+      {
+        "icon": "🤖",
+        "title": "Mensajes con IA",
+        "desc": "WhatsApp contestado en segundos, en el idioma del huésped. Tú solo entras cuando hace falta."
+      },
+      {
+        "icon": "📊",
+        "title": "Todo en un solo panel",
+        "desc": "Reservas, limpiezas, precios y finanzas. Sin saltar entre cinco apps ni recordar cinco contraseñas."
+      }
+    ]
+  },
+  "guia": {
+    "meta_title": "Super Guía de gestión de apartamentos turísticos 2026 | Hostly",
+    "meta_description": "La guía completa y actualizada para propietarios y gestores de apartamentos turísticos en España. Obligaciones legales, herramientas, operativa y más.",
+    "badge_guide": "Guía completa",
+    "badge_updated": "Actualizada 2026",
+    "heading": "Todo lo que implica tener un piso turístico.",
+    "intro": "Desde las obligaciones legales hasta las herramientas del día a día. Esta guía cubre todo lo que necesita saber un propietario o gestor de apartamentos turísticos en España en 2026. La vamos actualizando a medida que cambia la normativa y el mercado.",
+    "stats_chapters": "8 capítulos",
+    "stats_resources": "{{count}} recursos enlazados",
+    "stats_updated": "Actualizada abril 2026",
+    "toc_label": "Índice de contenidos",
+    "cta_eyebrow": "Para propietarios que quieren sistema, no caos",
+    "cta_heading": "Deja de gestionar 5 apps.\nPrueba Hostly 14 días gratis.",
+    "cta_body": "Check-in, mensajes, limpiezas, compliance y precios. Todo en una sola app. Sin tarjeta.",
+    "cta_button": "Empezar gratis 14 días",
+    "chapters": [
+      {
+        "id": "obligaciones-legales",
+        "num": "01",
+        "title": "Obligaciones legales del propietario turístico",
+        "description": "SES.Hospedajes, NRUA, registro policial y taxa turística: qué es cada cosa, quién debe hacerlo y cómo automatizarlo.",
+        "links": [
+          { "label": "SES.Hospedajes: guía completa 2026", "href": "/blog/ses-hospedajes-guia-completa-2026" },
+          { "label": "SES + NRUA + taxa turística: qué es cada cosa", "href": "/blog/ses-nrua-taxa-turistica-guia" },
+          { "label": "Registro de viajeros en Mossos d'Esquadra", "href": "/blog/registro-viajeros-mossos-esquadra-cataluna" },
+          { "label": "Sanciones por no cumplir el registro", "href": "/blog/sanciones-por-no-cumplir-registro-viajeros" },
+          { "label": "Check-in digital en España: opciones y precios", "href": "/blog/checkin-digital-comparativa-espana" },
+          { "label": "Hostly: check-in + compliance gratis para siempre", "href": "/funciones/check-in" }
+        ]
+      },
+      {
+        "id": "gestion-reservas",
+        "num": "02",
+        "title": "Gestión de reservas y calendarios",
+        "description": "Cómo sincronizar Airbnb y Booking sin dobles reservas, gestionar disponibilidad y cobrar automáticamente.",
+        "links": [
+          { "label": "Channel manager: guía para elegir el correcto", "href": "/blog/channel-manager-alquiler-vacacional-guia" },
+          { "label": "Precios dinámicos en Airbnb y Booking", "href": "/blog/precios-dinamicos-airbnb-booking" },
+          { "label": "Reservas y calendarios en Hostly", "href": "/funciones/reservas" },
+          { "label": "Precios dinámicos incluidos en Hostly", "href": "/funciones/precios" }
+        ]
+      },
+      {
+        "id": "comunicacion-huespedes",
+        "num": "03",
+        "title": "Comunicación con huéspedes",
+        "description": "Cómo responder mensajes de Airbnb y Booking automáticamente sin perder el tono humano. WhatsApp, email y mensajería unificada.",
+        "links": [
+          { "label": "Cómo responder mensajes de Airbnb automáticamente", "href": "/blog/responder-mensajes-airbnb-automaticamente" },
+          { "label": "WhatsApp Business para alquiler vacacional", "href": "/blog/whatsapp-business-alquiler-vacacional" },
+          { "label": "Qué hacer cuando un huésped no responde al check-in", "href": "/blog/huesped-no-responde-checkin-online" },
+          { "label": "Mensajes automáticos en Hostly", "href": "/funciones/mensajes" }
+        ]
+      },
+      {
+        "id": "limpiezas-operativa",
+        "num": "04",
+        "title": "Limpiezas y operativa diaria",
+        "description": "Cómo coordinar al equipo de limpieza, gestionar incidencias y dejar de estar pendiente de cada entrada y salida.",
+        "links": [
+          { "label": "Coordinación de limpiezas: de Excel a sistema", "href": "/blog/coordinacion-limpiezas-excel-sistema" },
+          { "label": "Limpiezas coordinadas en Hostly", "href": "/funciones/limpiezas" }
+        ]
+      },
+      {
+        "id": "finanzas-pagos",
+        "num": "05",
+        "title": "Pagos, finanzas y fiscalidad",
+        "description": "Cómo llevar la contabilidad del piso turístico, gestionar cobros y liquidar a propietarios sin pasar horas con Excel.",
+        "links": [
+          { "label": "¿Cuánto cuesta realmente gestionar un piso turístico?", "href": "/blog/cuanto-cuesta-gestionar-piso-turistico" },
+          { "label": "Pagos y facturas en Hostly", "href": "/funciones/pagos" }
+        ]
+      },
+      {
+        "id": "herramientas-stack",
+        "num": "06",
+        "title": "Herramientas y stack tecnológico",
+        "description": "Qué herramientas necesitas realmente, cuáles puedes eliminar y cómo consolidar todo en una sola app.",
+        "links": [
+          { "label": "El stack real del propietario Airbnb en 2026", "href": "/blog/stack-completo-propietario-airbnb" },
+          { "label": "Cómo gestionar 8 pisos con una sola app", "href": "/blog/gestor-pequeno-5-apps-una-app" },
+          { "label": "Cómo automatizar tu alquiler vacacional con IA", "href": "/blog/automatizar-alquiler-vacacional-con-ia" },
+          { "label": "Hostly vs Chekin: comparativa completa", "href": "/comparativa/chekin" }
+        ]
+      },
+      {
+        "id": "escalar-negocio",
+        "num": "07",
+        "title": "Escalar de 1 a 10 apartamentos",
+        "description": "Qué cambia cuando creces, qué sistemas necesitas tener antes de llegar a 5 pisos y cómo no colapsar en el proceso.",
+        "links": [
+          { "label": "Cómo pasar de 3 a 10 apartamentos sin colapsar", "href": "/blog/pasar-3-a-10-apartamentos-sin-colapsar" },
+          { "label": "Las 5 horas semanales que te come un piso turístico", "href": "/blog/5-horas-semana-recuperar-apartamento-turistico" },
+          { "label": "Hostly para gestores pequeños", "href": "/gestores-pequenos" }
+        ]
+      },
+      {
+        "id": "alternativas-herramientas",
+        "num": "08",
+        "title": "Alternativas y comparativas de software",
+        "description": "Análisis honesto de los principales PMS del mercado para el perfil propietario pequeño y gestor ibérico.",
+        "links": [
+          { "label": "Los mejores PMS para apartamentos turísticos 2026", "href": "/blog/pms-apartamentos-turisticos-mejores-2026" },
+          { "label": "Hostify vs Lodgify vs Smoobu: comparativa", "href": "/blog/hostify-vs-lodgify-vs-smoobu-comparativa" },
+          { "label": "Hostly vs Icnea", "href": "/alternativas/icnea" },
+          { "label": "Hostly vs Hostify", "href": "/alternativas/hostify" },
+          { "label": "Hostly vs Lodgify", "href": "/alternativas/lodgify" },
+          { "label": "Hostly vs Smoobu", "href": "/alternativas/smoobu" }
+        ]
+      }
+    ]
   }
 }

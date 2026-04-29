@@ -1,53 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
 import { Check, X, Play } from "lucide-react";
-
-const steps = [
-  {
-    id: 1,
-    event: "Precio optimizado",
-    detail: "Precio dinámico ajustado · +12% esta noche",
-    badge: "OK · aplicado",
-    badgeColor: "text-primary bg-primary/8",
-    sparkline: true,
-  },
-  {
-    id: 2,
-    event: "Nueva reserva detectada",
-    detail: "Reserva · 3 noches · 2 huéspedes",
-    badge: "OK · sincronizado",
-    badgeColor: "text-emerald-600 bg-emerald-50",
-  },
-  {
-    id: 3,
-    event: "Limpieza asignada",
-    detail: "Limpieza · asignada a Ana",
-    badge: "Hoy 11:30",
-    badgeColor: "text-amber-600 bg-amber-50",
-  },
-  {
-    id: 4,
-    event: "Registro enviado",
-    detail: "Registro viajeros · enviado",
-    badge: "Mossos OK",
-    badgeColor: "text-sky-600 bg-sky-50",
-  },
-  {
-    id: 5,
-    event: "Mensaje respondido",
-    detail: "Mensaje huésped · resuelto",
-    badge: "Auto-reply · 3 idiomas",
-    badgeColor: "text-violet-600 bg-violet-50",
-  },
-];
-
-const bullets = [
-  "Precio se ajusta solo",
-  "Reserva entra",
-  "Limpieza asignada",
-  "Registro enviado automáticamente",
-  "Mensaje respondido 24/7",
-];
+import { useTranslation } from "react-i18next";
 
 const Sparkline = () => (
   <div className="flex items-end gap-0.5 h-4 mt-1">
@@ -62,9 +16,49 @@ const Sparkline = () => (
 );
 
 const DemoPreview = ({ onOpenModal }: { onOpenModal: () => void }) => {
+  const { t } = useTranslation("demos");
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState(false);
   const reducedMotion = useReducedMotion();
+
+  const steps = [
+    {
+      id: 1,
+      event: t("demoVideo.step1Event"),
+      detail: t("demoVideo.step1Detail"),
+      badge: t("demoVideo.step1Badge"),
+      badgeColor: "text-primary bg-primary/8",
+      sparkline: true,
+    },
+    {
+      id: 2,
+      event: t("demoVideo.step2Event"),
+      detail: t("demoVideo.step2Detail"),
+      badge: t("demoVideo.step2Badge"),
+      badgeColor: "text-emerald-600 bg-emerald-50",
+    },
+    {
+      id: 3,
+      event: t("demoVideo.step3Event"),
+      detail: t("demoVideo.step3Detail"),
+      badge: t("demoVideo.step3Badge"),
+      badgeColor: "text-amber-600 bg-amber-50",
+    },
+    {
+      id: 4,
+      event: t("demoVideo.step4Event"),
+      detail: t("demoVideo.step4Detail"),
+      badge: t("demoVideo.step4Badge"),
+      badgeColor: "text-sky-600 bg-sky-50",
+    },
+    {
+      id: 5,
+      event: t("demoVideo.step5Event"),
+      detail: t("demoVideo.step5Detail"),
+      badge: t("demoVideo.step5Badge"),
+      badgeColor: "text-violet-600 bg-violet-50",
+    },
+  ];
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -72,7 +66,7 @@ const DemoPreview = ({ onOpenModal }: { onOpenModal: () => void }) => {
       setActive((prev) => (prev + 1) % steps.length);
     }, 1500);
     return () => clearInterval(id);
-  }, [reducedMotion]);
+  }, [reducedMotion, steps.length]);
 
   return (
     <motion.div
@@ -168,7 +162,7 @@ const DemoPreview = ({ onOpenModal }: { onOpenModal: () => void }) => {
             className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-foreground/90 text-background text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
           >
             <Play className="w-3 h-3" />
-            Ver demo (1 min)
+            {t("demoVideo.ctaHoverLabel")}
           </motion.div>
         )}
       </AnimatePresence>
@@ -177,9 +171,18 @@ const DemoPreview = ({ onOpenModal }: { onOpenModal: () => void }) => {
 };
 
 const DemoVideo = () => {
+  const { t } = useTranslation("demos");
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
+
+  const bullets = [
+    t("demoVideo.bulletPriceAdjusts"),
+    t("demoVideo.bulletBookingEnters"),
+    t("demoVideo.bulletCleaningAssigned"),
+    t("demoVideo.bulletRegistrationSent"),
+    t("demoVideo.bulletMessageReplied"),
+  ];
 
   return (
     <>
@@ -197,13 +200,13 @@ const DemoVideo = () => {
             className="text-center mb-16 md:mb-20"
           >
             <span className="inline-block text-[12px] font-semibold tracking-[0.14em] uppercase text-primary mb-4">
-              Hostly™ en acción
+              {t("demoVideo.superLabel")}
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-5 max-w-3xl mx-auto">
-              Así opera Hostly™ por dentro.
+              {t("demoVideo.heading")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Reserva, precio, limpieza, registros y mensajes — ejecutados en segundo plano.
+              {t("demoVideo.subheading")}
             </p>
           </motion.div>
 
@@ -238,7 +241,7 @@ const DemoVideo = () => {
                   onClick={() => setIsOpen(true)}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
                 >
-                  Ver demo completa (1 min) →
+                  {t("demoVideo.ctaWatchDemo")}
                 </button>
                 <button
                   onClick={() => {
@@ -246,7 +249,7 @@ const DemoVideo = () => {
                   }}
                   className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
                 >
-                  ¿Mi apartamento sirve?
+                  {t("demoVideo.ctaApartmentFits")}
                 </button>
               </div>
             </motion.div>

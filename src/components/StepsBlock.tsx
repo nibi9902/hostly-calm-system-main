@@ -22,7 +22,15 @@ const STEP_VISUALS = [
 ───────────────────────────────────────────────────────── */
 
 /** 1. Setup — quick-action cards amb el gradient de la plataforma real */
-const SetupScreen = () => (
+const SetupScreen = () => {
+  const { t } = useTranslation("home");
+  interface SetupStep { label: string; done: boolean }
+  const setupSteps = t("steps_mockup.setup.steps", { returnObjects: true }) as SetupStep[];
+  const cardLabels = t("steps_mockup.setup.card_labels", { returnObjects: true }) as string[];
+  const cardIcons = [Euro, Lock, KeyRound, Wifi];
+  const cardValues = ["120 €", "4821", "14:00", "CasaBCN24"];
+
+  return (
   <div style={{
     width: "100%", height: "100%", background: "#F7F8FA",
     padding: "18px 14px", display: "flex", flexDirection: "column", gap: "10px",
@@ -38,18 +46,18 @@ const SetupScreen = () => (
       }}>LE</div>
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: "#0B0F1A", lineHeight: 1.1 }}>Luminoso Eixample</div>
-        <div style={{ fontSize: 9, color: "#64748b", marginTop: 1 }}>Barcelona · 2 huéspedes</div>
+        <div style={{ fontSize: 9, color: "#64748b", marginTop: 1 }}>Barcelona · {t("steps_mockup.setup.guests")}</div>
       </div>
       <div style={{
         fontSize: 8, fontWeight: 700, padding: "3px 7px", borderRadius: 6,
         background: "#dcfce7", color: "#16a34a", letterSpacing: "0.04em",
-      }}>ACTIVO</div>
+      }}>{t("steps_mockup.setup.active")}</div>
     </div>
 
     {/* Progress bar */}
     <div style={{ margin: "2px 0 4px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "#64748b", marginBottom: 4 }}>
-        <span>Configuración</span>
+        <span>{t("steps_mockup.setup.config_label")}</span>
         <span style={{ fontWeight: 700, color: "#0B0F1A" }}>3/4</span>
       </div>
       <div style={{ height: 4, borderRadius: 2, background: "#E6E8EC", overflow: "hidden" }}>
@@ -59,34 +67,27 @@ const SetupScreen = () => (
 
     {/* Quick action cards — gradient idèntic al de l'app real */}
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
-      {[
-        { icon: Euro, label: "Preu base", value: "120 €" },
-        { icon: Lock, label: "Codi caixa", value: "4821" },
-        { icon: KeyRound, label: "Check-in", value: "14:00" },
-        { icon: Wifi, label: "Wifi", value: "CasaBCN24" },
-      ].map(({ icon: Icon, label, value }) => (
-        <div key={label} style={{
-          background: GRAD_QUICK, borderRadius: 12,
-          padding: "8px 10px", display: "flex", alignItems: "center", gap: 8,
-          boxShadow: "0 2px 8px rgba(255,122,117,0.25)",
-        }}>
-          <Icon style={{ width: 14, height: 14, color: "rgba(255,255,255,0.95)", flexShrink: 0 }} />
-          <div style={{ minWidth: 0 }}>
-            <div style={{ fontSize: 8, color: "rgba(255,255,255,0.8)", lineHeight: 1 }}>{label}</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", lineHeight: 1.1, marginTop: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{value}</div>
+      {cardLabels.map((label, idx) => {
+        const Icon = cardIcons[idx];
+        return (
+          <div key={label} style={{
+            background: GRAD_QUICK, borderRadius: 12,
+            padding: "8px 10px", display: "flex", alignItems: "center", gap: 8,
+            boxShadow: "0 2px 8px rgba(255,122,117,0.25)",
+          }}>
+            <Icon style={{ width: 14, height: 14, color: "rgba(255,255,255,0.95)", flexShrink: 0 }} />
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: 8, color: "rgba(255,255,255,0.8)", lineHeight: 1 }}>{label}</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", lineHeight: 1.1, marginTop: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{cardValues[idx]}</div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
 
     {/* Lista de pasos */}
     <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 4 }}>
-      {[
-        { label: "Normas de casa", done: true },
-        { label: "Horarios", done: true },
-        { label: "Guía del huésped", done: true },
-        { label: "Fotos y descripción", done: false },
-      ].map((item) => (
+      {setupSteps.map((item) => (
         <div key={item.label} style={{
           display: "flex", alignItems: "center", gap: 8,
           padding: "7px 10px", borderRadius: 10,
@@ -113,18 +114,21 @@ const SetupScreen = () => (
       background: BRAND_BLUE, color: "#fff", fontSize: 11, fontWeight: 700,
       border: "none", boxShadow: "0 4px 12px rgba(26,58,143,0.25)",
     }}>
-      Continuar · 1 paso más
+      {t("steps_mockup.setup.cta")}
     </button>
   </div>
-);
+  );
+};
 
 /** 2. Integrations — targetes de connexió estil config real */
 const IntegrationsScreen = () => {
+  const { t } = useTranslation("home");
+  const statuses = t("steps_mockup.integrations.statuses", { returnObjects: true }) as string[];
   const integrations = [
-    { name: "Airbnb",     status: "Sincronizado",   color: "#ff5a5f", bg: "#fff5f5" },
-    { name: "Booking.com", status: "Sincronizado",   color: "#003580", bg: "#eff6ff" },
-    { name: "Nuki",       status: "Conectado · 4821", color: "#6366f1", bg: "#eef2ff" },
-    { name: "SES.Hospedajes", status: "Auto-configurado", color: "#16a34a", bg: "#f0fdf4" },
+    { name: "Airbnb",        status: statuses[0], color: "#ff5a5f", bg: "#fff5f5" },
+    { name: "Booking.com",   status: statuses[1], color: "#003580", bg: "#eff6ff" },
+    { name: "Nuki",          status: statuses[2], color: "#6366f1", bg: "#eef2ff" },
+    { name: "SES.Hospedajes", status: statuses[3], color: "#16a34a", bg: "#f0fdf4" },
   ];
   return (
     <div style={{
@@ -133,8 +137,8 @@ const IntegrationsScreen = () => {
       fontFamily: 'Inter, -apple-system, sans-serif',
     }}>
       <div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: "#0B0F1A" }}>Integraciones</div>
-        <div style={{ fontSize: 10, color: "#64748b", marginTop: 2 }}>4 conectadas · listo para recibir</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#0B0F1A" }}>{t("steps_mockup.integrations.title")}</div>
+        <div style={{ fontSize: 10, color: "#64748b", marginTop: 2 }}>{t("steps_mockup.integrations.subtitle")}</div>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -174,7 +178,7 @@ const IntegrationsScreen = () => {
       }}>
         <Sparkles style={{ width: 14, height: 14, color: "#16a34a", flexShrink: 0 }} />
         <div style={{ fontSize: 10, color: "#166534", fontWeight: 600 }}>
-          Listo para la próxima reserva
+          {t("steps_mockup.integrations.ready")}
         </div>
       </div>
     </div>
@@ -183,13 +187,18 @@ const IntegrationsScreen = () => {
 
 /** 3. Live feed — timeline d'accions que passen automàticament */
 const LiveFeedScreen = () => {
-  const events = [
-    { time: "14:32", icon: Euro,          color: "#16a34a", bg: "#f0fdf4", title: "Reserva entrante",         detail: "Carlos · Booking · 4 noches · 620 €" },
-    { time: "14:33", icon: MessageSquare, color: "#8b5cf6", bg: "#faf5ff", title: "Bienvenida enviada",        detail: "Inglés · plantilla personal" },
-    { time: "17:28", icon: Shield,        color: "#1a3a8f", bg: "#eff6ff", title: "SES enviado a Mossos",     detail: "DNI verificado · huésped dentro" },
-    { time: "17:29", icon: Euro,          color: "#f97316", bg: "#fff7ed", title: "Taxa turística cobrada",    detail: "4 € · 2 huéspedes · 4 noches" },
-    { time: "Hoy",   icon: Sparkles,      color: "#0891b2", bg: "#ecfeff", title: "Limpieza asignada",         detail: "Anna · sábado 11:00" },
+  const { t } = useTranslation("home");
+  interface LiveEvent { title: string; detail: string }
+  const liveEvents = t("steps_mockup.live.events", { returnObjects: true }) as LiveEvent[];
+  const EVENT_META = [
+    { time: "14:32", icon: Euro,          color: "#16a34a", bg: "#f0fdf4" },
+    { time: "14:33", icon: MessageSquare, color: "#8b5cf6", bg: "#faf5ff" },
+    { time: "17:28", icon: Shield,        color: "#1a3a8f", bg: "#eff6ff" },
+    { time: "17:29", icon: Euro,          color: "#f97316", bg: "#fff7ed" },
+    { time: "Hoy",   icon: Sparkles,      color: "#0891b2", bg: "#ecfeff" },
   ];
+  const events = EVENT_META.map((meta, i) => ({ ...meta, ...liveEvents[i] }));
+
   return (
     <div style={{
       width: "100%", height: "100%", background: "#F7F8FA",
@@ -199,12 +208,12 @@ const LiveFeedScreen = () => {
       {/* Header amb indicador "en vivo" */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: "#0B0F1A" }}>Actividad</div>
-          <div style={{ fontSize: 9, color: "#64748b", marginTop: 1 }}>Últimas acciones · automáticas</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "#0B0F1A" }}>{t("steps_mockup.live.title")}</div>
+          <div style={{ fontSize: 9, color: "#64748b", marginTop: 1 }}>{t("steps_mockup.live.subtitle")}</div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "3px 7px", borderRadius: 10, background: "#dcfce7" }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#16a34a", boxShadow: "0 0 4px #16a34a" }} />
-          <span style={{ fontSize: 8, fontWeight: 700, color: "#166534", letterSpacing: "0.03em" }}>EN VIVO</span>
+          <span style={{ fontSize: 8, fontWeight: 700, color: "#166534", letterSpacing: "0.03em" }}>{t("steps_mockup.live.live_label")}</span>
         </div>
       </div>
 
@@ -249,7 +258,19 @@ const LiveFeedScreen = () => {
 };
 
 /** 4. Dashboard — KPI + pròxim event, estil de l'app real */
-const DashboardScreen = () => (
+const DashboardScreen = () => {
+  const { t } = useTranslation("home");
+  interface KPI { label: string; value: string; sub: string }
+  const kpisData = t("steps_mockup.dashboard.kpis", { returnObjects: true }) as KPI[];
+  const KPI_COLORS = [
+    { bg: "#eff6ff", val: "#1a3a8f" },
+    { bg: "#f0fdf4", val: "#16a34a" },
+    { bg: "#faf5ff", val: "#8b5cf6" },
+    { bg: "#fff7ed", val: "#f97316" },
+  ];
+  const kpis = kpisData.map((k, i) => ({ ...k, ...KPI_COLORS[i] }));
+
+  return (
   <div style={{
     width: "100%", height: "100%", background: "#F7F8FA",
     padding: "18px 14px", display: "flex", flexDirection: "column", gap: 10,
@@ -257,22 +278,17 @@ const DashboardScreen = () => (
   }}>
     {/* Header */}
     <div>
-      <div style={{ fontSize: 9, color: "#64748b", letterSpacing: "0.04em", textTransform: "uppercase", fontWeight: 700 }}>Abril 2026</div>
+      <div style={{ fontSize: 9, color: "#64748b", letterSpacing: "0.04em", textTransform: "uppercase", fontWeight: 700 }}>{t("steps_mockup.dashboard.period")}</div>
       <div style={{ fontSize: 15, fontWeight: 800, color: "#0B0F1A", marginTop: 1 }}>3.100 €</div>
       <div style={{ display: "flex", alignItems: "center", gap: 3, marginTop: 2 }}>
         <TrendingUp style={{ width: 10, height: 10, color: "#16a34a" }} />
-        <span style={{ fontSize: 9, color: "#16a34a", fontWeight: 700 }}>+15% vs año anterior</span>
+        <span style={{ fontSize: 9, color: "#16a34a", fontWeight: 700 }}>{t("steps_mockup.dashboard.growth")}</span>
       </div>
     </div>
 
     {/* KPI Grid */}
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
-      {[
-        { label: "Ocupación", value: "87%",   sub: "26 de 30 noches",  bg: "#eff6ff", val: "#1a3a8f" },
-        { label: "Check-ins",  value: "12",    sub: "Todos enviados",   bg: "#f0fdf4", val: "#16a34a" },
-        { label: "Mensajes",   value: "47",    sub: "IA respondió 42",   bg: "#faf5ff", val: "#8b5cf6" },
-        { label: "Incidencias", value: "0",    sub: "Sin pendientes",   bg: "#fff7ed", val: "#f97316" },
-      ].map((k) => (
+      {kpis.map((k) => (
         <div key={k.label} style={{
           padding: "9px 10px", borderRadius: 10, background: k.bg,
           border: `1px solid ${k.val}18`,
@@ -298,8 +314,8 @@ const DashboardScreen = () => (
         <CalendarDays style={{ width: 14, height: 14, color: "#fff" }} />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: "#0B0F1A", lineHeight: 1.1 }}>Próximo check-in</div>
-        <div style={{ fontSize: 9, color: "#64748b", marginTop: 2 }}>Mañana · 15:00 · Sarah D.</div>
+        <div style={{ fontSize: 10, fontWeight: 700, color: "#0B0F1A", lineHeight: 1.1 }}>{t("steps_mockup.dashboard.next_checkin_label")}</div>
+        <div style={{ fontSize: 9, color: "#64748b", marginTop: 2 }}>{t("steps_mockup.dashboard.next_checkin_detail")}</div>
       </div>
       <ArrowUpRight style={{ width: 14, height: 14, color: "#94a3b8", flexShrink: 0 }} />
     </div>
@@ -312,10 +328,11 @@ const DashboardScreen = () => (
       display: "flex", alignItems: "center", gap: 6,
     }}>
       <Check style={{ width: 12, height: 12, color: "#16a34a", strokeWidth: 3 }} />
-      <span style={{ fontSize: 10, fontWeight: 600, color: "#166534" }}>Todo al día. Relaja.</span>
+      <span style={{ fontSize: 10, fontWeight: 600, color: "#166534" }}>{t("steps_mockup.dashboard.status_ok")}</span>
     </div>
   </div>
-);
+  );
+};
 
 /* ─────────────────────────────────────────────────────────
    PHONE FRAME — iPhone 15 Pro inspired (titanium edge + glass)

@@ -6,6 +6,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { usePlaybackFrame, spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 
 const colors = {
   bg: '#F9FAFB', card: '#FFFFFF',
@@ -60,6 +61,7 @@ const stripeWidth = (span:number) => `calc(${span} * (100% - ${6*GAP}px) / 7 + $
 const PROPIETARI_TAB_SWITCH = 115;
 
 function PropietariView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const calP    = spring(frame - 0,   fps, { damping: 20, stiffness: 160 });
   const tabSwP  = spring(frame - PROPIETARI_TAB_SWITCH, fps, { damping: 18, stiffness: 200 });
   const heroP   = spring(frame - 125, fps, { damping: 18, stiffness: 170 });
@@ -93,7 +95,7 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
 
         {/* Tabs interns */}
         <div style={{ display: 'flex', gap: 6, marginTop: 10 }}>
-          {(['📅 Calendario','💰 Finanzas'] as const).map((label, i) => {
+          {([t('multiRols.tabCalendar'), t('multiRols.tabFinances')] as const).map((label, i) => {
             const isActive = i === 0 ? !finActiu : finActiu;
             return (
               <div key={label} style={{ padding: '4px 12px', borderRadius: 999, fontSize: 11, fontWeight: 600, background: isActive ? colors.foreground : 'transparent', color: isActive ? '#fff' : colors.mutedFg, border: isActive ? 'none' : `1px solid ${colors.border}`, transition: 'background 0.25s, color 0.25s' }}>
@@ -163,14 +165,14 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
           {/* Hero */}
           <div style={{ opacity: heroP, transform: `translateY(${(1-heroP)*8}px) scale(${0.97+heroP*0.03})`, background: colors.primary, borderRadius: 14, padding: '14px 16px', color: '#fff', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: -50, right: -50, width: 130, height: 130, borderRadius: 999, background: 'rgba(255,255,255,0.07)' }} />
-            <div style={{ fontSize: 10, fontWeight: 500, opacity: 0.85 }}>Ingresos netos · Abril 2026</div>
+            <div style={{ fontSize: 10, fontWeight: 500, opacity: 0.85 }}>{t('multiRols.netIncome')}</div>
             <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: -1, lineHeight: 1.1, margin: '4px 0' }}>1.240 €</div>
-            <div style={{ fontSize: 9, opacity: 0.75 }}>Bruto: 1.450 € · Comisiones: −210 €</div>
+            <div style={{ fontSize: 9, opacity: 0.75 }}>{t('multiRols.grossAndFees')}</div>
           </div>
 
           {/* Stats */}
           <div style={{ display: 'flex', gap: 20, padding: '2px 4px', opacity: statsP, transform: `translateY(${(1-statsP)*5}px)` }}>
-            {[{ v: '74 %', l: 'Ocupación' },{ v: '173 €', l: '€/noche medio' }].map(({ v, l }) => (
+            {[{ v: '74 %', l: t('multiRols.statOccupancy') },{ v: '173 €', l: t('multiRols.statAvgNight') }].map(({ v, l }) => (
               <div key={l}>
                 <div style={{ fontSize: 20, fontWeight: 800, color: colors.foreground, letterSpacing: -0.5 }}>{v}</div>
                 <div style={{ fontSize: 10, color: colors.mutedFg }}>{l}</div>
@@ -182,11 +184,11 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, opacity: donutP, transform: `translateY(${(1-donutP)*5}px)` }}>
             <MiniDonut propP={propT} gestorP={gestorT} cleaningP={cleaningT} />
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <LegRow color={colors.primary} label="Propietario (75%)" value="930 €" />
-              <LegRow color={colors.amber}   label="Gestor (19%)"      value="236 €" />
-              <LegRow color={colors.green}   label="Coste limpieza (6%)" value="−74 €" muted />
+              <LegRow color={colors.primary} label={t('multiRols.ownerShare')}   value="930 €" />
+              <LegRow color={colors.amber}   label={t('multiRols.managerShare')} value="236 €" />
+              <LegRow color={colors.green}   label={t('multiRols.cleaningCost')} value="−74 €" muted />
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: colors.bg, borderRadius: 8, marginTop: 2 }}>
-                <span style={{ fontSize: 11, fontWeight: 700, color: colors.foreground }}>Total Gestor</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: colors.foreground }}>{t('multiRols.managerTotal')}</span>
                 <span style={{ fontSize: 11, fontWeight: 700, color: colors.amber }}>173 €</span>
               </div>
             </div>
@@ -195,7 +197,7 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
           {/* Per plataforma */}
           {platP > 0 && (
             <div style={{ opacity: platP, transform: `translateY(${(1-platP)*4}px)`, display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <div style={{ fontSize: 9, fontWeight: 700, color: colors.meta, letterSpacing: 1, padding: '0 2px' }}>PER PLATAFORMA</div>
+              <div style={{ fontSize: 9, fontWeight: 700, color: colors.meta, letterSpacing: 1, padding: '0 2px' }}>{t('multiRols.platformLabel')}</div>
               {[
                 { name:'Airbnb', accent:'#FF385C', bg:'rgba(255,56,92,0.06)', res:4, brut:'720 €' },
                 { name:'Booking.com', accent:'#2563EB', bg:'rgba(37,99,235,0.06)', res:3, brut:'530 €' },
@@ -204,9 +206,9 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
                   <div style={{ width: 7, height: 7, borderRadius: '50%', background: p.accent, flexShrink: 0 }} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 11, fontWeight: 600, color: colors.foreground }}>{p.name}</div>
-                    <div style={{ fontSize: 9, color: colors.mutedFg }}>Brut: {p.brut}</div>
+                    <div style={{ fontSize: 9, color: colors.mutedFg }}>{t('multiRols.platformGross')} {p.brut}</div>
                   </div>
-                  <div style={{ fontSize: 10, color: colors.mutedFg }}>{p.res} reserves</div>
+                  <div style={{ fontSize: 10, color: colors.mutedFg }}>{p.res} {t('multiRols.reservations')}</div>
                 </div>
               ))}
             </div>
@@ -264,6 +266,7 @@ const BTN_PRESS_FRAME = 210;
 const COMPLETION_FRAME = 255;
 
 function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const headerP  = spring(frame - 2,  fps, { damping: 20, stiffness: 185 });
   const tabsP    = spring(frame - 14, fps, { damping: 20, stiffness: 185 });
 
@@ -379,15 +382,15 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
       {/* Header */}
       <div style={{ padding: '12px 14px 8px', background: colors.card, borderBottom: `1px solid ${colors.border}`, opacity: headerP, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: colors.foreground }}>Hola, Eva 👋</div>
-          <div style={{ fontSize: 10, color: colors.meta, marginTop: 1 }}>Limpiadora · Vista simplificada</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: colors.foreground }}>{t('limpiezas.greetingEva')}</div>
+          <div style={{ fontSize: 10, color: colors.meta, marginTop: 1 }}>{t('limpiezas.cleanerRole')}</div>
         </div>
         <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#F97316,#EF4444)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>E</div>
       </div>
 
       {/* Tabs — commuta de Calendari a Avui */}
       <div style={{ display: 'flex', borderBottom: `1px solid ${colors.border}`, background: colors.card, opacity: tabsP }}>
-        {['Hoy','Todas','Calendario','Perfil'].map((label, i) => {
+        {[t('limpiezas.tabToday'), t('limpiezas.tabAll'), t('limpiezas.tabCalendar'), 'Perfil'].map((label, i) => {
           const isCalTab  = label === 'Calendario';
           const isAvuiTab = label === 'Hoy';
           const isActive  = avuiActiu ? isAvuiTab : isCalTab;
@@ -453,8 +456,8 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
           {/* Llegenda */}
           <div style={{ display:'flex', gap:14, padding:'0 14px 6px', opacity: wkProgs[4] }}>
             {[
-              { icon:'🧹', label:'Limpieza pendiente' },
-              { icon:'✓',  label:'Limpieza hecha', color:colors.green },
+              { icon:'🧹', label: t('limpiezas.legendPending') },
+              { icon:'✓',  label: t('limpiezas.legendDone'), color:colors.green },
             ].map(({ icon, label, color }) => (
               <div key={label} style={{ display:'flex', alignItems:'center', gap:4 }}>
                 <span style={{ fontSize:11 }}>{icon}</span>
@@ -466,8 +469,8 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
           {detailP > 0 && (
             <div style={{ margin:'2px 12px 10px', background:'#FFF7ED', border:`2px solid ${colors.orange}`, borderRadius:12, padding:'10px 13px', opacity:detailP, transform:`translateY(${(1-detailP)*6}px)` }}>
               <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:5 }}>
-                <span style={{ fontSize:11, fontWeight:700, color:colors.orange }}>🧹 Limpieza hoy · 22 abril</span>
-                <span style={{ fontSize:9, fontWeight:700, padding:'2px 8px', borderRadius:999, background:colors.orangeSoft, color:colors.orange }}>URGENT</span>
+                <span style={{ fontSize:11, fontWeight:700, color:colors.orange }}>{t('limpiezas.cleaningToday')}</span>
+                <span style={{ fontSize:9, fontWeight:700, padding:'2px 8px', borderRadius:999, background:colors.orangeSoft, color:colors.orange }}>{t('limpiezas.urgentBadge')}</span>
               </div>
               <div style={{ fontSize:13, fontWeight:700, color:colors.foreground }}>Luminoso Dalí</div>
               <div style={{ fontSize:10, color:colors.meta, marginTop:2 }}>Judit sale 11:00 · David entra 15:00 · 2 adultos + 1 niño</div>
@@ -486,9 +489,9 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 7 }}>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: colors.foreground }}>Luminoso Dalí</div>
-                  <div style={{ fontSize: 10, color: colors.meta, marginTop: 1 }}>Judit Masip sale a las 11:00</div>
+                  <div style={{ fontSize: 10, color: colors.meta, marginTop: 1 }}>{t('limpiezas.exitTime')}</div>
                 </div>
-                <div style={{ padding: '3px 9px', borderRadius: 999, background: colors.orangeSoft, fontSize: 9, fontWeight: 700, color: colors.orange }}>AVUI</div>
+                <div style={{ padding: '3px 9px', borderRadius: 999, background: colors.orangeSoft, fontSize: 9, fontWeight: 700, color: colors.orange }}>{t('limpiezas.todayBadge')}</div>
               </div>
               <div style={{ display: 'flex', gap: 5, marginBottom: 12, flexWrap: 'wrap' }}>
                 {['2 adultos','1 niño','David entra 15:00'].map(t => (
@@ -510,7 +513,7 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
                     : `0 4px 14px rgba(22,163,74,0.35)`,
                 }}>
                   <CheckCircle2 size={16} />
-                  {confirming ? '✓  ¡Limpieza marcada como hecha!' : 'Marcar como hecha'}
+                  {confirming ? t('limpiezas.markingDone') : t('limpiezas.markAsDone')}
                 </button>
               )}
             </div>
@@ -522,7 +525,7 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
               {/* Fotos */}
               <div>
                 <div style={{ fontSize: 10, fontWeight: 700, color: colors.mutedFg, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 5 }}>
-                  <Camera size={12} /> Fotos adjuntadas
+                  <Camera size={12} /> {t('limpiezas.photosAttached')}
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6 }}>
                   {[
@@ -538,7 +541,7 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
               </div>
               {/* Valoració */}
               <div style={{ background: colors.card, borderRadius: 12, border: `1px solid ${colors.border}`, padding: '11px 13px' }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: colors.foreground, marginBottom: 8 }}>Valoración sobre el huésped</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: colors.foreground, marginBottom: 8 }}>{t('limpiezas.guestRating')}</div>
                 <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
                   {stars.map((p, i) => p > 0 && (
                     <div key={i} style={{ opacity: p, transform: `scale(${0.5+p*0.5})` }}>
@@ -548,7 +551,7 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
                 </div>
                 {star5P > 0.3 && (
                   <div style={{ fontSize: 10, color: colors.mutedFg, opacity: star5P }}>
-                    "El huésped ha dejado el piso en muy buen estado."
+                    {t('limpiezas.guestLeftInGoodState')}
                   </div>
                 )}
               </div>
@@ -558,14 +561,14 @@ function NetejadoraView({ frame, fps }: { frame: number; fps: number }) {
                   <div style={{ flex: 1, background: colors.greenSoft, border: '1px solid #BBF7D0', borderRadius: 12, padding: '10px 13px', display: 'flex', alignItems: 'center', gap: 8 }}>
                     <TrendingUp size={16} color={colors.green} style={{ flexShrink: 0 }} />
                     <div>
-                      <div style={{ fontSize: 9, color: colors.green, fontWeight: 700 }}>Cobras por esta limpieza</div>
+                      <div style={{ fontSize: 9, color: colors.green, fontWeight: 700 }}>{t('limpiezas.earnsPerCleaning')}</div>
                       <div style={{ fontSize: 22, fontWeight: 800, color: colors.green, fontVariantNumeric: 'tabular-nums' }}>25 €</div>
                     </div>
                   </div>
                   {doneP > 0 && (
                     <div style={{ background: colors.card, border: `1px solid ${colors.border}`, borderRadius: 12, padding: '10px 13px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, opacity: doneP }}>
                       <CheckCircle2 size={20} color={colors.green} />
-                      <div style={{ fontSize: 9, fontWeight: 700, color: colors.green, textAlign: 'center' }}>Registrada</div>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: colors.green, textAlign: 'center' }}>{t('limpiezas.registered')}</div>
                     </div>
                   )}
                 </div>
@@ -589,6 +592,7 @@ const FRAMES_BY_VIEW: Record<View, number> = { propietari: PROPIETARI_FRAMES, ne
 const fadeVariants = { enter: { opacity: 0 }, center: { opacity: 1 }, exit: { opacity: 0 } };
 
 export default function MultiRolsDemo() {
+  const { t } = useTranslation('demos');
   const containerRef = useRef<HTMLDivElement>(null);
   const FPS = 30;
   const [view, setView]     = useState<View>('propietari');
@@ -639,8 +643,8 @@ export default function MultiRolsDemo() {
 
       {/* Tabs */}
       <div style={{ position: 'absolute', bottom: '-14px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 4, padding: 4, background: '#fff', borderRadius: 999, boxShadow: '0 4px 16px rgba(15,23,42,0.12), 0 0 0 1px rgba(15,23,42,0.06) inset', zIndex: 10, whiteSpace: 'nowrap', fontFamily }}>
-        <TabBtn active={view==='propietari'}  onClick={() => goTo('propietari')}  icon={<CalIcon size={11} />}  label="Propietario" />
-        <TabBtn active={view==='netejadora'} onClick={() => goTo('netejadora')} icon={<Wrench size={11} />} label="Limpieza" />
+        <TabBtn active={view==='propietari'}  onClick={() => goTo('propietari')}  icon={<CalIcon size={11} />}  label={t('multiRols.tabOwner')} />
+        <TabBtn active={view==='netejadora'} onClick={() => goTo('netejadora')} icon={<Wrench size={11} />} label={t('multiRols.tabCleaning')} />
       </div>
 
 

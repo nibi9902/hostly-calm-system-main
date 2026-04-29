@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkles, MessageCircle, List, User } from 'lucide-react';
 import { usePlaybackFrame, spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 import LimpiezasListView from './LimpiezasListView';
 import LimpiezasProfileView from './LimpiezasProfileView';
 
@@ -170,6 +171,7 @@ const TypingIndicator: React.FC<{
 
 /* ─── Chat view (Eva) ─── */
 function ChatView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   return (
     <div style={{
       background: colors.bg,
@@ -188,11 +190,11 @@ function ChatView({ frame, fps }: { frame: number; fps: number }) {
           color: colors.primary, fontSize: 9, fontWeight: 700, letterSpacing: 0.3,
         }}>
           <Sparkles size={9} color={colors.primary} strokeWidth={2.5} />
-          COORDINADO POR IA
+          {t('limpiezas.coordinatedByAI')}
         </div>
       </div>
       <div style={{ fontSize: 10, color: colors.meta, marginBottom: 14 }}>
-        Equipo de limpieza · compartido
+        {t('limpiezas.cleaningTeamShared')}
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -224,7 +226,7 @@ function ChatView({ frame, fps }: { frame: number; fps: number }) {
    MAIN — alterna entre CHAT (Eva) i LLISTA
    Cada vista té la seva pròpia playback timeline (reinicia en canviar)
    Transició: crossfade 400ms
-───────────────────────────────────────────────────────────── */
+─────────────────────────────────────────────────────────────── */
 
 type View = 'chat' | 'list' | 'profile';
 const CHAT_FRAMES    = 160;
@@ -249,6 +251,7 @@ interface LimpiezasDemoProps {
 }
 
 const LimpiezasDemo: React.FC<LimpiezasDemoProps> = ({ loop = false, staticMode = false }) => {
+  const { t } = useTranslation('demos');
   const containerRef = useRef<HTMLDivElement>(null);
   const FPS = 30;
   const [view, setView] = useState<View>('chat');
@@ -259,7 +262,7 @@ const LimpiezasDemo: React.FC<LimpiezasDemoProps> = ({ loop = false, staticMode 
   useEffect(() => {
     if (toured && !loop) return;
     const ms = staticMode ? 4000 : (FRAMES_BY_VIEW[view] / FPS * 1000 + 400);
-    const t = setTimeout(() => {
+    const timer = setTimeout(() => {
       const idx = VIEW_ORDER.indexOf(view);
       if (idx < VIEW_ORDER.length - 1) {
         setView(VIEW_ORDER[idx + 1]);
@@ -269,7 +272,7 @@ const LimpiezasDemo: React.FC<LimpiezasDemoProps> = ({ loop = false, staticMode 
         setToured(true);
       }
     }, ms);
-    return () => clearTimeout(t);
+    return () => clearTimeout(timer);
   }, [view, toured, loop, staticMode]);
 
   function goTo(next: View) {
@@ -375,9 +378,9 @@ const LimpiezasDemo: React.FC<LimpiezasDemoProps> = ({ loop = false, staticMode 
         zIndex: 10,
         whiteSpace: 'nowrap',
       }}>
-        <TabIndicator active={view === 'chat'}    icon={<MessageCircle size={11} />} label="Chat"   onClick={() => goTo('chat')} />
-        <TabIndicator active={view === 'list'}    icon={<List size={11} />}          label="Lista"  onClick={() => goTo('list')} />
-        <TabIndicator active={view === 'profile'} icon={<User size={11} />}          label="Perfil" onClick={() => goTo('profile')} />
+        <TabIndicator active={view === 'chat'}    icon={<MessageCircle size={11} />} label={t('limpiezas.tabChat')}    onClick={() => goTo('chat')} />
+        <TabIndicator active={view === 'list'}    icon={<List size={11} />}          label={t('limpiezas.tabList')}    onClick={() => goTo('list')} />
+        <TabIndicator active={view === 'profile'} icon={<User size={11} />}          label={t('limpiezas.tabProfile')} onClick={() => goTo('profile')} />
       </div>
 
 

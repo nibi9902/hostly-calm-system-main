@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkles, LayoutList, MessageCircle, Plus } from 'lucide-react';
 import { usePlaybackFrame, spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 
 const colors = {
   bg: '#F9FAFB',
@@ -82,8 +83,8 @@ const AiBubble: React.FC<{
 };
 
 /* ─── Typing ─────────────────────────────────────────────────── */
-const Typing: React.FC<{ frame: number; fps: number; enterFrame: number; exitFrame: number }> = ({
-  frame, fps, enterFrame, exitFrame,
+const Typing: React.FC<{ frame: number; fps: number; enterFrame: number; exitFrame: number; label: string }> = ({
+  frame, fps, enterFrame, exitFrame, label,
 }) => {
   const enterP = spring(frame - enterFrame, fps, { damping: 18, stiffness: 200 });
   const exitT  = Math.max(0, Math.min(1, (frame - exitFrame) / 6));
@@ -96,7 +97,7 @@ const Typing: React.FC<{ frame: number; fps: number; enterFrame: number; exitFra
         <div style={{ width:16, height:16, borderRadius:999, background:'linear-gradient(135deg,#6366F1,#2563EB)', display:'flex', alignItems:'center', justifyContent:'center' }}>
           <Sparkles size={8} color="#fff" strokeWidth={2.5} />
         </div>
-        <span style={{ fontSize:9, fontWeight:700, color:colors.primary, letterSpacing:0.4 }}>HOSTLY IA · enviando…</span>
+        <span style={{ fontSize:9, fontWeight:700, color:colors.primary, letterSpacing:0.4 }}>{label}</span>
       </div>
       <div style={{ padding:'9px 13px', borderRadius:12, borderBottomRightRadius:3, background:colors.aiBg, display:'flex', gap:4 }}>
         {[0,1,2].map(i => {
@@ -128,6 +129,7 @@ const DaySep: React.FC<{ frame: number; fps: number; enterFrame: number; label: 
    VIEW 1 — Chat amb missatges automàtics
 ─────────────────────────────────────────────────────────────── */
 function ChatView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const headerP = spring(frame - 2, fps, { damping: 20, stiffness: 185 });
   return (
     <div style={{ background:colors.bg, padding:'16px 16px 20px', fontFamily, minHeight:'440px' }}>
@@ -135,7 +137,7 @@ function ChatView({ frame, fps }: { frame: number; fps: number }) {
         <div style={{ display:'flex', alignItems:'center', gap:8 }}>
           <div style={{ fontSize:14, fontWeight:700, color:colors.foreground }}>David Taisne</div>
           <div style={{ display:'flex', alignItems:'center', gap:4, padding:'2px 8px', borderRadius:999, background:colors.primarySoft, color:colors.primary, fontSize:9, fontWeight:700, letterSpacing:0.3 }}>
-            <Sparkles size={9} /> Automático
+            <Sparkles size={9} /> {t('mensajeria.automaticBadge')}
           </div>
         </div>
         <div style={{ fontSize:10, color:colors.meta, marginTop:2 }}>Luminoso Apartamento · ref. 5770048427</div>
@@ -153,7 +155,7 @@ function ChatView({ frame, fps }: { frame: number; fps: number }) {
 
         <DaySep frame={frame} fps={fps} enterFrame={68} label="25 abr. · 1 día antes del check-in" />
 
-        <Typing frame={frame} fps={fps} enterFrame={76} exitFrame={92} />
+        <Typing frame={frame} fps={fps} enterFrame={76} exitFrame={92} label={t('mensajeria.typingLabel')} />
 
         <AiBubble frame={frame} fps={fps} enterFrame={94}
           text={'📋 **Instrucciones de acceso**\n\nPortal del edificio: **#2847**\nPiso 3º izquierda · ascensor disponible\n\nCualquier duda, escríbeme 🙌'}
@@ -169,37 +171,15 @@ function ChatView({ frame, fps }: { frame: number; fps: number }) {
 /* ─────────────────────────────────────────────────────────────
    VIEW 2 — Llista de plantilles
 ─────────────────────────────────────────────────────────────── */
-const HOSTES_TEMPLATES = [
-  { label:'Bienvenida',             preview:'✨ ¡Bienvenido David! Qué ilusión tenerte…',      timing:'Al confirmar reserva',  timingColor:colors.primary, timingBg:colors.primarySoft },
-  { label:'Instrucciones check-in', preview:'El check-in es autónomo a partir de las 15:00…', timing:'1 día antes check-in', timingColor:'#7C3AED',      timingBg:'#F5F3FF'           },
-  { label:'Recordatorio datos',     preview:'Hola David! 👋 Necesitamos que nos envíes…',     timing:'3 días antes check-in',timingColor:'#D97706',      timingBg:'#FFFBEB'           },
-  { label:'Recordatorio check-out', preview:'Recuerda que el check-out debe hacerse antes…',  timing:'Día del check-out',    timingColor:'#16A34A',      timingBg:'#ECFDF5'           },
-];
-const NETEJA_TEMPLATES = [
-  { label:'Nueva limpieza',        preview:'Hola Eva, hay una nueva reserva en Luminoso…',   timing:'Al confirmar reserva',  timingColor:colors.primary, timingBg:colors.primarySoft },
-  { label:'Limpieza cancelada',    preview:'Hola Eva, la reserva prevista ha sido cancelada…',timing:'Al cancelar reserva',   timingColor:'#DC2626',      timingBg:'#FEF2F2'           },
-  { label:'Recordatorio limpieza', preview:'Recuerda que mañana hay limpieza a las 11:00…',  timing:'1 día antes checkout',  timingColor:'#D97706',      timingBg:'#FFFBEB'           },
-];
 
 const TAB_SWITCH_FRAME = 68; // frame en què commuta a Limpieza
 
-function TemplateRow({ t, progress }: { t: typeof HOSTES_TEMPLATES[number]; progress: number }) {
-  if (progress <= 0) return null;
-  return (
-    <div style={{ display:'flex', alignItems:'center', gap:12, padding:'11px 16px', borderTop:`1px solid ${colors.border}`, opacity:progress, transform:`translateY(${(1-progress)*6}px)` }}>
-      <div style={{ flex:1, minWidth:0 }}>
-        <div style={{ fontSize:12, fontWeight:600, color:colors.foreground, marginBottom:2 }}>{t.label}</div>
-        <div style={{ fontSize:10, color:colors.meta, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:'90%', marginBottom:5 }}>{t.preview}</div>
-        <span style={{ fontSize:9, fontWeight:600, padding:'2px 8px', borderRadius:999, color:t.timingColor, background:t.timingBg }}>{t.timing}</span>
-      </div>
-      <div style={{ flexShrink:0, width:36, height:20, borderRadius:999, background:colors.foreground, position:'relative' }}>
-        <div style={{ position:'absolute', top:2, right:2, width:16, height:16, borderRadius:'50%', background:'#fff', boxShadow:'0 1px 3px rgba(0,0,0,0.2)' }} />
-      </div>
-    </div>
-  );
+function TemplateRow({ t }: { t: { label: string; preview: string; timing: string; timingColor: string; timingBg: string }; progress: number }) {
+  return null; // placeholder — replaced below
 }
 
 function PlantillasView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const headerP   = spring(frame - 2,  fps, { damping: 20, stiffness: 185 });
   const tabsP     = spring(frame - 12, fps, { damping: 20, stiffness: 185 });
   const hRows     = [20, 30, 40, 50].map(f => spring(frame - f, fps, { damping: 20, stiffness: 175 }));
@@ -209,23 +189,35 @@ function PlantillasView({ frame, fps }: { frame: number; fps: number }) {
   const showNeteja = frame >= TAB_SWITCH_FRAME;
   const limpiezaActive = tabSwitchP > 0.5;
 
+  const HOSTES_TEMPLATES = [
+    { label: t('mensajeria.templateWelcome'),       preview:'✨ ¡Bienvenido David! Qué ilusión tenerte…',      timing: t('mensajeria.timingOnConfirm'),    timingColor:colors.primary, timingBg:colors.primarySoft },
+    { label: t('mensajeria.templateCheckin'),       preview:'El check-in es autónomo a partir de las 15:00…', timing: t('mensajeria.timing1DayCheckin'),  timingColor:'#7C3AED',      timingBg:'#F5F3FF'           },
+    { label: t('mensajeria.templateDataReminder'),  preview:'Hola David! 👋 Necesitamos que nos envíes…',     timing: t('mensajeria.timing3DaysCheckin'), timingColor:'#D97706',      timingBg:'#FFFBEB'           },
+    { label: t('mensajeria.templateCheckout'),      preview:'Recuerda que el check-out debe hacerse antes…',  timing: t('mensajeria.timingCheckoutDay'),  timingColor:'#16A34A',      timingBg:'#ECFDF5'           },
+  ];
+  const NETEJA_TEMPLATES = [
+    { label: t('mensajeria.templateNewCleaning'),      preview:'Hola Eva, hay una nueva reserva en Luminoso…',    timing: t('mensajeria.timingOnConfirm'),      timingColor:colors.primary, timingBg:colors.primarySoft },
+    { label: t('mensajeria.templateCancelledCleaning'),preview:'Hola Eva, la reserva prevista ha sido cancelada…', timing: t('mensajeria.timingOnCancel'),       timingColor:'#DC2626',      timingBg:'#FEF2F2'           },
+    { label: t('mensajeria.templateCleaningReminder'), preview:'Recuerda que mañana hay limpieza a las 11:00…',   timing: t('mensajeria.timing1DayCheckout'),   timingColor:'#D97706',      timingBg:'#FFFBEB'           },
+  ];
+
   return (
     <div style={{ background:colors.card, fontFamily, minHeight:'440px' }}>
       <div style={{ padding:'14px 16px 8px', opacity:headerP, transform:`translateY(${(1-headerP)*5}px)` }}>
         <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between' }}>
           <div>
-            <div style={{ fontSize:16, fontWeight:700, color:colors.foreground, letterSpacing:-0.3 }}>Mensajes automáticos</div>
-            <div style={{ fontSize:11, color:colors.meta, marginTop:2 }}>7 plantillas activas</div>
+            <div style={{ fontSize:16, fontWeight:700, color:colors.foreground, letterSpacing:-0.3 }}>{t('mensajeria.automaticMessages')}</div>
+            <div style={{ fontSize:11, color:colors.meta, marginTop:2 }}>{t('mensajeria.activeTemplates')}</div>
           </div>
           <button style={{ display:'flex', alignItems:'center', gap:4, padding:'6px 12px', borderRadius:999, background:colors.foreground, color:'#fff', fontSize:11, fontWeight:600, border:'none', cursor:'pointer', flexShrink:0 }}>
-            <Plus size={11} /> Nueva
+            <Plus size={11} /> {t('mensajeria.newButton')}
           </button>
         </div>
       </div>
 
       {/* Tabs — la pestanya activa commuta animada */}
       <div style={{ padding:'0 16px 8px', display:'flex', gap:8, opacity:tabsP }}>
-        {(['🏠 Huéspedes','🧹 Limpieza'] as const).map((label, i) => {
+        {([t('mensajeria.tabGuests'), t('mensajeria.tabCleaning')] as const).map((label, i) => {
           const isActive = i === 0 ? !limpiezaActive : limpiezaActive;
           return (
             <div key={label} style={{
@@ -242,13 +234,32 @@ function PlantillasView({ frame, fps }: { frame: number; fps: number }) {
       {/* Contingut de la pestanya activa */}
       <div style={{ borderTop:`1px solid ${colors.border}` }}>
         {!showNeteja
-          ? HOSTES_TEMPLATES.map((t, i) => <TemplateRow key={i} t={t} progress={hRows[i]} />)
-          : NETEJA_TEMPLATES.map((t, i) => <TemplateRow key={i} t={t} progress={nRows[i]} />)
+          ? HOSTES_TEMPLATES.map((tmpl, i) => <TemplateRowItem key={i} tmpl={tmpl} progress={hRows[i]} />)
+          : NETEJA_TEMPLATES.map((tmpl, i) => <TemplateRowItem key={i} tmpl={tmpl} progress={nRows[i]} />)
         }
       </div>
     </div>
   );
 }
+
+function TemplateRowItem({ tmpl, progress }: { tmpl: { label: string; preview: string; timing: string; timingColor: string; timingBg: string }; progress: number }) {
+  if (progress <= 0) return null;
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:12, padding:'11px 16px', borderTop:`1px solid ${colors.border}`, opacity:progress, transform:`translateY(${(1-progress)*6}px)` }}>
+      <div style={{ flex:1, minWidth:0 }}>
+        <div style={{ fontSize:12, fontWeight:600, color:colors.foreground, marginBottom:2 }}>{tmpl.label}</div>
+        <div style={{ fontSize:10, color:colors.meta, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:'90%', marginBottom:5 }}>{tmpl.preview}</div>
+        <span style={{ fontSize:9, fontWeight:600, padding:'2px 8px', borderRadius:999, color:tmpl.timingColor, background:tmpl.timingBg }}>{tmpl.timing}</span>
+      </div>
+      <div style={{ flexShrink:0, width:36, height:20, borderRadius:999, background:colors.foreground, position:'relative' }}>
+        <div style={{ position:'absolute', top:2, right:2, width:16, height:16, borderRadius:'50%', background:'#fff', boxShadow:'0 1px 3px rgba(0,0,0,0.2)' }} />
+      </div>
+    </div>
+  );
+}
+
+// Suppress unused warning
+void TemplateRow;
 
 /* ─────────────────────────────────────────────────────────────
    MAIN
@@ -262,6 +273,7 @@ const FRAMES_BY_VIEW: Record<View, number> = { chat: CHAT_FRAMES, plantillas: PL
 const fadeVariants = { enter:{ opacity:0 }, center:{ opacity:1 }, exit:{ opacity:0 } };
 
 export default function MensajeriaDemo() {
+  const { t } = useTranslation('demos');
   const containerRef = useRef<HTMLDivElement>(null);
   const FPS = 30;
   const [view, setView]     = useState<View>('plantillas');
@@ -270,12 +282,12 @@ export default function MensajeriaDemo() {
   useEffect(() => {
     if (toured) return;
     const ms = FRAMES_BY_VIEW[view] / FPS * 1000 + 400;
-    const t = setTimeout(() => {
+    const timer = setTimeout(() => {
       const idx = VIEW_ORDER.indexOf(view);
       if (idx < VIEW_ORDER.length - 1) setView(VIEW_ORDER[idx + 1]);
       else setToured(true);
     }, ms);
-    return () => clearTimeout(t);
+    return () => clearTimeout(timer);
   }, [view, toured]);
 
   function goTo(next: View) { setView(next); }
@@ -312,8 +324,8 @@ export default function MensajeriaDemo() {
 
       {/* Tabs */}
       <div style={{ position:'absolute', bottom:'-14px', left:'50%', transform:'translateX(-50%)', display:'flex', gap:4, padding:4, background:'#fff', borderRadius:999, boxShadow:'0 4px 16px rgba(15,23,42,0.12), 0 0 0 1px rgba(15,23,42,0.06) inset', zIndex:10, whiteSpace:'nowrap', fontFamily }}>
-        <TabBtn active={view==='chat'}       onClick={() => goTo('chat')}       icon={<MessageCircle size={11}/>} label="Mensajes" />
-        <TabBtn active={view==='plantillas'} onClick={() => goTo('plantillas')} icon={<LayoutList size={11}/>}    label="Plantillas" />
+        <TabBtn active={view==='chat'}       onClick={() => goTo('chat')}       icon={<MessageCircle size={11}/>} label={t('mensajeria.tabMessages')} />
+        <TabBtn active={view==='plantillas'} onClick={() => goTo('plantillas')} icon={<LayoutList size={11}/>}    label={t('mensajeria.tabTemplates')} />
       </div>
 
 

@@ -3,12 +3,15 @@ import { CheckCircle, XCircle, ArrowRight } from 'lucide-react';
 import type { Competitor } from '@/lib/data/competitors';
 import PageShell from '@/components/PageShell';
 import { faqPageSchema, breadcrumbSchema, productComparisonSchema } from '@/lib/seo/schemas';
+import { useTranslation } from 'react-i18next';
 
 import { useSignupModal } from "@/contexts/SignupModalContext";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function AlternativaPage({ competitor: c }: { competitor: Competitor }) {
   const { open: openSignup } = useSignupModal();
+  const { t } = useTranslation('alternativas');
+
   return (
     <PageShell
       title={`${c.tagline} | Hostly`}
@@ -32,7 +35,7 @@ export default function AlternativaPage({ competitor: c }: { competitor: Competi
       <section className="pt-32 pb-16 px-6 md:px-12 lg:px-20 bg-gradient-to-b from-[#f8fafc] to-white">
         <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
-            <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-4">Comparativa</p>
+            <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-4">{t('page.heroEyebrow')}</p>
             <h1 className="text-4xl md:text-5xl font-bold text-[#0f172a] tracking-tight mb-5 leading-tight">
               {c.tagline}
             </h1>
@@ -45,7 +48,7 @@ export default function AlternativaPage({ competitor: c }: { competitor: Competi
       {/* Ventajas Hostly */}
       <section className="py-16 px-6 md:px-12 lg:px-20">
         <div className="max-w-4xl mx-auto">
-          <p className="text-xs font-bold uppercase tracking-[0.15em] text-[#1a3a8f] mb-8">Por qué Hostly sobre {c.name}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.15em] text-[#1a3a8f] mb-8">{t('page.advantagesEyebrow', { name: c.name })}</p>
           <div className="grid md:grid-cols-2 gap-5">
             {c.advantages.map((adv, i) => (
               <motion.div
@@ -67,11 +70,11 @@ export default function AlternativaPage({ competitor: c }: { competitor: Competi
       {/* Tabla comparativa */}
       <section className="py-16 px-6 md:px-12 lg:px-20 bg-[#f8fafc]">
         <div className="max-w-3xl mx-auto">
-          <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-6">Comparativa directa</p>
+          <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-6">{t('page.comparisonEyebrow')}</p>
           <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white">
             <div className="grid grid-cols-3 bg-[#0f172a] text-white text-sm font-semibold">
-              <div className="p-4">Funcionalidad</div>
-              <div className="p-4 text-center border-l border-white/10">Hostly</div>
+              <div className="p-4">{t('page.colFeature')}</div>
+              <div className="p-4 text-center border-l border-white/10">{t('page.colHostly')}</div>
               <div className="p-4 text-center border-l border-white/10">{c.name}</div>
             </div>
             {c.comparison.map((row, i) => (
@@ -94,7 +97,7 @@ export default function AlternativaPage({ competitor: c }: { competitor: Competi
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-400 text-center mt-4">Datos verificados a abril 2026.</p>
+          <p className="text-xs text-slate-400 text-center mt-4">{t('page.verifiedNote')}</p>
         </div>
       </section>
 
@@ -102,7 +105,7 @@ export default function AlternativaPage({ competitor: c }: { competitor: Competi
       {c.faqs.length > 0 && (
         <section className="py-16 px-6 md:px-12 lg:px-20">
           <div className="max-w-3xl mx-auto">
-            <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-6">Preguntas frecuentes</p>
+            <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-6">{t('page.faqsEyebrow')}</p>
             <div className="space-y-4">
               {c.faqs.map((faq) => (
                 <div key={faq.q} className="bg-[#f8fafc] border border-slate-100 rounded-2xl p-6">
@@ -118,13 +121,13 @@ export default function AlternativaPage({ competitor: c }: { competitor: Competi
       {/* CTA */}
       <section className="py-24 px-6 text-center" style={{ background: 'linear-gradient(135deg, #0f1f5c 0%, #1a3a8f 100%)' }}>
         <h2 className="text-4xl font-bold text-white tracking-tight mb-5">
-          Prueba Hostly gratis 14 días
+          {t('page.ctaH2')}
         </h2>
         <p className="text-white/60 text-lg mb-10 max-w-xl mx-auto">
-          Sin tarjeta. Sin permanencia. Check-in y compliance gratis para siempre.
+          {t('page.ctaSubtitle')}
         </p>
         <button type="button" onClick={openSignup} className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-white text-[#0f1f5c] font-semibold text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 transition-all duration-300">
-          Empezar gratis 14 días <ArrowRight className="w-4 h-4" />
+          {t('page.ctaButton')} <ArrowRight className="w-4 h-4" />
         </button>
       </section>
     </PageShell>

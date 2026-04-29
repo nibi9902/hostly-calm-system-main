@@ -1,4 +1,5 @@
 import { spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 
 /* ─── Tokens ─── */
 const colors = {
@@ -43,7 +44,7 @@ const Chip: React.FC<{ label: string; active?: boolean }> = ({ label, active }) 
   }}>{label}</div>
 );
 
-const ColumnHeader: React.FC = () => (
+const ColumnHeader: React.FC<{ colGuest: string; colCleaner: string; colApartment: string; colStatus: string }> = ({ colGuest, colCleaner, colApartment, colStatus }) => (
   <div style={{
     display: 'grid',
     gridTemplateColumns: '2fr 1fr 2.4fr 0.9fr',
@@ -53,10 +54,10 @@ const ColumnHeader: React.FC = () => (
     color: colors.meta, letterSpacing: 1,
     borderBottom: `1px solid ${colors.border}`,
   }}>
-    <div>HUÉSPED</div>
-    <div>LIMPIADOR/A</div>
-    <div>APARTAMENTO</div>
-    <div style={{ textAlign: 'right' }}>ESTADO</div>
+    <div>{colGuest}</div>
+    <div>{colCleaner}</div>
+    <div>{colApartment}</div>
+    <div style={{ textAlign: 'right' }}>{colStatus}</div>
   </div>
 );
 
@@ -76,10 +77,11 @@ interface RowProps {
   statusColor: string;
   statusT: number;
   isNew?: boolean;
+  badgeNew?: string;
 }
 
 const Row: React.FC<RowProps> = ({
-  progress, host, refCode, cleaner, apartment, statusLabel, statusColor, statusT, isNew,
+  progress, host, refCode, cleaner, apartment, statusLabel, statusColor, statusT, isNew, badgeNew,
 }) => {
   if (progress <= 0) return null;
   return (
@@ -112,7 +114,7 @@ const Row: React.FC<RowProps> = ({
             border: `1px solid ${colors.success}`,
             padding: '1px 5px', borderRadius: 999,
             flexShrink: 0,
-          }}>NUEVO</div>
+          }}>{badgeNew}</div>
         )}
       </div>
       <div style={{ color: colors.mutedFg, fontSize: 11 }}>{cleaner}</div>
@@ -141,9 +143,10 @@ const Row: React.FC<RowProps> = ({
       55 → row 3 (Elena)
       62 → day2 header (Diumenge 26)
       70 → row 4 (David — amb glow verd NOU)
-───────────────────────────────────────────────────────────── */
+─────────────────────────────────────────────────────────────── */
 
 export default function LimpiezasListView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const headerP = spring(frame - 5, fps, { damping: 20, stiffness: 180 });
   const tabsP = spring(frame - 15, fps, { damping: 20, stiffness: 180 });
   const chipsP = spring(frame - 22, fps, { damping: 20, stiffness: 180 });
@@ -167,9 +170,9 @@ export default function LimpiezasListView({ frame, fps }: { frame: number; fps: 
         <h3 style={{
           fontSize: 20, fontWeight: 700,
           color: colors.foreground, margin: 0, letterSpacing: -0.3,
-        }}>Limpieza</h3>
+        }}>{t('limpiezas.listTitle')}</h3>
         <div style={{ fontSize: 11, color: colors.mutedFg, marginTop: 3 }}>
-          Equipo de limpieza y salidas pendientes
+          {t('limpiezas.listSubtitle')}
         </div>
       </div>
 
@@ -179,32 +182,37 @@ export default function LimpiezasListView({ frame, fps }: { frame: number; fps: 
         borderBottom: `1px solid ${colors.border}`,
         opacity: tabsP,
       }}>
-        <SubTab label="General" />
-        <SubTab label="Equipo" active />
+        <SubTab label={t('limpiezas.tabGeneral')} />
+        <SubTab label={t('limpiezas.tabTeam')} active />
       </div>
 
       {/* Pills view */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 12, opacity: tabsP }}>
-        <LittlePill label="Calendario" />
-        <LittlePill label="Lista" active />
+        <LittlePill label={t('limpiezas.viewCalendar')} />
+        <LittlePill label={t('limpiezas.viewList')} active />
       </div>
 
       {/* Chips filtre */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 10, opacity: chipsP }}>
-        <Chip label="Todos" active />
+        <Chip label={t('limpiezas.filterAll')} active />
         <Chip label="Moderna casa…" />
         <Chip label="Luminoso…" />
       </div>
 
       {/* Llista */}
       <div style={{ marginTop: 16 }}>
-        <ColumnHeader />
-        <DayHeader label="Lunes 21 Abril" />
+        <ColumnHeader
+          colGuest={t('limpiezas.colGuest')}
+          colCleaner={t('limpiezas.colCleaner')}
+          colApartment={t('limpiezas.colApartment')}
+          colStatus={t('limpiezas.colStatus')}
+        />
+        <DayHeader label={t('limpiezas.dayMonday21')} />
         <Row
           progress={row1P}
           host="Clara Puig" refCode="HMX4K9B2TP" cleaner="Eva"
           apartment="Luminoso Apartamento a 4 min del Museo…"
-          statusLabel={statusT > 0 ? 'Confirmada' : 'Pendiente'}
+          statusLabel={statusT > 0 ? t('limpiezas.statusConfirmed') : t('limpiezas.statusPending')}
           statusColor={statusT > 0.1 ? colors.primary : colors.meta}
           statusT={statusT}
         />
@@ -212,7 +220,7 @@ export default function LimpiezasListView({ frame, fps }: { frame: number; fps: 
           progress={row2P}
           host="Marc Rovira" refCode="HMQ7N3D5WR" cleaner="Eva"
           apartment="Luminoso Apartamento a 4 min del Museo…"
-          statusLabel="Confirmada"
+          statusLabel={t('limpiezas.statusConfirmed')}
           statusColor={colors.primary}
           statusT={1}
         />
@@ -220,21 +228,22 @@ export default function LimpiezasListView({ frame, fps }: { frame: number; fps: 
           progress={row3P}
           host="Elena Soler" refCode="8831920455" cleaner="Eva"
           apartment="Luminoso Apartamento a 4 min del Museo…"
-          statusLabel="Confirmada"
+          statusLabel={t('limpiezas.statusConfirmed')}
           statusColor={colors.primary}
           statusT={1}
         />
         <div style={{ opacity: day2P, transform: `translateY(${(1 - day2P) * 4}px)` }}>
-          <DayHeader label="Domingo 26 Abril" />
+          <DayHeader label={t('limpiezas.daySunday26')} />
         </div>
         <Row
           progress={row4P}
           host="David Taisne" refCode="5770048427" cleaner="Eva"
           apartment="Luminoso Apartamento a 4 min del Museo…"
-          statusLabel="Confirmada"
+          statusLabel={t('limpiezas.statusConfirmed')}
           statusColor={colors.success}
           statusT={1}
           isNew
+          badgeNew={t('limpiezas.badgeNew')}
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { NAV } from '@/lib/data/nav';
+import { useNav } from '@/lib/data/useNav';
 import { HeaderNav } from './HeaderNav';
 import hostlyLogo from '@/assets/hostly-logo-new.webp';
 import { cn } from '@/lib/utils';
@@ -14,6 +14,7 @@ interface SiteHeaderProps {
 export function SiteHeader({ onOpenQuiz }: SiteHeaderProps) {
   const { pathname } = useLocation();
   const { lang, setLang } = useLang();
+  const NAV = useNav();
   // Home: tant `/` com `/es` o `/ca`
   const segments = pathname.split('/').filter(Boolean);
   const isHome = segments.length === 0 || (segments.length === 1 && (segments[0] === 'es' || segments[0] === 'ca'));

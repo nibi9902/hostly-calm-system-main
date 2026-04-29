@@ -1,0 +1,80 @@
+{
+  "chekin": {
+    "meta_title": "Chekin vs Hostly — Check-in turístico en España | Hostly",
+    "meta_description": "Compara Chekin y Hostly para la gestión de check-in y compliance en apartamentos turísticos. Check-in incluido gratis en Hostly.",
+    "breadcrumb_comparativa": "Comparativa",
+    "breadcrumb_chekin": "Chekin vs Hostly",
+    "hero_eyebrow": "Comparativa",
+    "hero_heading": "Chekin vs Hostly",
+    "hero_body": "Chekin automatiza el check-in legal. Hostly lo incluye gratis dentro de una plataforma completa de gestión. Esta es la diferencia.",
+    "who_chekin_eyebrow": "Chekin",
+    "who_chekin_heading": "Especialista en check-in y compliance legal",
+    "who_chekin_p1": "Chekin automatiza el check-in online, el registro policial (SES.Hospedajes), el NRUA y la taxa turística. Es muy bueno en lo que hace. Cobra entre 2 y 4 € por check-in o una cuota mensual por propiedad.",
+    "who_chekin_p2": "No gestiona reservas, mensajes, limpiezas ni precios. Para eso necesitas otras herramientas.",
+    "who_hostly_eyebrow": "Hostly",
+    "who_hostly_heading": "La app que reemplaza cinco suscripciones",
+    "who_hostly_p1": "Hostly incluye el check-in completo (SES, NRUA, policía, taxa) gratis para siempre dentro de una plataforma que también gestiona reservas, mensajes, limpiezas, precios y pagos.",
+    "who_hostly_p2": "Una app. Una factura. Sin suscripciones adicionales.",
+    "table_heading": "Comparativa directa",
+    "table_col_feature": "Funcionalidad",
+    "table_col_hostly": "Hostly",
+    "table_col_chekin": "Chekin",
+    "table_badge_free": "Gratis",
+    "table_footnote": "Datos verificados a abril 2026. Precios y funcionalidades pueden cambiar.",
+    "features": [
+      { "feature": "Check-in online" },
+      { "feature": "SES.Hospedajes" },
+      { "feature": "NRUA" },
+      { "feature": "Taxa turística" },
+      { "feature": "Precio por check-in" },
+      { "feature": "Channel manager incluido" },
+      { "feature": "Mensajes con huéspedes" },
+      { "feature": "Coordinación de limpiezas" },
+      { "feature": "Precios dinámicos" },
+      { "feature": "Gestión de pagos" },
+      { "feature": "Soporte en español y catalán" }
+    ],
+    "cost_heading": "El coste real por piso al año",
+    "cost_subheading": "Ejemplo: 1 piso con 60 check-ins al año.",
+    "cost_chekin_label": "Con Chekin + otras herramientas",
+    "cost_chekin_row1_label": "Chekin (60 check-ins × 3 €)",
+    "cost_chekin_row1_value": "180 €/año",
+    "cost_chekin_row2_label": "Canal manager (Smoobu básico)",
+    "cost_chekin_row2_value": "280 €/año",
+    "cost_chekin_row3_label": "Plantillas mensajes",
+    "cost_chekin_row3_value": "120 €/año",
+    "cost_chekin_row4_label": "Excel + Dropbox (tiempo real)",
+    "cost_chekin_row4_value": "— €",
+    "cost_chekin_total_label": "Total estimado",
+    "cost_chekin_total_value": "580 €/año",
+    "cost_hostly_label": "Con Hostly",
+    "cost_hostly_row1_label": "Plan Hostly (40 € × 12 meses)",
+    "cost_hostly_row1_value": "480 €/año",
+    "cost_hostly_row2_label": "Check-in + SES + NRUA + taxa",
+    "cost_hostly_row2_value": "Gratis",
+    "cost_hostly_row3_label": "Canal manager incluido",
+    "cost_hostly_row3_value": "Gratis",
+    "cost_hostly_row4_label": "Mensajes, limpiezas, pagos",
+    "cost_hostly_row4_value": "Gratis",
+    "cost_hostly_total_label": "Total",
+    "cost_hostly_total_value": "480 €/año",
+    "faq_heading": "Preguntas frecuentes",
+    "faqs": [
+      {
+        "q": "¿Hostly hace lo mismo que Chekin?",
+        "a": "Sí, y mucho más. Hostly incluye check-in online, SES.Hospedajes, NRUA, registro policial y taxa turística exactamente como Chekin, pero gratis para siempre dentro de un plan que también incluye reservas, mensajes, limpiezas y precios."
+      },
+      {
+        "q": "¿Cuánto me ahorro si paso de Chekin a Hostly?",
+        "a": "Con 60 check-ins al año a 3 € cada uno, Chekin te cuesta ~180 €/año solo en compliance. Con Hostly pagas 40 €/mes (480 €/año) pero obtienes check-in gratis más canal manager, mensajes, limpiezas y precios dinámicos incluidos."
+      },
+      {
+        "q": "¿Pierdo datos o reservas si migro desde Chekin?",
+        "a": "No. Hacemos la migración en paralelo mientras mantienes Chekin activo. Una vez Hostly está configurado, apagamos Chekin sin interrupción."
+      }
+    ],
+    "cta_heading": "Check-in gratis para siempre.\nY mucho más.",
+    "cta_body": "14 días gratis. Sin tarjeta. Si no simplifica nada, no nos debes nada.",
+    "cta_button": "Empezar gratis 14 días"
+  }
+}

@@ -1,19 +1,19 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useSpring, useTransform } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
-const SECTIONS = [
-  { id: 'pain',      label: 'Sin Hostly / Con Hostly' },
-  { id: 'features',  label: 'Lo que reemplaza'        },
-  { id: 'funciones', label: 'Funciones'               },
-  { id: 'steps',     label: 'Cómo funciona'           },
-  { id: 'soporte',   label: 'Soporte'                 },
-  { id: 'precios',   label: 'Precios'                 },
-];
+const SECTION_IDS = ['pain', 'features', 'funciones', 'steps', 'soporte', 'precios'] as const;
 
 const DOT_GAP  = 28;   // px entre cada marca
-const NAV_H    = (SECTIONS.length - 1) * DOT_GAP;  // 140px
+const NAV_H    = (SECTION_IDS.length - 1) * DOT_GAP;  // 140px
 
 export default function PageProgress() {
+  const { t } = useTranslation('common');
+  const SECTIONS = SECTION_IDS.map(id => ({
+    id,
+    label: t(`page_progress.sections.${id}`),
+  }));
+
   const [activeIdx, setActiveIdx] = useState<number>(-1);
   const [visible,   setVisible]   = useState(false);
   const [hoveredIdx, setHoveredIdx] = useState<number>(-1);
@@ -79,7 +79,7 @@ export default function PageProgress() {
             zIndex: 40,
             userSelect: 'none',
           }}
-          aria-label="Navegación por secciones"
+          aria-label={t('page_progress.nav_aria')}
         >
           {/* Contenidor relatiu per tenir la línia i el dot */}
           <div style={{ position: 'relative', width: '32px', height: `${NAV_H}px` }}>

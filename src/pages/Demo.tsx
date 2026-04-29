@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { LangLink } from "@/i18n/LangLink";
 import PageShell from "@/components/PageShell";
 
 import { useSignupModal } from "@/contexts/SignupModalContext";
+
 export default function Demo() {
   const { open: openSignup } = useSignupModal();
+  const { t } = useTranslation("common");
+
+  const features = t("demo.features", { returnObjects: true }) as Array<{ icon: string; title: string; desc: string }>;
+
   return (
     <PageShell
-      title="Demo — Hostly"
-      description="Mira cómo funciona Hostly en 1 minuto. Check-in automático, limpiezas coordinadas, mensajes con IA y finanzas desde una sola app."
+      title={t("demo.meta_title")}
+      description={t("demo.meta_description")}
       path="/demo"
     >
       {/* Hero fosc — no tot en blanc, fons naval que dona profunditat */}
@@ -38,16 +44,15 @@ export default function Demo() {
         >
           {/* Eyebrow */}
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40 mb-5">
-            Demo · 1 minuto
+            {t("demo.eyebrow")}
           </p>
 
           {/* Headline */}
           <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-4">
-            Así funciona Hostly.
+            {t("demo.heading")}
           </h1>
           <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto mb-10">
-            Check-in automático, limpiezas coordinadas, mensajes con IA y finanzas
-            en un solo lugar. Sin cinco apps distintas.
+            {t("demo.subheading")}
           </p>
 
           {/* Video — framing premium amb chrome de browser */}
@@ -91,18 +96,18 @@ export default function Demo() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
             <button type="button" onClick={openSignup} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-[#0c1a4a] font-semibold text-sm hover:bg-white/90 transition-colors shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
             >
-              Empezar gratis
+              {t("demo.cta_start")}
               <ArrowRight className="w-4 h-4" />
             </button>
             <LangLink
               to="/precios"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/20 text-white/75 font-medium text-sm hover:border-white/40 hover:text-white transition-colors"
             >
-              Ver precios
+              {t("demo.cta_pricing")}
             </LangLink>
           </div>
           <p className="text-white/25 text-xs mt-4">
-            Sin tarjeta · Sin permanencia · 14 días de prueba
+            {t("demo.disclaimer")}
           </p>
         </motion.div>
       </section>
@@ -111,26 +116,10 @@ export default function Demo() {
       <section className="py-16 md:py-20 px-6 md:px-12 lg:px-20 bg-white">
         <div className="max-w-4xl mx-auto">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary/70 mb-10 text-center">
-            Lo que ves en el vídeo
+            {t("demo.video_section_eyebrow")}
           </p>
           <div className="grid sm:grid-cols-3 gap-8 md:gap-12">
-            {[
-              {
-                icon: "🛡️",
-                title: "Check-in y SES automático",
-                desc: "El huésped firma online. El parte llega a Mossos o Policía Nacional sin que toques nada. Gratis para siempre.",
-              },
-              {
-                icon: "🤖",
-                title: "Mensajes con IA",
-                desc: "WhatsApp contestado en segundos, en el idioma del huésped. Tú solo entras cuando hace falta.",
-              },
-              {
-                icon: "📊",
-                title: "Todo en un solo panel",
-                desc: "Reservas, limpiezas, precios y finanzas. Sin saltar entre cinco apps ni recordar cinco contraseñas.",
-              },
-            ].map((item) => (
+            {features.map((item) => (
               <div key={item.title} className="flex flex-col gap-3">
                 <span className="text-3xl">{item.icon}</span>
                 <h3 className="font-bold text-foreground text-sm leading-snug">{item.title}</h3>

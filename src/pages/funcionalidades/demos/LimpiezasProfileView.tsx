@@ -1,5 +1,6 @@
 import { ArrowLeft, Phone, ChevronDown, Plus, CheckCircle2, Circle, Trash2 } from 'lucide-react';
 import { spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 
 /* ─── Tokens ─── */
 const colors = {
@@ -58,9 +59,10 @@ const HISTORY = [
       85 → row 1 (judit, pendent)
       95 → row 2 (Florian, pagat)
      105 → row 3 (Rosa, pagat)
-───────────────────────────────────────────────────────────── */
+─────────────────────────────────────────────────────────────── */
 
 export default function LimpiezasProfileView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const headerP   = spring(frame - 5,   fps, { damping: 20, stiffness: 180 });
   const monthP    = spring(frame - 18,  fps, { damping: 20, stiffness: 180 });
   const kpi1P     = spring(frame - 28,  fps, { damping: 20, stiffness: 170 });
@@ -118,7 +120,7 @@ export default function LimpiezasProfileView({ frame, fps }: { frame: number; fp
           border: 'none', cursor: 'pointer',
           flexShrink: 0,
         }}>
-          <Plus size={11} /> Limpieza
+          <Plus size={11} /> {t('limpiezas.profileAddCleaning')}
         </button>
       </div>
 
@@ -145,9 +147,9 @@ export default function LimpiezasProfileView({ frame, fps }: { frame: number; fp
         padding: '24px 0',
         borderBottom: `1px solid ${colors.border}`,
       }}>
-        <KPI value="3"       label="Limpiezas" color={colors.foreground} progress={kpi1P} />
-        <KPI value="75€"     label="Total"     color={colors.foreground} progress={kpi2P} />
-        <KPI value="25€"     label="Pendiente" color={colors.orange}     progress={kpi3P} />
+        <KPI value="3"       label={t('limpiezas.profileKpiCleanings')} color={colors.foreground} progress={kpi1P} />
+        <KPI value="75€"     label={t('limpiezas.profileKpiTotal')}     color={colors.foreground} progress={kpi2P} />
+        <KPI value="25€"     label={t('limpiezas.profileKpiPending')}   color={colors.orange}     progress={kpi3P} />
       </div>
 
       {/* ── Marcar tot com pagat ── */}
@@ -165,7 +167,7 @@ export default function LimpiezasProfileView({ frame, fps }: { frame: number; fp
           fontSize: 12, fontWeight: 600,
           border: 'none', cursor: 'pointer',
         }}>
-          Marcar todo como pagado · 25€
+          {t('limpiezas.profileMarkAllPaid')}
         </button>
       </div>
 
@@ -179,7 +181,7 @@ export default function LimpiezasProfileView({ frame, fps }: { frame: number; fp
           textTransform: 'uppercase', letterSpacing: '0.08em',
           color: colors.meta,
         }}>
-          Historial
+          {t('limpiezas.profileHistory')}
         </span>
       </div>
 

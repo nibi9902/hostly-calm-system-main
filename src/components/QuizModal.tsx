@@ -1,124 +1,19 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, ArrowLeft, Clock, TrendingUp, CheckCircle2, Loader2, User, Mail, Phone } from "lucide-react";
 
 const WEBHOOK_URL = "https://caserna13-n8n.f9pppl.easypanel.host/webhook/questionari";
 
-/* ─── Quiz data ─── */
-const questions = [
-  {
-    id: "p0",
-    text: "¿Cuántos apartamentos gestionas actualmente?",
-    options: [
-      { label: "1 apartamento", points: 0 },
-      { label: "2–3 apartamentos", points: 1 },
-      { label: "4–6 apartamentos", points: 2 },
-      { label: "7 o más", points: 3 },
-    ],
-  },
-  {
-    id: "p1",
-    text: "¿Respondes mensajes fuera de horario?",
-    options: [
-      { label: "Sí, siempre", points: 2 },
-      { label: "No", points: 0 },
-    ],
-  },
-  {
-    id: "p2",
-    text: "Si apagas el móvil en temporada alta, ¿pierdes el control?",
-    options: [
-      { label: "Sí, totalmente", points: 3 },
-      { label: "Probablemente sí", points: 2 },
-      { label: "No", points: 0 },
-    ],
-  },
-  {
-    id: "p3",
-    text: "Cuando entra una nueva reserva, ¿el equipo de limpieza se entera automáticamente o tienes que avisarles tú?",
-    options: [
-      { label: "Tengo que avisar yo", points: 3 },
-      { label: "A veces automático, a veces manual", points: 2 },
-      { label: "Es totalmente automático", points: 0 },
-    ],
-  },
-  {
-    id: "p4",
-    text: "Con varias entradas/salidas el mismo día, ¿depende todo de ti?",
-    options: [
-      { label: "Sí", points: 2 },
-      { label: "En parte", points: 1 },
-      { label: "No", points: 0 },
-    ],
-  },
-  {
-    id: "p5",
-    text: "¿Te ha pasado alguna vez una limpieza mal coordinada?",
-    options: [
-      { label: "Sí", points: 2 },
-      { label: "Casi pasa alguna vez", points: 1 },
-      { label: "No, nunca", points: 0 },
-    ],
-  },
-  {
-    id: "p6",
-    text: "¿Cómo envías los datos de huéspedes a la policía?",
-    options: [
-      { label: "No lo estoy haciendo correctamente", points: 4 },
-      { label: "Manual desde la web", points: 3 },
-      { label: "Foto DNI + gestoría", points: 2 },
-      { label: "Automatizado", points: 0 },
-    ],
-  },
-  {
-    id: "p7",
-    text: "¿Te estresa pensar que puedes olvidar el plazo de la policía?",
-    options: [
-      { label: "Sí", points: 2 },
-      { label: "A veces", points: 1 },
-      { label: "No", points: 0 },
-    ],
-  },
-  {
-    id: "p9",
-    text: "¿Cómo decides el precio de cada noche?",
-    options: [
-      { label: "Intuición", points: 2 },
-      { label: "Precio fijo casi siempre", points: 2 },
-      { label: "Miro la competencia manualmente", points: 1 },
-      { label: "Precios dinámicos", points: 0 },
-    ],
-  },
-  {
-    id: "p10",
-    text: "¿Podrías desconectar 7 días sin preocuparte?",
-    options: [
-      { label: "No, imposible", points: 3 },
-      { label: "Me costaría mucho", points: 2 },
-      { label: "Sí, sin problema", points: 0 },
-    ],
-  },
-];
-
 const PA_MAX = 26;
-
-const getLevelLabel = (pa: number) => {
-  if (pa <= 6) return { label: "Gestión bastante optimizada", color: "text-green-600", bg: "bg-green-50 border-green-200" };
-  if (pa <= 12) return { label: "Dependencia moderada", color: "text-yellow-600", bg: "bg-yellow-50 border-yellow-200" };
-  if (pa <= 18) return { label: "Dependencia alta", color: "text-orange-600", bg: "bg-orange-50 border-orange-200" };
-  return { label: "Dependencia crítica", color: "text-red-600", bg: "bg-red-50 border-red-200" };
-};
 
 const roundToHalf = (n: number) => Math.round(n * 2) / 2;
 
 const appleEase = [0.22, 1, 0.36, 1] as const;
 
-const LOADING_STEPS = [
-  "Analizando tu gestión actual…",
-  "Calculando puntos de mejora…",
-  "Estimando el ahorro potencial…",
-  "Preparando tu diagnóstico…",
-];
+/* ─── Types ─── */
+interface QuizOption { label: string; points: number }
+interface QuizQuestion { text: string; options: QuizOption[] }
 
 /* ─── Component ─── */
 interface QuizModalProps {
@@ -129,6 +24,19 @@ interface QuizModalProps {
 type ScreenType = "intro" | "question" | "loading" | "lead" | "result" | "booking" | "booked";
 
 const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
+  const { t } = useTranslation("home");
+
+  /* ── i18n-driven data (must be inside component, depend on t) ── */
+  const questions = t("quiz.questions", { returnObjects: true }) as QuizQuestion[];
+  const LOADING_STEPS = t("quiz.loading_steps", { returnObjects: true }) as string[];
+
+  const getLevelLabel = (pa: number): { label: string; color: string; bg: string } => {
+    if (pa <= 6)  return { label: t("quiz.levels.low"),      color: "text-green-600",  bg: "bg-green-50 border-green-200" };
+    if (pa <= 12) return { label: t("quiz.levels.medium"),   color: "text-yellow-600", bg: "bg-yellow-50 border-yellow-200" };
+    if (pa <= 18) return { label: t("quiz.levels.high"),     color: "text-orange-600", bg: "bg-orange-50 border-orange-200" };
+    return          { label: t("quiz.levels.critical"),      color: "text-red-600",    bg: "bg-red-50 border-red-200" };
+  };
+
   const [screen, setScreen] = useState<ScreenType>("intro");
   const [answers, setAnswers] = useState<number[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
@@ -196,7 +104,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
       stepTimers.forEach(clearTimeout);
       clearTimeout(doneTimer);
     };
-  }, [screen]);
+  }, [screen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleStart = () => {
     setDirection(1);
@@ -232,10 +140,10 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
   };
 
   const handleLeadSubmit = async () => {
-    if (!name.trim()) { setFormError("Por favor, introduce tu nombre."); return; }
-    if (!contact.trim()) { setFormError("Por favor, introduce tu email o teléfono."); return; }
+    if (!name.trim()) { setFormError(t("quiz.ui.error_name")); return; }
+    if (!contact.trim()) { setFormError(t("quiz.ui.error_contact")); return; }
     if (contactType === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) {
-      setFormError("El email no es válido."); return;
+      setFormError(t("quiz.ui.error_email")); return;
     }
 
     setFormError("");
@@ -370,22 +278,22 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                       </div>
                       <div>
                         <h2 className="text-2xl font-bold text-foreground mb-2 tracking-tight">
-                          Calcula tu tiempo libre
+                          {t("quiz.ui.intro_title")}
                         </h2>
                         <p className="text-muted-foreground text-base leading-relaxed max-w-sm">
-                          9 preguntas rápidas. Te decimos exactamente cuántas horas a la semana podrías recuperar con Hostly.
+                          {t("quiz.ui.intro_body")}
                         </p>
                       </div>
                       <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> 2 minutos</span>
-                        <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> Sin registro</span>
-                        <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> Resultado inmediato</span>
+                        <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> {t("quiz.ui.badge_minutes")}</span>
+                        <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> {t("quiz.ui.badge_no_register")}</span>
+                        <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-primary" /> {t("quiz.ui.badge_immediate")}</span>
                       </div>
                       <button
                         onClick={handleStart}
                         className="mt-2 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--primary)/0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
                       >
-                        Empezar <ArrowRight className="w-4 h-4" />
+                        {t("quiz.ui.btn_start")} <ArrowRight className="w-4 h-4" />
                       </button>
                     </motion.div>
                   )}
@@ -403,7 +311,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                       className="flex flex-col flex-1 gap-6"
                     >
                       <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
-                        Pregunta {questionIndex + 1} de {totalSteps}
+                        {t("quiz.ui.question_label", { current: questionIndex + 1, total: totalSteps })}
                       </p>
                       <h3 className="text-xl font-bold text-foreground leading-snug">
                         {currentQuestion.text}
@@ -435,7 +343,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           onClick={handleBack}
                           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
-                          <ArrowLeft className="w-4 h-4" /> Anterior
+                          <ArrowLeft className="w-4 h-4" /> {t("quiz.ui.btn_prev")}
                         </button>
                         <button
                           onClick={handleNext}
@@ -446,7 +354,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                               : "bg-muted text-muted-foreground cursor-not-allowed"
                           }`}
                         >
-                          {questionIndex + 1 === totalSteps ? "Ver resultado" : "Siguiente"}
+                          {questionIndex + 1 === totalSteps ? t("quiz.ui.btn_see_result") : t("quiz.ui.btn_next")}
                           <ArrowRight className="w-4 h-4" />
                         </button>
                       </div>
@@ -479,7 +387,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                       </div>
 
                       <div className="space-y-2">
-                        <h3 className="text-xl font-bold text-foreground">Analizando tu caso</h3>
+                        <h3 className="text-xl font-bold text-foreground">{t("quiz.ui.loading_title")}</h3>
                         <AnimatePresence mode="wait">
                           <motion.p
                             key={loadingStep}
@@ -528,13 +436,13 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           <CheckCircle2 className="w-5 h-5 text-primary" />
                         </div>
                         <div>
-                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">¡Listo!</p>
-                          <p className="text-sm font-bold text-foreground">Tu diagnóstico está preparado</p>
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">{t("quiz.ui.lead_ready")}</p>
+                          <p className="text-sm font-bold text-foreground">{t("quiz.ui.lead_diagnosis_ready")}</p>
                         </div>
                       </div>
 
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        Introduce tus datos para ver el resultado. Te lo enviamos también por si quieres consultarlo más tarde.
+                        {t("quiz.ui.lead_intro")}
                       </p>
 
                       {/* Name */}
@@ -542,7 +450,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                         <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <input
                           type="text"
-                          placeholder="Tu nombre"
+                          placeholder={t("quiz.ui.lead_name_placeholder")}
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-border bg-muted/30 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
@@ -561,7 +469,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           onClick={() => { setContactType("phone"); setContact(""); }}
                           className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-all ${contactType === "phone" ? "border-primary bg-primary/8 text-primary" : "border-border bg-muted/30 text-muted-foreground hover:border-primary/30"}`}
                         >
-                          <Phone className="w-3.5 h-3.5 inline mr-1.5" />Teléfono
+                          <Phone className="w-3.5 h-3.5 inline mr-1.5" />{t("quiz.ui.lead_phone_label")}
                         </button>
                       </div>
 
@@ -573,7 +481,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                         }
                         <input
                           type={contactType === "email" ? "email" : "tel"}
-                          placeholder={contactType === "email" ? "tu@email.com" : "+34 600 000 000"}
+                          placeholder={contactType === "email" ? t("quiz.ui.lead_email_placeholder") : t("quiz.ui.lead_phone_placeholder")}
                           value={contact}
                           onChange={(e) => setContact(e.target.value)}
                           className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-border bg-muted/30 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
@@ -590,14 +498,14 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                         className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--primary)/0.25)] hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {sending ? (
-                          <><Loader2 className="w-4 h-4 animate-spin" /> Enviando…</>
+                          <><Loader2 className="w-4 h-4 animate-spin" /> {t("quiz.ui.lead_sending")}</>
                         ) : (
-                          <>Ver mi resultado <ArrowRight className="w-4 h-4" /></>
+                          <>{t("quiz.ui.lead_see_result")} <ArrowRight className="w-4 h-4" /></>
                         )}
                       </button>
 
                       <p className="text-[11px] text-muted-foreground text-center -mt-2">
-                        Sin spam. Solo usamos tus datos para enviarte el diagnóstico.
+                        {t("quiz.ui.lead_no_spam")}
                       </p>
                     </motion.div>
                   )}
@@ -619,8 +527,8 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           <TrendingUp className="w-5 h-5 text-primary" />
                         </div>
                         <div>
-                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Tu resultado</p>
-                          <p className="text-sm font-bold text-foreground">Algoritmo Hostly</p>
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">{t("quiz.ui.result_header")}</p>
+                          <p className="text-sm font-bold text-foreground">{t("quiz.ui.result_algorithm")}</p>
                         </div>
                       </div>
 
@@ -630,9 +538,9 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
 
                       <div className="grid grid-cols-3 gap-3">
                         {[
-                          { value: `${horas}h`, label: "por semana" },
-                          { value: `${horasMes}h`, label: "al mes" },
-                          { value: `${horasAno}h`, label: "al año" },
+                          { value: `${horas}h`, label: t("quiz.ui.result_per_week") },
+                          { value: `${horasMes}h`, label: t("quiz.ui.result_per_month") },
+                          { value: `${horasAno}h`, label: t("quiz.ui.result_per_year") },
                         ].map((s) => (
                           <div key={s.label} className="flex flex-col items-center justify-center py-4 rounded-2xl bg-primary/5 border border-primary/15">
                             <span className="text-2xl font-bold text-primary tracking-tight">{s.value}</span>
@@ -642,8 +550,7 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                       </div>
 
                       <p className="text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/30 pl-4">
-                        Tus respuestas indican que gran parte del sistema vive en tu cabeza y en tu móvil. Eso cuesta{" "}
-                        <span className="text-foreground font-semibold">{horas} horas cada semana</span>. Si lo conviertes en procesos automáticos, no solo ahorras tiempo: recuperas tranquilidad y reduces el riesgo de errores en días de estrés y temporada.
+                        {t("quiz.ui.result_body", { horas })}
                       </p>
 
                       <div className="flex flex-col sm:flex-row gap-3 pt-1">
@@ -651,13 +558,13 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           onClick={handleCTA}
                           className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--primary)/0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
                         >
-                          Reservar mi llamada gratuita <ArrowRight className="w-4 h-4" />
+                          {t("quiz.ui.btn_book_call")} <ArrowRight className="w-4 h-4" />
                         </button>
                         <button
                           onClick={handleReset}
                           className="inline-flex items-center justify-center px-5 py-3.5 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-muted transition-colors"
                         >
-                          Repetir
+                          {t("quiz.ui.btn_repeat")}
                         </button>
                       </div>
                     </motion.div>
@@ -677,10 +584,10 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                     >
                       <div className="text-center">
                         <h3 className="text-lg font-bold text-foreground mb-1.5 tracking-tight">
-                          Hablemos. Sin compromiso, sin presión.
+                          {t("quiz.ui.booking_title")}
                         </h3>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto">
-                          Elige el momento que mejor te vaya. En 15 minutos vemos juntos tu caso, resolvemos dudas y te acompañamos desde el primer paso.
+                          {t("quiz.ui.booking_body")}
                         </p>
                       </div>
                       <div className="w-full rounded-2xl overflow-hidden border border-border bg-muted/20" style={{ minHeight: '380px' }}>
@@ -690,11 +597,11 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                           height="100%"
                           frameBorder="0"
                           style={{ minHeight: '380px', border: 'none' }}
-                          title="Reservar llamada con Hostly"
+                          title={t("quiz.ui.booking_calendar_title")}
                         />
                       </div>
                       <p className="text-[11px] text-muted-foreground/60 text-center">
-                        Es una conversación personal, no una demo comercial.
+                        {t("quiz.ui.booking_disclaimer")}
                       </p>
                     </motion.div>
                   )}
@@ -716,30 +623,30 @@ const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
-                          ¡Perfecto! Ya tienes tu llamada reservada.
+                          {t("quiz.ui.booked_title")}
                         </h3>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto">
-                          Te enviaremos un recordatorio por email. Mientras tanto, si te surge cualquier duda, escríbenos sin problema.
+                          {t("quiz.ui.booked_body")}
                         </p>
                       </div>
                       <div className="rounded-2xl bg-primary/5 border border-primary/15 p-5 max-w-sm w-full">
                         <p className="text-sm text-foreground font-medium mb-1">
-                          ¿Qué pasará en la llamada?
+                          {t("quiz.ui.booked_call_title")}
                         </p>
                         <ul className="text-sm text-muted-foreground leading-relaxed space-y-1.5 text-left">
-                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> Vemos tu caso concreto juntos</li>
-                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> Resolvemos todas tus dudas</li>
-                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> Si encaja, te ayudamos a empezar</li>
+                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> {t("quiz.ui.booked_item_1")}</li>
+                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> {t("quiz.ui.booked_item_2")}</li>
+                          <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" /> {t("quiz.ui.booked_item_3")}</li>
                         </ul>
                       </div>
                       <p className="text-muted-foreground/60 text-xs">
-                        Nos vemos pronto. Estamos aquí para ayudarte.
+                        {t("quiz.ui.booked_footer")}
                       </p>
                       <button
                         onClick={onClose}
                         className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--primary)/0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
                       >
-                        Cerrar
+                        {t("quiz.ui.btn_close")}
                       </button>
                     </motion.div>
                   )}

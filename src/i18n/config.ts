@@ -11,6 +11,9 @@ import esAlternativas   from './locales/es/alternativas.json';
 import esBlog           from './locales/es/blog.json';
 import esLegal          from './locales/es/legal.json';
 import esSeo            from './locales/es/seo.json';
+import esPersonas       from './locales/es/personas.json';
+import esComparativa    from './locales/es/comparativa.json';
+import esFunciones      from './locales/es/funciones.json';
 
 import caCommon         from './locales/ca/common.json';
 import caHome           from './locales/ca/home.json';
@@ -20,6 +23,9 @@ import caAlternativas   from './locales/ca/alternativas.json';
 import caBlog           from './locales/ca/blog.json';
 import caLegal          from './locales/ca/legal.json';
 import caSeo            from './locales/ca/seo.json';
+import caPersonas       from './locales/ca/personas.json';
+import caComparativa    from './locales/ca/comparativa.json';
+import caFunciones      from './locales/ca/funciones.json';
 
 export const SUPPORTED_LANGS = ['es', 'ca'] as const;
 export type Lang = typeof SUPPORTED_LANGS[number];
@@ -27,7 +33,7 @@ export const DEFAULT_LANG: Lang = 'es';
 
 export const NAMESPACES = [
   'common', 'home', 'funcionalidades', 'demos',
-  'alternativas', 'blog', 'legal', 'seo',
+  'alternativas', 'blog', 'legal', 'seo', 'personas', 'comparativa', 'funciones',
 ] as const;
 
 export const resources = {
@@ -40,6 +46,9 @@ export const resources = {
     blog: esBlog,
     legal: esLegal,
     seo: esSeo,
+    personas: esPersonas,
+    comparativa: esComparativa,
+    funciones: esFunciones,
   },
   ca: {
     common: caCommon,
@@ -50,6 +59,9 @@ export const resources = {
     blog: caBlog,
     legal: caLegal,
     seo: caSeo,
+    personas: caPersonas,
+    comparativa: caComparativa,
+    funciones: caFunciones,
   },
 } as const;
 

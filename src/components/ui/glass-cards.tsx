@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 
 /* Demos React lazy-loaded — només es carreguen quan la card és a viewport */
 const CheckinDemo = lazy(() => import('@/pages/funcionalidades/demos/CheckinDemo'));
@@ -258,6 +259,63 @@ const cardData: CardData[] = [
   },
 ];
 
+interface GlassCardText {
+  badge: string;
+  title: string;
+  description: string;
+  replaces_prefix?: string;
+  replaces_suffix?: string;
+  replaces_phrase?: string;
+  replaces_inclusion?: string;
+  coach_messages?: Array<{ name: string; role: string; message: string }>;
+}
+
+/* Merges i18n text over the static cardData (non-text fields stay from cardData) */
+function useMergedCards(): typeof cardData {
+  const { t } = useTranslation('home');
+  const texts = t('glass_cards.cards', { returnObjects: true }) as GlassCardText[];
+  if (!Array.isArray(texts)) return cardData;
+
+  return cardData.map((card, idx) => {
+    const tx = texts[idx];
+    if (!tx) return card;
+
+    const merged: typeof card = {
+      ...card,
+      badge: tx.badge ?? card.badge,
+      title: tx.title ?? card.title,
+      description: tx.description ?? card.description,
+    };
+
+    if ('prefix' in card.replaces) {
+      merged.replaces = {
+        ...card.replaces,
+        prefix: tx.replaces_prefix ?? card.replaces.prefix,
+        suffix: tx.replaces_suffix ?? card.replaces.suffix,
+        ...(tx.replaces_inclusion !== undefined ? { inclusionLabel: tx.replaces_inclusion } : {}),
+      };
+    } else {
+      merged.replaces = {
+        ...card.replaces,
+        phrase: tx.replaces_phrase ?? (card.replaces as { phrase: string }).phrase,
+        ...(tx.replaces_inclusion !== undefined ? { inclusionLabel: tx.replaces_inclusion } : {}),
+      };
+    }
+
+    if (card.photoBubble && tx.coach_messages) {
+      merged.photoBubble = {
+        people: card.photoBubble.people.map((person, pi) => ({
+          ...person,
+          role: tx.coach_messages![pi]?.role ?? person.role,
+          message: tx.coach_messages![pi]?.message ?? person.message,
+        })),
+      };
+    }
+
+    return merged;
+  });
+}
+
 /* Helper — cicle genèric amb crossfade */
 function useCyclingItem<T>(items: T[] | undefined, intervalMs = 2600): T | null {
   const [idx, setIdx] = useState(0);
@@ -286,6 +344,7 @@ interface CardItemProps {
 }
 
 const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
+  const { t } = useTranslation('home');
   const cardRef      = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -413,7 +472,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
                     </>
                   ) : card.variant === 'photo' && cyclingPerson ? (
                     <>
-                      Hola,{' '}
+                      {t('glass_cards.hola')},{' '}
                       <AnimatePresence mode="wait">
                         <motion.span
                           key={cyclingPerson.name}
@@ -444,7 +503,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
                   {/* Si hi ha price, mostra "Te ahorras X · ". Altrament, només inclusionLabel */}
                   {card.replaces.price && (
                     <>
-                      <span>Te ahorras</span>
+                      <span>{t('glass_cards.te_ahorras')}</span>
                       {(() => {
                         const isMonetary = card.replaces.price.includes('€');
                         return (
@@ -465,7 +524,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
                     </>
                   )}
                   {(() => {
-                    const label = card.replaces.inclusionLabel ?? 'incluido en Hostly';
+                    const label = card.replaces.inclusionLabel ?? t('glass_cards.incluido_en_hostly');
                     // Si la label comença amb "gratis", la destaquem amb marker florescent
                     if (label.toLowerCase().startsWith('gratis')) {
                       const rest = label.replace(/^gratis\s*/i, '');
@@ -627,7 +686,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
                           fontSize: '10px', color: '#16a34a', fontWeight: 600,
                         }}>
                           <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#16a34a' }} />
-                          en línea
+                          {t('glass_cards.en_linea')}
                         </div>
                       </div>
                     </div>
@@ -792,7 +851,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: '13px', color: '#94a3b8', fontWeight: 500,
               }}>
-                Captura pendent
+                {t('glass_cards.captura_pendent')}
               </div>
             )}
           </div>
@@ -809,6 +868,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
 
 export const GlassCards: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const cards = useMergedCards();
 
   useEffect(() => {
     const el = containerRef.current;
@@ -818,8 +878,8 @@ export const GlassCards: React.FC = () => {
 
   return (
     <div id="funciones" ref={containerRef} style={{ background: '#f8fafc' }}>
-      {cardData.map((card, index) => (
-        <CardItem key={card.id} card={card} index={index} totalCards={cardData.length} />
+      {cards.map((card, index) => (
+        <CardItem key={card.id} card={card} index={index} totalCards={cards.length} />
       ))}
     </div>
   );

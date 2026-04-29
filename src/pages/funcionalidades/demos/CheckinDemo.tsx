@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Calendar, Copy, Home, CheckCircle, User, Shield, Loader, FileCheck, Building2 } from 'lucide-react';
 import { usePlaybackFrame, spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 
 /* ─── Tokens ─── */
 const colors = {
@@ -34,6 +35,7 @@ const fontFamily = 'Inter, -apple-system, sans-serif';
     90  → Volver al inicio
 ─────────────────────────────────────────────────────────────── */
 function HuespedView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const iconP     = spring(frame - 3,  fps, { damping: 15, stiffness: 210 });
   const titleP    = spring(frame - 12, fps, { damping: 18, stiffness: 185 });
   const statusP   = spring(frame - 20, fps, { damping: 18, stiffness: 185 });
@@ -76,7 +78,7 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
         color: colors.red, textAlign: 'center',
         marginBottom: 6,
       }}>
-        Código de Acceso
+        {t('checkin.accessCode')}
       </div>
 
       {/* Check-in completado */}
@@ -86,7 +88,7 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
         fontSize: 14, fontWeight: 600,
         color: colors.green, marginBottom: 6,
       }}>
-        Check-in completado
+        {t('checkin.checkinCompleted')}
       </div>
 
       {/* Subtítol */}
@@ -97,7 +99,7 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
         maxWidth: 270,
         lineHeight: 1.5,
       }}>
-        Todos los huéspedes han completado el check-in correctamente.
+        {t('checkin.allGuestsCheckedIn')}
       </div>
 
       {/* Card apartament */}
@@ -111,7 +113,7 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
         marginBottom: 10,
         textAlign: 'center',
       }}>
-        <div style={{ fontSize: 10, color: colors.mutedFg, marginBottom: 4 }}>Apartamento:</div>
+        <div style={{ fontSize: 10, color: colors.mutedFg, marginBottom: 4 }}>{t('checkin.apartment')}</div>
         <div style={{ fontSize: 13, fontWeight: 700, color: colors.foreground }}>
           Luminoso Apartamento a 4 min del Museo Dalí
         </div>
@@ -125,8 +127,8 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
         transform: `translateY(${(1 - datesP) * 6}px)`,
       }}>
         {[
-          { label: 'Fecha de entrada', date: '07 de abril de 2026' },
-          { label: 'Fecha de salida',  date: '10 de abril de 2026' },
+          { label: t('checkin.checkInDate'), date: '07 de abril de 2026' },
+          { label: t('checkin.checkOutDate'),  date: '10 de abril de 2026' },
         ].map(({ label, date }) => (
           <div key={label} style={{
             background: colors.bgLight,
@@ -154,7 +156,7 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
         textAlign: 'center',
         marginBottom: 12,
       }}>
-        <div style={{ fontSize: 11, color: colors.red, marginBottom: 4 }}>Código de acceso:</div>
+        <div style={{ fontSize: 11, color: colors.red, marginBottom: 4 }}>{t('checkin.accessCodeLabel')}</div>
         <div style={{
           fontSize: 40, fontWeight: 800, color: colors.red,
           fontVariantNumeric: 'tabular-nums', letterSpacing: 4,
@@ -171,7 +173,7 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
           border: 'none', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
         }}>
-          <Copy size={14} /> Copiar código
+          <Copy size={14} /> {t('checkin.copyCode')}
         </button>
       </div>
 
@@ -181,7 +183,7 @@ function HuespedView({ frame, fps }: { frame: number; fps: number }) {
         display: 'flex', alignItems: 'center', gap: 5,
         fontSize: 12, fontWeight: 600, color: colors.foreground,
       }}>
-        <Home size={13} /> Volver al inicio
+        <Home size={13} /> {t('checkin.backToHome')}
       </div>
     </div>
   );
@@ -256,6 +258,7 @@ const LegalItem: React.FC<LegalItemProps> = ({ frame, fps, enterFrame, doneFrame
 };
 
 function PropietariView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const headerP = spring(frame - 5,   fps, { damping: 18, stiffness: 185 });
   const badgeP  = spring(frame - 18,  fps, { damping: 20, stiffness: 180 });
   const bannerP = spring(frame - 110, fps, { damping: 18, stiffness: 175 });
@@ -288,13 +291,13 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
           </div>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: colors.foreground }}>Judit Masip</div>
-            <div style={{ fontSize: 10, color: colors.mutedFg }}>2 adultos · 1 niño · ref. 5770048427</div>
+            <div style={{ fontSize: 10, color: colors.mutedFg }}>2 {t('checkin.adults')} · 1 {t('checkin.child')} · ref. 5770048427</div>
           </div>
         </div>
         <div style={{ display: 'flex', gap: 6 }}>
           {[
-            { icon: <Calendar size={10} />, text: 'Entrada 7 abr.' },
-            { icon: <Calendar size={10} />, text: 'Salida 10 abr.' },
+            { icon: <Calendar size={10} />, text: t('checkin.checkInShort') },
+            { icon: <Calendar size={10} />, text: t('checkin.checkOutShort') },
             { icon: <Building2 size={10} />, text: 'Luminoso Dalí' },
           ].map(({ icon, text }) => (
             <div key={text} style={{
@@ -318,9 +321,9 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
       }}>
         <Shield size={13} color={colors.primary} />
         <span style={{ fontSize: 11, fontWeight: 700, color: colors.primary }}>
-          Registro legal automático
+          {t('checkin.legalRegistration')}
         </span>
-        <span style={{ fontSize: 10, color: colors.mutedFg }}>· check-in completado por el huésped</span>
+        <span style={{ fontSize: 10, color: colors.mutedFg }}>{t('checkin.checkinCompletedByGuest')}</span>
       </div>
 
       {/* Items legals */}
@@ -330,28 +333,28 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
           enterFrame={30} doneFrame={58}
           Icon={FileCheck}
           label="SES · Sistema de Estadística"
-          sublabel="Comunicado a la Generalitat de Catalunya"
+          sublabel={t('checkin.sesSubtitle')}
         />
         <LegalItem
           frame={frame} fps={fps}
           enterFrame={45} doneFrame={74}
           Icon={Shield}
           label="Mossos d'Esquadra"
-          sublabel="Parte de viajeros enviado · 2 huéspedes registrados"
+          sublabel={t('checkin.mossosSubtitle')}
         />
         <LegalItem
           frame={frame} fps={fps}
           enterFrame={60} doneFrame={90}
           Icon={FileCheck}
           label="NRUA · Registro Único de Alojamientos"
-          sublabel="Número: CAT-2026-004-0312"
+          sublabel={t('checkin.nruaSubtitle')}
         />
         <LegalItem
           frame={frame} fps={fps}
           enterFrame={75} doneFrame={104}
           Icon={Building2}
           label="Tasa turística"
-          sublabel="3 noches · 3 personas · 4,50€ calculados"
+          sublabel={t('checkin.taxSubtitle')}
         />
       </div>
 
@@ -369,10 +372,10 @@ function PropietariView({ frame, fps }: { frame: number; fps: number }) {
           <CheckCircle size={20} color={colors.green} style={{ flexShrink: 0 }} />
           <div>
             <div style={{ fontSize: 12, fontWeight: 700, color: colors.green }}>
-              Todo registrado automáticamente
+              {t('checkin.allRegistered')}
             </div>
             <div style={{ fontSize: 10, color: '#166534', marginTop: 2 }}>
-              No has tenido que hacer nada. Hostly lo ha gestionado todo.
+              {t('checkin.nothingToDo')}
             </div>
           </div>
         </div>
@@ -407,6 +410,7 @@ interface CheckinDemoProps {
 }
 
 const CheckinDemo: React.FC<CheckinDemoProps> = ({ loop = false, staticMode = false }) => {
+  const { t } = useTranslation('demos');
   const containerRef = useRef<HTMLDivElement>(null);
   const FPS = 30;
   const [view, setView] = useState<View>('propietari');
@@ -527,8 +531,8 @@ const CheckinDemo: React.FC<CheckinDemoProps> = ({ loop = false, staticMode = fa
         whiteSpace: 'nowrap',
         fontFamily,
       }}>
-        <TabIndicator active={view === 'propietari'} icon={<Shield size={11} />} label="Propietario" onClick={() => goTo('propietari')} />
-        <TabIndicator active={view === 'huesped'}    icon={<User size={11} />}   label="Huésped"     onClick={() => goTo('huesped')} />
+        <TabIndicator active={view === 'propietari'} icon={<Shield size={11} />} label={t('checkin.tabOwner')} onClick={() => goTo('propietari')} />
+        <TabIndicator active={view === 'huesped'}    icon={<User size={11} />}   label={t('checkin.tabGuest')}     onClick={() => goTo('huesped')} />
       </div>
 
 

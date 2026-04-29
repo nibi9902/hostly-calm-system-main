@@ -1,309 +1,1065 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://hostlylabs.com/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/guia</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/guia</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/guia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/guia"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/guia</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/guia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/guia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/blog</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/alternativas</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/funciones/check-in</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/funciones/mensajes</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/funciones/reservas</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/funciones/limpiezas</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/funciones/pagos</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/funciones/precios</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/comparativa/chekin</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/propietarios</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/gestores-pequenos</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/segunda-residencia</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/alternativas</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/hereus</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es/funcionalidades</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funciones/check-in</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/check-in"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/check-in"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/check-in"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funciones/check-in</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/check-in"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/check-in"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/check-in"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funciones/mensajes</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/mensajes"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/mensajes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/mensajes"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funciones/mensajes</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/mensajes"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/mensajes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/mensajes"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funciones/reservas</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/reservas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/reservas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/reservas"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funciones/reservas</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/reservas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/reservas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/reservas"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funciones/limpiezas</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/limpiezas"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funciones/limpiezas</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/limpiezas"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funciones/pagos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/pagos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/pagos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/pagos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funciones/pagos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/pagos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/pagos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/pagos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funciones/precios</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/precios"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/precios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/precios"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funciones/precios</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funciones/precios"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funciones/precios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funciones/precios"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/comparativa/chekin</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/comparativa/chekin"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/comparativa/chekin"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/comparativa/chekin"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/comparativa/chekin</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/comparativa/chekin"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/comparativa/chekin"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/comparativa/chekin"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/propietarios</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/propietarios"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/propietarios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/propietarios"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/propietarios</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/propietarios"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/propietarios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/propietarios"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/gestores-pequenos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/gestores-pequenos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/gestores-pequenos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/gestores-pequenos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/gestores-pequenos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/gestores-pequenos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/gestores-pequenos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/gestores-pequenos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/segunda-residencia</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/segunda-residencia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/segunda-residencia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/segunda-residencia"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas/icnea</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/segunda-residencia</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/segunda-residencia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/segunda-residencia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/segunda-residencia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/hereus</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/hereus"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/hereus"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/hereus"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/hereus</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/hereus"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/hereus"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/hereus"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/privacidad</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/privacidad"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/privacidad</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/privacidad"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/cookies</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/cookies"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/cookies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/cookies"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/cookies</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/cookies"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/cookies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/cookies"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/terminos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/terminos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/terminos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/terminos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/terminos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/terminos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/aviso-legal</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/aviso-legal"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/aviso-legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/aviso-legal"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/aviso-legal</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/aviso-legal"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/aviso-legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/aviso-legal"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/sobre-hostly</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/sobre-hostly"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/sobre-hostly"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/sobre-hostly"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/sobre-hostly</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/sobre-hostly"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/sobre-hostly"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/sobre-hostly"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/alternativas/icnea</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/icnea"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/icnea"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/icnea"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas/hostify</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/alternativas/icnea</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/icnea"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/icnea"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/icnea"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas/lodgify</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es/alternativas/hostify</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/hostify"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/hostify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/hostify"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas/smoobu</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/alternativas/hostify</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/hostify"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/hostify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/hostify"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas/hospitable</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es/alternativas/lodgify</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/lodgify"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/lodgify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/lodgify"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas/guesty</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/alternativas/lodgify</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/lodgify"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/lodgify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/lodgify"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/alternativas/avantio</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es/alternativas/smoobu</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/smoobu"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/smoobu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/smoobu"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/ia-whatsapp</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/alternativas/smoobu</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/smoobu"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/smoobu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/smoobu"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/alternativas/hospitable</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/hospitable"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/hospitable"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/hospitable"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/alternativas/hospitable</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/hospitable"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/hospitable"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/hospitable"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/alternativas/guesty</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/guesty"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/guesty"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/guesty"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/alternativas/guesty</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/guesty"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/guesty"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/guesty"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/alternativas/avantio</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/avantio"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/avantio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/avantio"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/alternativas/avantio</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/alternativas/avantio"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/alternativas/avantio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/alternativas/avantio"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funcionalidades/ia-whatsapp</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/ia-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/ia-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/ia-whatsapp"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/check-in-online</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/funcionalidades/ia-whatsapp</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/ia-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/ia-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/ia-whatsapp"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/channel-manager</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es/funcionalidades/check-in-online</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/check-in-online"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/check-in-online"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/check-in-online"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/gestion-de-limpiezas</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/funcionalidades/check-in-online</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/check-in-online"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/check-in-online"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/check-in-online"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/precios-dinamicos</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es/funcionalidades/channel-manager</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/channel-manager"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/channel-manager"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/channel-manager"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/mensajeria-programada</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/funcionalidades/channel-manager</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/channel-manager"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/channel-manager"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/channel-manager"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/multi-rol</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/es/funcionalidades/gestion-de-limpiezas</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/gestion-de-limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/gestion-de-limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/gestion-de-limpiezas"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/funcionalidades/automatizaciones-n8n</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://hostlylabs.com/ca/funcionalidades/gestion-de-limpiezas</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/gestion-de-limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/gestion-de-limpiezas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/gestion-de-limpiezas"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/5-horas-semana-recuperar-apartamento-turistico</loc>
+    <loc>https://hostlylabs.com/es/funcionalidades/precios-dinamicos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/precios-dinamicos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/precios-dinamicos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/precios-dinamicos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades/precios-dinamicos</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/precios-dinamicos"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/precios-dinamicos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/precios-dinamicos"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funcionalidades/mensajeria-programada</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/mensajeria-programada"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/mensajeria-programada"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/mensajeria-programada"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades/mensajeria-programada</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/mensajeria-programada"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/mensajeria-programada"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/mensajeria-programada"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funcionalidades/multi-rol</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/multi-rol"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/multi-rol"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/multi-rol"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades/multi-rol</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/multi-rol"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/multi-rol"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/multi-rol"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funcionalidades/automatizaciones-n8n</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/automatizaciones-n8n"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/automatizaciones-n8n"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/automatizaciones-n8n"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades/automatizaciones-n8n</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/automatizaciones-n8n"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/automatizaciones-n8n"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/automatizaciones-n8n"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funcionalidades/finanzas</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/finanzas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/finanzas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/finanzas"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades/finanzas</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/finanzas"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/finanzas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/finanzas"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funcionalidades/burocracia</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/burocracia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/burocracia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/burocracia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades/burocracia</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/burocracia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/burocracia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/burocracia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/funcionalidades/conecta-todo</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/conecta-todo"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/conecta-todo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/conecta-todo"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/funcionalidades/conecta-todo</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/funcionalidades/conecta-todo"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/funcionalidades/conecta-todo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/funcionalidades/conecta-todo"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/5-horas-semana-recuperar-apartamento-turistico</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/5-horas-semana-recuperar-apartamento-turistico"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/5-horas-semana-recuperar-apartamento-turistico"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/5-horas-semana-recuperar-apartamento-turistico"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/automatizar-alquiler-vacacional-con-ia</loc>
+    <loc>https://hostlylabs.com/ca/blog/5-horas-semana-recuperar-apartamento-turistico</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/5-horas-semana-recuperar-apartamento-turistico"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/5-horas-semana-recuperar-apartamento-turistico"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/5-horas-semana-recuperar-apartamento-turistico"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/channel-manager-alquiler-vacacional-guia</loc>
+    <loc>https://hostlylabs.com/es/blog/automatizar-alquiler-vacacional-con-ia</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/automatizar-alquiler-vacacional-con-ia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/automatizar-alquiler-vacacional-con-ia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/automatizar-alquiler-vacacional-con-ia"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/checkin-digital-comparativa-espana</loc>
+    <loc>https://hostlylabs.com/ca/blog/automatizar-alquiler-vacacional-con-ia</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/automatizar-alquiler-vacacional-con-ia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/automatizar-alquiler-vacacional-con-ia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/automatizar-alquiler-vacacional-con-ia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/channel-manager-alquiler-vacacional-guia</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/channel-manager-alquiler-vacacional-guia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/channel-manager-alquiler-vacacional-guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/channel-manager-alquiler-vacacional-guia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/channel-manager-alquiler-vacacional-guia</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/channel-manager-alquiler-vacacional-guia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/channel-manager-alquiler-vacacional-guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/channel-manager-alquiler-vacacional-guia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/checkin-digital-comparativa-espana</loc>
     <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/checkin-digital-comparativa-espana"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/checkin-digital-comparativa-espana"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/checkin-digital-comparativa-espana"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/coordinacion-limpiezas-excel-sistema</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/cuanto-cuesta-gestionar-piso-turistico</loc>
+    <loc>https://hostlylabs.com/ca/blog/checkin-digital-comparativa-espana</loc>
     <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/checkin-digital-comparativa-espana"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/checkin-digital-comparativa-espana"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/checkin-digital-comparativa-espana"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/gestor-pequeno-5-apps-una-app</loc>
+    <loc>https://hostlylabs.com/es/blog/coordinacion-limpiezas-excel-sistema</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/coordinacion-limpiezas-excel-sistema"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/coordinacion-limpiezas-excel-sistema"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/coordinacion-limpiezas-excel-sistema"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/coordinacion-limpiezas-excel-sistema</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/coordinacion-limpiezas-excel-sistema"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/coordinacion-limpiezas-excel-sistema"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/coordinacion-limpiezas-excel-sistema"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/cuanto-cuesta-gestionar-piso-turistico</loc>
     <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/cuanto-cuesta-gestionar-piso-turistico"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/cuanto-cuesta-gestionar-piso-turistico"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/cuanto-cuesta-gestionar-piso-turistico"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/hostify-vs-lodgify-vs-smoobu-comparativa</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/huesped-no-responde-checkin-online</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/pasar-3-a-10-apartamentos-sin-colapsar</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/pms-apartamentos-turisticos-mejores-2026</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/precios-dinamicos-airbnb-booking</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/registro-viajeros-mossos-esquadra-cataluna</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/responder-mensajes-airbnb-automaticamente</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/sanciones-por-no-cumplir-registro-viajeros</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/ses-hospedajes-guia-completa-2026</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/ses-hospedajes-un-solo-apartamento</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hostlylabs.com/blog/ses-nrua-taxa-turistica-guia</loc>
+    <loc>https://hostlylabs.com/ca/blog/cuanto-cuesta-gestionar-piso-turistico</loc>
     <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/cuanto-cuesta-gestionar-piso-turistico"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/cuanto-cuesta-gestionar-piso-turistico"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/cuanto-cuesta-gestionar-piso-turistico"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/stack-completo-propietario-airbnb</loc>
+    <loc>https://hostlylabs.com/es/blog/gestor-pequeno-5-apps-una-app</loc>
     <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/gestor-pequeno-5-apps-una-app"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/gestor-pequeno-5-apps-una-app"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/gestor-pequeno-5-apps-una-app"/>
   </url>
   <url>
-    <loc>https://hostlylabs.com/blog/whatsapp-business-alquiler-vacacional</loc>
+    <loc>https://hostlylabs.com/ca/blog/gestor-pequeno-5-apps-una-app</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/gestor-pequeno-5-apps-una-app"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/gestor-pequeno-5-apps-una-app"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/gestor-pequeno-5-apps-una-app"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/hostify-vs-lodgify-vs-smoobu-comparativa</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/hostify-vs-lodgify-vs-smoobu-comparativa"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/hostify-vs-lodgify-vs-smoobu-comparativa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/hostify-vs-lodgify-vs-smoobu-comparativa"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/hostify-vs-lodgify-vs-smoobu-comparativa</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/hostify-vs-lodgify-vs-smoobu-comparativa"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/hostify-vs-lodgify-vs-smoobu-comparativa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/hostify-vs-lodgify-vs-smoobu-comparativa"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/huesped-no-responde-checkin-online</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/huesped-no-responde-checkin-online"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/huesped-no-responde-checkin-online"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/huesped-no-responde-checkin-online"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/huesped-no-responde-checkin-online</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/huesped-no-responde-checkin-online"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/huesped-no-responde-checkin-online"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/huesped-no-responde-checkin-online"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/pasar-3-a-10-apartamentos-sin-colapsar</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/pasar-3-a-10-apartamentos-sin-colapsar"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/pasar-3-a-10-apartamentos-sin-colapsar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/pasar-3-a-10-apartamentos-sin-colapsar"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/pasar-3-a-10-apartamentos-sin-colapsar</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/pasar-3-a-10-apartamentos-sin-colapsar"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/pasar-3-a-10-apartamentos-sin-colapsar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/pasar-3-a-10-apartamentos-sin-colapsar"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/pms-apartamentos-turisticos-mejores-2026</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/pms-apartamentos-turisticos-mejores-2026"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/pms-apartamentos-turisticos-mejores-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/pms-apartamentos-turisticos-mejores-2026"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/pms-apartamentos-turisticos-mejores-2026</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/pms-apartamentos-turisticos-mejores-2026"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/pms-apartamentos-turisticos-mejores-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/pms-apartamentos-turisticos-mejores-2026"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/precios-dinamicos-airbnb-booking</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/precios-dinamicos-airbnb-booking"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/precios-dinamicos-airbnb-booking"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/precios-dinamicos-airbnb-booking"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/precios-dinamicos-airbnb-booking</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/precios-dinamicos-airbnb-booking"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/precios-dinamicos-airbnb-booking"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/precios-dinamicos-airbnb-booking"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/registro-viajeros-mossos-esquadra-cataluna</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/registro-viajeros-mossos-esquadra-cataluna"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/registro-viajeros-mossos-esquadra-cataluna"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/registro-viajeros-mossos-esquadra-cataluna"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/registro-viajeros-mossos-esquadra-cataluna</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/registro-viajeros-mossos-esquadra-cataluna"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/registro-viajeros-mossos-esquadra-cataluna"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/registro-viajeros-mossos-esquadra-cataluna"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/responder-mensajes-airbnb-automaticamente</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/responder-mensajes-airbnb-automaticamente"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/responder-mensajes-airbnb-automaticamente"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/responder-mensajes-airbnb-automaticamente"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/responder-mensajes-airbnb-automaticamente</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/responder-mensajes-airbnb-automaticamente"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/responder-mensajes-airbnb-automaticamente"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/responder-mensajes-airbnb-automaticamente"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/sanciones-por-no-cumplir-registro-viajeros</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/sanciones-por-no-cumplir-registro-viajeros"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/sanciones-por-no-cumplir-registro-viajeros"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/sanciones-por-no-cumplir-registro-viajeros"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/sanciones-por-no-cumplir-registro-viajeros</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/sanciones-por-no-cumplir-registro-viajeros"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/sanciones-por-no-cumplir-registro-viajeros"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/sanciones-por-no-cumplir-registro-viajeros"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/ses-hospedajes-guia-completa-2026</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/ses-hospedajes-guia-completa-2026"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/ses-hospedajes-guia-completa-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/ses-hospedajes-guia-completa-2026"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/ses-hospedajes-guia-completa-2026</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/ses-hospedajes-guia-completa-2026"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/ses-hospedajes-guia-completa-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/ses-hospedajes-guia-completa-2026"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/ses-hospedajes-un-solo-apartamento</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/ses-hospedajes-un-solo-apartamento"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/ses-hospedajes-un-solo-apartamento"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/ses-hospedajes-un-solo-apartamento"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/ses-hospedajes-un-solo-apartamento</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/ses-hospedajes-un-solo-apartamento"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/ses-hospedajes-un-solo-apartamento"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/ses-hospedajes-un-solo-apartamento"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/ses-nrua-taxa-turistica-guia</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/ses-nrua-taxa-turistica-guia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/ses-nrua-taxa-turistica-guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/ses-nrua-taxa-turistica-guia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/ses-nrua-taxa-turistica-guia</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/ses-nrua-taxa-turistica-guia"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/ses-nrua-taxa-turistica-guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/ses-nrua-taxa-turistica-guia"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/stack-completo-propietario-airbnb</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/stack-completo-propietario-airbnb"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/stack-completo-propietario-airbnb"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/stack-completo-propietario-airbnb"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/stack-completo-propietario-airbnb</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/stack-completo-propietario-airbnb"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/stack-completo-propietario-airbnb"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/stack-completo-propietario-airbnb"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/es/blog/whatsapp-business-alquiler-vacacional</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/whatsapp-business-alquiler-vacacional"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/whatsapp-business-alquiler-vacacional"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/whatsapp-business-alquiler-vacacional"/>
+  </url>
+  <url>
+    <loc>https://hostlylabs.com/ca/blog/whatsapp-business-alquiler-vacacional</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://hostlylabs.com/es/blog/whatsapp-business-alquiler-vacacional"/>
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://hostlylabs.com/ca/blog/whatsapp-business-alquiler-vacacional"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hostlylabs.com/es/blog/whatsapp-business-alquiler-vacacional"/>
   </url>
 </urlset>

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight, ChevronDown, Sparkles, Zap } from 'lucide-react';
 import { usePlaybackFrame, spring } from '@/hooks/usePlaybackFrame';
+import { useTranslation } from 'react-i18next';
 
 const colors = {
   bg: '#F9FAFB',
@@ -46,9 +47,6 @@ function stripeTheme(p: 'airbnb'|'booking'|'hostly') {
 }
 
 /* ─── Stripe geometry helpers ────────────────────────────────── */
-// With gap=GAP and 7 cols: cellW = (100% - 6*GAP) / 7
-// Stripe left  = col  * (cellW + GAP) + 3px inner padding
-// Stripe width = span * cellW + (span-1)*GAP - 6px total padding
 const stripeLeft  = (col:  number) => `calc(${col}  * (100% - ${6*GAP}px) / 7 + ${col  * GAP + 3}px)`;
 const stripeWidth = (span: number) => `calc(${span} * (100% - ${6*GAP}px) / 7 + ${(span-1)*GAP - 6}px)`;
 
@@ -62,6 +60,7 @@ const stripeWidth = (span: number) => `calc(${span} * (100% - ${6*GAP}px) / 7 + 
     80  → glow fades out
 ─────────────────────────────────────────────────────────────── */
 function CalendarView({ frame, fps }: { frame: number; fps: number }) {
+  const { t } = useTranslation('demos');
   const calP   = spring(frame - 0,  fps, { damping: 20, stiffness: 160 });
   const badgeP = spring(frame - 14, fps, { damping: 16, stiffness: 210 });
   const newP   = spring(frame - 30, fps, { damping: 17, stiffness: 180 });
@@ -79,14 +78,14 @@ function CalendarView({ frame, fps }: { frame: number; fps: number }) {
       <div style={{ opacity: calP, transform: `translateY(${(1-calP)*6}px)` }}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:10 }}>
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-            <span style={{ fontSize:17, fontWeight:700, color:colors.foreground, letterSpacing:-0.3 }}>Calendario</span>
+            <span style={{ fontSize:17, fontWeight:700, color:colors.foreground, letterSpacing:-0.3 }}>{t('channelManager.calendar')}</span>
             <div style={{
               display:'flex', alignItems:'center', gap:4,
               padding:'2px 8px', borderRadius:999,
               background:colors.primarySoft, color:colors.primary,
               fontSize:9, fontWeight:700, letterSpacing:0.3,
             }}>
-              <Sparkles size={9} /> Automático
+              <Sparkles size={9} /> {t('channelManager.automaticBadge')}
             </div>
           </div>
 
@@ -102,7 +101,7 @@ function CalendarView({ frame, fps }: { frame: number; fps: number }) {
             whiteSpace:'nowrap',
           }}>
             <Zap size={9} fill="#fff" color="#fff" />
-            Nueva reserva · Booking.com
+            {t('channelManager.newBooking')}
           </div>
         </div>
 
@@ -179,12 +178,12 @@ function CalendarView({ frame, fps }: { frame: number; fps: number }) {
 
               {/* Existing stripes (static, already there) */}
               {existingHere.map((s, i) => (
-                <StripeEl key={i} stripe={s} progress={1} glow={0} cellH={CELL_H} />
+                <StripeEl key={i} stripe={s} progress={1} glow={0} cellH={CELL_H} badgeNew={t('channelManager.badgeNew')} />
               ))}
 
               {/* New booking stripe */}
               {newHere && newP > 0 && (
-                <StripeEl stripe={NEW} progress={newP} glow={glow} cellH={CELL_H} isNew />
+                <StripeEl stripe={NEW} progress={newP} glow={glow} cellH={CELL_H} isNew badgeNew={t('channelManager.badgeNew')} />
               )}
             </div>
           );
@@ -195,8 +194,8 @@ function CalendarView({ frame, fps }: { frame: number; fps: number }) {
 }
 
 /* ─── Stripe component ───────────────────────────────────────── */
-const StripeEl: React.FC<{ stripe: Stripe; progress: number; glow: number; cellH: number; isNew?: boolean }> = ({
-  stripe, progress, glow, cellH, isNew,
+const StripeEl: React.FC<{ stripe: Stripe; progress: number; glow: number; cellH: number; isNew?: boolean; badgeNew: string }> = ({
+  stripe, progress, glow, cellH, isNew, badgeNew,
 }) => {
   const theme = stripeTheme(stripe.platform);
   const slideX = isNew ? (1 - progress) * -50 : 0;
@@ -248,7 +247,7 @@ const StripeEl: React.FC<{ stripe: Stripe; progress: number; glow: number; cellH
             fontSize:7, fontWeight:800, color:'#fff', letterSpacing:0.4,
             background: colors.booking,
             padding:'2px 6px', borderRadius:999,
-          }}>NOU</div>
+          }}>{badgeNew}</div>
         )}
       </div>
     </div>

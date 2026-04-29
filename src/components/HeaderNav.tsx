@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X, ArrowRight, LogIn } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { NavConfig } from '@/lib/data/nav';
 import { cn } from '@/lib/utils';
 import { LangLink } from '@/i18n/LangLink';
@@ -10,6 +11,7 @@ type MegaState = 'closed' | 'opening' | 'open' | 'closing';
 type Props = { nav: NavConfig; onOpenQuiz?: () => void };
 
 export function HeaderNav({ nav, onOpenQuiz }: Props) {
+  const { t } = useTranslation('common');
   const [megaState, setMegaState] = useState<MegaState>('closed');
   const [megaLabel, setMegaLabel] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -199,7 +201,7 @@ export function HeaderNav({ nav, onOpenQuiz }: Props) {
 
       {/* Mobile burger */}
       <button type="button" onClick={() => setMobileOpen(true)}
-        className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-foreground hover:bg-muted transition-colors" aria-label="Abrir menú">
+        className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-foreground hover:bg-muted transition-colors" aria-label={t('nav.aria_open_menu')}>
         <Menu className="w-5 h-5" />
       </button>
 
@@ -209,7 +211,7 @@ export function HeaderNav({ nav, onOpenQuiz }: Props) {
           <div className="flex items-center justify-between h-20 px-6 border-b border-slate-100">
             <LangLink to="/" onClick={() => setMobileOpen(false)} className="font-semibold text-lg text-foreground">Hostly</LangLink>
             <button type="button" onClick={() => setMobileOpen(false)}
-              className="inline-flex items-center justify-center w-10 h-10 rounded-md text-foreground hover:bg-muted transition-colors" aria-label="Cerrar menú">
+              className="inline-flex items-center justify-center w-10 h-10 rounded-md text-foreground hover:bg-muted transition-colors" aria-label={t('nav.aria_close_menu')}>
               <X className="w-5 h-5" />
             </button>
           </div>

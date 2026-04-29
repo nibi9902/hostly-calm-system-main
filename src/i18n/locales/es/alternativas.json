@@ -1,1 +1,39 @@
-{}
+{
+  "index": {
+    "eyebrow": "Comparativas",
+    "h1": "Hostly vs los demás PMS",
+    "subtitle": "Análisis honestos de los principales PMS del mercado para el perfil de propietario pequeño y gestor ibérico.",
+    "benchmark": {
+      "eyebrow": "Comparativa completa",
+      "h2": "Hostly es el único con las 10 casillas. ✓",
+      "colFeature": "Funcionalidad",
+      "footerLabel": "Total ✓",
+      "legend": "✓ completo  ·  ⚠ parcial o via tercers  ·  ✗ no disponible. Dades verificades abril 2026."
+    },
+    "cardTitle": "Hostly vs {{name}}"
+  },
+  "page": {
+    "heroEyebrow": "Comparativa",
+    "advantagesEyebrow": "Por qué Hostly sobre {{name}}",
+    "comparisonEyebrow": "Comparativa directa",
+    "colFeature": "Funcionalidad",
+    "colHostly": "Hostly",
+    "verifiedNote": "Datos verificados a abril 2026.",
+    "faqsEyebrow": "Preguntas frecuentes",
+    "ctaH2": "Prueba Hostly gratis 14 días",
+    "ctaSubtitle": "Sin tarjeta. Sin permanencia. Check-in y compliance gratis para siempre.",
+    "ctaButton": "Empezar gratis 14 días"
+  },
+  "features": {
+    "iaWhatsapp": "IA en WhatsApp nativa",
+    "checkinSes": "Check-in y SES gratis",
+    "complianceSes": "Compliance SES/NRUA nativo",
+    "preciosDinamicos": "Precios dinámicos incluidos",
+    "channelManager": "Channel manager",
+    "limpiezas": "Coordinación de limpiezas",
+    "soporteEs": "Soporte en español y catalán",
+    "precio1apt": "Precio desde 1 apartamento",
+    "selfServe": "Self-serve sin demo obligatoria",
+    "precioTransparente": "Precio público transparente"
+  }
+}

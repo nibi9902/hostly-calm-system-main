@@ -8,6 +8,7 @@ const __dirname = dirname(__filename);
 const BASE = 'https://hostlylabs.com';
 const TODAY = new Date().toISOString().split('T')[0];
 const ROOT = join(__dirname, '..');
+const LANGS = ['es', 'ca'] as const;
 
 interface UrlEntry {
   loc: string;
@@ -32,7 +33,7 @@ function getPublishedAt(slug: string): string {
 // Slugs d'alternativas (hardcoded — mateixos que a competitors.ts)
 const alternativasSlugs = ['icnea', 'hostify', 'lodgify', 'smoobu', 'hospitable', 'guesty', 'avantio'];
 
-// Slugs de funcionalidades (hardcoded — mateixos que a features.ts, 8 pàgines SEO principals)
+// Slugs de funcionalidades (hardcoded — mateixos que a features.ts)
 const funcionalidadesSlugs = [
   'ia-whatsapp',
   'check-in-online',
@@ -42,9 +43,13 @@ const funcionalidadesSlugs = [
   'mensajeria-programada',
   'multi-rol',
   'automatizaciones-n8n',
+  'finanzas',
+  'burocracia',
+  'conecta-todo',
 ];
 
-const urls: UrlEntry[] = [
+// Paths sense prefix d'idioma — el generador els emet per cada idioma amb hreflang
+const basePaths: UrlEntry[] = [
   { loc: '/', changefreq: 'weekly', priority: 1.0 },
 
   { loc: '/guia', changefreq: 'monthly', priority: 0.95 },
@@ -66,6 +71,13 @@ const urls: UrlEntry[] = [
   { loc: '/segunda-residencia', changefreq: 'monthly', priority: 0.8 },
   { loc: '/hereus', changefreq: 'monthly', priority: 0.8 },
 
+  // Legals
+  { loc: '/privacidad', changefreq: 'yearly', priority: 0.3 },
+  { loc: '/cookies', changefreq: 'yearly', priority: 0.3 },
+  { loc: '/terminos', changefreq: 'yearly', priority: 0.3 },
+  { loc: '/aviso-legal', changefreq: 'yearly', priority: 0.3 },
+  { loc: '/sobre-hostly', changefreq: 'monthly', priority: 0.6 },
+
   ...alternativasSlugs.map((slug) => ({
     loc: `/alternativas/${slug}`,
     changefreq: 'monthly' as const,
@@ -86,24 +98,36 @@ const urls: UrlEntry[] = [
   })),
 ];
 
+// XML serializer amb hreflang per a cada path en cada idioma
+const xmlEntries = basePaths.flatMap((u) =>
+  LANGS.map((lang) => {
+    const localizedPath = u.loc === '/' ? `/${lang}` : `/${lang}${u.loc}`;
+    const alternates = LANGS.map(
+      (alt) => `    <xhtml:link rel="alternate" hreflang="${alt === 'ca' ? 'ca-ES' : 'es-ES'}" href="${BASE}${alt === 'es' && u.loc === '/' ? '/es' : `/${alt}${u.loc === '/' ? '' : u.loc}`}"/>`,
+    ).join('\n');
+    const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE}/es${u.loc === '/' ? '' : u.loc}"/>`;
+    return (
+      `  <url>\n` +
+      `    <loc>${BASE}${localizedPath}</loc>\n` +
+      `    <lastmod>${u.lastmod ?? TODAY}</lastmod>\n` +
+      `    <changefreq>${u.changefreq}</changefreq>\n` +
+      `    <priority>${u.priority}</priority>\n` +
+      `${alternates}\n` +
+      `${xDefault}\n` +
+      `  </url>`
+    );
+  }),
+);
+
 const xml =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  urls
-    .map(
-      (u) =>
-        `  <url>\n` +
-        `    <loc>${BASE}${u.loc}</loc>\n` +
-        `    <lastmod>${u.lastmod ?? TODAY}</lastmod>\n` +
-        `    <changefreq>${u.changefreq}</changefreq>\n` +
-        `    <priority>${u.priority}</priority>\n` +
-        `  </url>`,
-    )
-    .join('\n') +
+  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+  xmlEntries.join('\n') +
   `\n</urlset>\n`;
 
 const output = join(ROOT, 'public', 'sitemap.xml');
 writeFileSync(output, xml);
-console.log(`✓ Sitemap generat amb ${urls.length} URLs → ${output}`);
+console.log(`✓ Sitemap generat amb ${xmlEntries.length} URLs (${basePaths.length} paths × ${LANGS.length} idiomes) → ${output}`);
 console.log(`   · ${blogSlugs.length} articles de blog`);
 console.log(`   · ${alternativasSlugs.length} alternativas`);
+console.log(`   · ${funcionalidadesSlugs.length} funcionalidades`);
