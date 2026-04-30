@@ -3,6 +3,8 @@ import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslation } from 'react-i18next';
+import { ArrowRight } from 'lucide-react';
+import { LangLink } from '@/i18n/LangLink';
 
 /* Demos React lazy-loaded — només es carreguen quan la card és a viewport */
 const CheckinDemo = lazy(() => import('@/pages/funcionalidades/demos/CheckinDemo'));
@@ -103,6 +105,8 @@ interface CardData {
   demoComponent?: React.LazyExoticComponent<React.FC<{ loop?: boolean; staticMode?: boolean }>>;
   /** URL mostrada a la chrome del mockup de browser */
   mockupUrl: string;
+  /** Slug de la pàgina de funcionalitat (/funcionalidades/{slug}). Si null, no es mostra CTA. */
+  featureSlug: string | null;
   /** Variant: 'app' (browser mockup) | 'photo' (retrat humà amb chat overlay) */
   variant?: 'app' | 'photo';
   /** Per variant 'photo': cicle de persones (cada una amb foto + nom + rol + missatge propi) */
@@ -132,6 +136,7 @@ const cardData: CardData[] = [
     screen: null,
     demoComponent: CheckinDemo,
     mockupUrl: 'app.hostlylabs.com/check-in',
+    featureSlug: 'check-in-online',
   },
   // 2. Limpieza — sense xifra (estalvi qualitatiu)
   {
@@ -149,6 +154,7 @@ const cardData: CardData[] = [
     screen: null,
     demoComponent: LimpiezasDemo,
     mockupUrl: 'app.hostlylabs.com/limpiezas',
+    featureSlug: 'gestion-de-limpiezas',
   },
   // 3. Reservas (Smoobu / Hostify / ...)
   {
@@ -166,6 +172,7 @@ const cardData: CardData[] = [
     screen: null,
     demoComponent: ChannelManagerDemo,
     mockupUrl: 'app.hostlylabs.com/calendario',
+    featureSlug: 'channel-manager',
   },
   // 4. Precios dinámicos (PriceLabs / Beyond / ...)
   {
@@ -183,6 +190,7 @@ const cardData: CardData[] = [
     screen: null,
     demoComponent: PreciosDinamicosDemo,
     mockupUrl: 'app.hostlylabs.com/precios',
+    featureSlug: 'precios-dinamicos',
   },
   // 5. Mensajes (ChatGPT / Claude / Copilot)
   {
@@ -200,6 +208,7 @@ const cardData: CardData[] = [
     screen: null,
     demoComponent: IAWhatsAppDemo,
     mockupUrl: 'app.hostlylabs.com/mensajes',
+    featureSlug: 'ia-whatsapp',
   },
   // 6. Pagos — "Nunca más un Excel" enlloc de "gestoria"
   {
@@ -217,6 +226,7 @@ const cardData: CardData[] = [
     screen: null,
     demoComponent: FinanzasDemo,
     mockupUrl: 'app.hostlylabs.com/finanzas',
+    featureSlug: 'finanzas',
   },
   // 7. Acompanyament humà — trenca el patró "reemplaza" amb paleta coral i foto real
   {
@@ -238,6 +248,7 @@ const cardData: CardData[] = [
     imageSrc: null,
     screen: null,
     mockupUrl: '',
+    featureSlug: null,
     variant: 'photo',
     photoBubble: {
       // Placeholders lifestyle · substituir per fotos reals de l'equip Hostly
@@ -364,8 +375,11 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
     const container = containerRef.current;
     if (!cardEl || !container) return;
 
+    const isMobile = typeof window !== 'undefined'
+      && window.matchMedia('(max-width: 767px)').matches;
+
     const targetScale = 1 - (totalCards - index) * 0.04;
-    gsap.set(cardEl, { scale: 1, transformOrigin: 'center top' });
+    gsap.set(cardEl, { scale: 1, transformOrigin: 'center top', autoAlpha: 1 });
 
     const trigger = ScrollTrigger.create({
       trigger: container,
@@ -373,9 +387,17 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
       end: 'bottom center',
       scrub: 1,
       onUpdate: (self) => {
+        // A mòbil: card visible normal mentre el seu scrub està en curs.
+        // Quan acaba (progress > 0.85) fa fade-out → no queda apilada darrere de les següents.
+        // A desktop: comportament original (stack visible).
+        const fadeStart = 0.85;
+        const alpha = isMobile && self.progress > fadeStart
+          ? Math.max(0, 1 - (self.progress - fadeStart) / (1 - fadeStart))
+          : 1;
         gsap.set(cardEl, {
           scale: Math.max(gsap.utils.interpolate(1, targetScale, self.progress), targetScale),
           transformOrigin: 'center top',
+          autoAlpha: alpha,
         });
       },
     });
@@ -432,19 +454,19 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
             <h3 className="glass-card-title" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.1rem)', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-0.03em', color: card.textColor, marginBottom: '1rem' }}>
               {card.title}
             </h3>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: card.mutedColor, maxWidth: '380px', marginBottom: '1.5rem' }}>
+            <p className="glass-card-desc" style={{ fontSize: '0.95rem', lineHeight: 1.65, color: card.mutedColor, maxWidth: '380px', marginBottom: '1.5rem' }}>
               {card.description}
             </p>
 
             {/* Replaces — frase caligràfica amb personalitat per card */}
             {card.replaces && (
-              <div style={{
+              <div className="glass-card-replaces" style={{
                 paddingTop: '1.25rem',
                 borderTop: '1px solid rgba(15,23,42,0.08)',
                 maxWidth: '380px',
               }}>
                 <p
-                  className="font-accent"
+                  className="font-accent glass-card-replaces-phrase"
                   style={{
                     fontSize: 'clamp(1.35rem, 2.1vw, 1.85rem)',
                     color: solid,
@@ -538,6 +560,42 @@ const CardItem: React.FC<CardItemProps> = ({ card, index, totalCards }) => {
                   })()}
                 </p>
               </div>
+            )}
+
+            {/* CTA — enllaç a la pàgina de funcionalitat (només si la card en té) */}
+            {card.featureSlug && (
+              <LangLink
+                to={`/funcionalidades/${card.featureSlug}`}
+                className="glass-card-cta"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  marginTop: '1.25rem',
+                  padding: '0.625rem 1.1rem',
+                  borderRadius: '999px',
+                  background: solid,
+                  color: '#fff',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  letterSpacing: '-0.005em',
+                  width: 'fit-content',
+                  textDecoration: 'none',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  boxShadow: `0 6px 20px -8px ${card.color.replace('0.9', '0.5')}`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  e.currentTarget.style.boxShadow = `0 10px 24px -8px ${card.color.replace('0.9', '0.6')}`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = `0 6px 20px -8px ${card.color.replace('0.9', '0.5')}`;
+                }}
+              >
+                {t('glass_cards.see_more')}
+                <ArrowRight style={{ width: 14, height: 14 }} />
+              </LangLink>
             )}
           </div>
 

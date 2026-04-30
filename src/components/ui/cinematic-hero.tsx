@@ -540,12 +540,13 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         .to(".text-days",     { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0")
         .to(".hero-subtitle", { duration: 1.0, autoAlpha: 1, y: 0, ease: "expo.out" }, "-=0.4");
 
-      // Scroll-driven
+      // Scroll-driven — a mòbil reduïm el pin (de 12000 → 6500) perquè
+      // el flux cap a la següent secció no demani scroll excessiu
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=12000",
+          end: isMobile ? "+=6500" : "+=12000",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -675,7 +676,7 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
       <div className="cta-wrapper absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6 md:px-12 lg:px-20 gsap-reveal pointer-events-auto will-change-transform">
 
         {/* Partner badges */}
-        <div className="mb-12 md:mb-14 w-full max-w-3xl">
+        <div className="hero-cta-partners mb-12 md:mb-14 w-full max-w-3xl">
           <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400 mb-5">
             {t("hero.partner_label")}
           </p>
@@ -692,24 +693,24 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
           </div>
         </div>
 
-        <p className="text-xs font-bold tracking-[0.18em] uppercase text-blue-600 mb-5">
+        <p className="hero-cta-tagline text-xs font-bold tracking-[0.18em] uppercase text-blue-600 mb-5">
           {t("hero.cta_tagline")}
         </p>
-        <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold mb-5 tracking-tight text-card-dark leading-[1.15]">
+        <h2 className="hero-cta-h2 text-5xl md:text-7xl lg:text-[5.5rem] font-bold mb-5 tracking-tight text-card-dark leading-[1.15]">
           {t("hero.cta_h2_start")} <span className="font-accent text-[1.6em] text-[#1a3a8f] pr-1">{t("hero.cta_h2_accent")}</span> {t("hero.cta_h2_end")}
         </h2>
-        <p className="text-slate-500 text-lg md:text-2xl mb-12 md:mb-14 max-w-2xl mx-auto font-light leading-relaxed">
+        <p className="hero-cta-sub text-slate-500 text-lg md:text-2xl mb-12 md:mb-14 max-w-2xl mx-auto font-light leading-relaxed">
           {t("hero.cta_sub")}
         </p>
 
         {/* Stats pills — 3 horitzontals amb més gap */}
-        <div className="flex items-center justify-center gap-4 md:gap-5 mb-12 w-full max-w-4xl flex-wrap">
+        <div className="hero-cta-stats flex items-center justify-center gap-4 md:gap-5 mb-12 w-full max-w-4xl flex-wrap">
           {[
             { icon: '💬', num: '7.983', labelKey: 'hero.stat_messages' },
             { icon: '🛡️', num: '4.271', labelKey: 'hero.stat_police' },
             { icon: '🧹', num: '3.548', labelKey: 'hero.stat_cleanings' },
           ].map((s) => (
-            <div key={s.labelKey} className="flex items-center justify-center gap-2.5 px-7 py-3 rounded-full border border-slate-200 bg-white text-sm whitespace-nowrap">
+            <div key={s.labelKey} className="hero-cta-stat-pill flex items-center justify-center gap-2.5 px-7 py-3 rounded-full border border-slate-200 bg-white text-sm whitespace-nowrap">
               <span className="text-base">{s.icon}</span>
               <span className="font-bold text-slate-900">{s.num}</span>
               <span className="text-slate-500">{t(s.labelKey)}</span>
@@ -717,16 +718,16 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="hero-cta-buttons flex flex-col sm:flex-row gap-4">
           <button
             onClick={onOpenQuiz}
-            className="btn-hostly-primary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-bold"
+            className="hero-cta-btn btn-hostly-primary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-bold"
           >
             {t("hero.btn_start")}
           </button>
           <LangLink
             to="/demo"
-            className="btn-hostly-secondary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-semibold"
+            className="hero-cta-btn btn-hostly-secondary-light flex items-center justify-center gap-3 px-12 py-5 rounded-[1.25rem] text-base md:text-lg font-semibold"
           >
             {t("hero.btn_how")}
           </LangLink>
@@ -752,7 +753,9 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
 
             {/* Center: iPhone mockup */}
             <div className="mockup-scroll-wrapper order-2 lg:order-2 relative w-full h-[380px] lg:h-[600px] flex items-center justify-center z-10" style={{ perspective: "1000px" }}>
-              <div className="relative w-full h-full flex items-center justify-center transform scale-[0.65] md:scale-85 lg:scale-100">
+              {/* iPhone — escalat segons viewport. Bubbles fora d'aquest wrapper
+                  per no patir la reducció de scale a mòbil/tablet */}
+              <div className="relative flex items-center justify-center transform scale-[0.65] md:scale-85 lg:scale-100">
 
                 {/* iPhone bezel */}
                 <div
@@ -777,76 +780,75 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
                     <PhoneScreen />
                   </div>
                 </div>
+              </div>
 
-                {/* Zigzag vertical — cada bombolla té la seva pròpia franja d'alçada,
-                    alternant esquerra-dreta. Ordre d'aparició flueix top→bottom. */}
+              {/* Zigzag vertical — bombolles flotants. SIBLINGS de l'iPhone wrapper
+                  (no afectades pel scale del telèfon a mòbil/tablet) */}
 
-                {/* Bubble 0 — TOP-LEFT (1a, ~5%) */}
-                <div className="bubble-0 absolute top-[3%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[170px] lg:min-w-[215px]">
-                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 flex-shrink-0">
-                    <span className="text-base lg:text-lg" aria-hidden="true">🗓️</span>
-                  </div>
-                  <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[0]?.title}</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[0]?.detail}</p>
-                  </div>
+              {/* Bubble 0 — TOP-LEFT (1a, ~5%) */}
+              <div className="bubble-0 absolute top-[3%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[170px] lg:min-w-[215px]">
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 flex-shrink-0">
+                  <span className="text-base lg:text-lg" aria-hidden="true">🗓️</span>
                 </div>
-
-                {/* Bubble 1 — UPPER-RIGHT (2a, ~22%) */}
-                <div className="bubble-1 absolute top-[22%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
-                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
-                    <span className="text-base lg:text-lg" aria-hidden="true">🛡️</span>
-                  </div>
-                  <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[1]?.title}</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[1]?.detail}</p>
-                  </div>
+                <div>
+                  <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[0]?.title}</p>
+                  <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[0]?.detail}</p>
                 </div>
+              </div>
 
-                {/* Bubble 2 — MID-LEFT (3a, ~41%) */}
-                <div className="bubble-2 absolute top-[41%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[165px] lg:min-w-[215px]">
-                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-violet-500/20 flex items-center justify-center border border-violet-400/30 flex-shrink-0">
-                    <span className="text-base lg:text-lg" aria-hidden="true">🧹</span>
-                  </div>
-                  <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[2]?.title}</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[2]?.detail}</p>
-                  </div>
+              {/* Bubble 1 — UPPER-RIGHT (2a, ~22%) */}
+              <div className="bubble-1 absolute top-[22%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
+                  <span className="text-base lg:text-lg" aria-hidden="true">🛡️</span>
                 </div>
-
-                {/* Bubble 3 — LOWER-MID-RIGHT (4a, ~60%) */}
-                <div className="bubble-3 absolute top-[60%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
-                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
-                    <span className="text-base lg:text-lg" aria-hidden="true">🤖</span>
-                  </div>
-                  <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[3]?.title}</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[3]?.detail}</p>
-                  </div>
+                <div>
+                  <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[1]?.title}</p>
+                  <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[1]?.detail}</p>
                 </div>
+              </div>
 
-                {/* Bubble 4 — LOWER-LEFT (5a, ~79%) */}
-                <div className="bubble-4 absolute top-[79%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
-                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-orange-500/20 flex items-center justify-center border border-orange-400/30 flex-shrink-0">
-                    <span className="text-base lg:text-lg" aria-hidden="true">📈</span>
-                  </div>
-                  <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[4]?.title}</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[4]?.detail}</p>
-                  </div>
+              {/* Bubble 2 — MID-LEFT (3a, ~41%) */}
+              <div className="bubble-2 absolute top-[41%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[165px] lg:min-w-[215px]">
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-violet-500/20 flex items-center justify-center border border-violet-400/30 flex-shrink-0">
+                  <span className="text-base lg:text-lg" aria-hidden="true">🧹</span>
                 </div>
-
-                {/* Bubble 5 — BOTTOM-RIGHT (6a, ~95%) */}
-                <div className="bubble-5 absolute bottom-[3%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
-                  <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 flex-shrink-0">
-                    <span className="text-base lg:text-lg" aria-hidden="true">💬</span>
-                  </div>
-                  <div>
-                    <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[5]?.title}</p>
-                    <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[5]?.detail}</p>
-                  </div>
+                <div>
+                  <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[2]?.title}</p>
+                  <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[2]?.detail}</p>
                 </div>
+              </div>
 
+              {/* Bubble 3 — LOWER-MID-RIGHT (4a, ~60%) */}
+              <div className="bubble-3 absolute top-[60%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30 flex-shrink-0">
+                  <span className="text-base lg:text-lg" aria-hidden="true">🤖</span>
+                </div>
+                <div>
+                  <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[3]?.title}</p>
+                  <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[3]?.detail}</p>
+                </div>
+              </div>
+
+              {/* Bubble 4 — LOWER-LEFT (5a, ~79%) */}
+              <div className="bubble-4 absolute top-[79%] left-[-10px] lg:left-[-110px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-orange-500/20 flex items-center justify-center border border-orange-400/30 flex-shrink-0">
+                  <span className="text-base lg:text-lg" aria-hidden="true">📈</span>
+                </div>
+                <div>
+                  <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[4]?.title}</p>
+                  <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[4]?.detail}</p>
+                </div>
+              </div>
+
+              {/* Bubble 5 — BOTTOM-RIGHT (6a, ~95%) */}
+              <div className="bubble-5 absolute bottom-[3%] right-[-10px] lg:right-[-30px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 hidden lg:flex items-center gap-3 z-30 min-w-[160px] lg:min-w-[210px]">
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 flex-shrink-0">
+                  <span className="text-base lg:text-lg" aria-hidden="true">💬</span>
+                </div>
+                <div>
+                  <p className="text-white text-[11px] lg:text-sm font-bold tracking-tight">{bubbles[5]?.title}</p>
+                  <p className="text-blue-200/50 text-[9px] lg:text-xs font-medium">{bubbles[5]?.detail}</p>
+                </div>
               </div>
             </div>
 

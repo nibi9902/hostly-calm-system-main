@@ -147,12 +147,20 @@
 
 /* ── Glass Cards — mobile overrides ── */
 @media (max-width: 767px) {
+  /* Mantenim l'sticky + animació, però posem fons opac al container
+     per tapar el "color sobrant" de les cards anteriors quan s'apilen.
+     Reduïm height de 100vh → 75vh perquè el scroll total no sigui
+     7×100vh (massa) — així el flux entre seccions és més natural. */
+  .glass-sticky-container {
+    background: #f8fafc !important;
+    height: 75vh !important;
+  }
   .glass-card-wrapper {
-    height: 58vh !important;
-    min-height: 360px !important;
-    max-height: 480px !important;
+    height: auto !important;
+    min-height: 540px !important;
+    max-height: 80vh !important;
     width: 94% !important;
-    top: 0 !important; /* elimina offset vertical que deixa espai buit */
+    top: 0 !important;
   }
   .glass-card-body {
     display: flex !important;
@@ -162,13 +170,193 @@
     display: none !important;
   }
   .glass-card-left {
-    padding: 2.25rem 1.75rem 2rem !important;
-    justify-content: space-between !important;
+    padding: 1.5rem 1.5rem 1.5rem !important;
+    justify-content: flex-start !important;
+    gap: 0.5rem !important;
     flex: 1 !important;
   }
   .glass-card-title {
-    font-size: 2rem !important;
+    font-size: 1.45rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+  }
+  /* Descripció — la mantenim però més compacta i truncada */
+  .glass-card-desc {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
     margin-bottom: 0.75rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  /* Frase caligràfica + línia de preu — més compactes */
+  .glass-card-replaces {
+    padding-top: 0.75rem !important;
+    margin-top: 0.25rem !important;
+  }
+  .glass-card-replaces-phrase {
+    font-size: 1.35rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+  /* CTA a mòbil — una mica més compacte */
+  .glass-card-cta {
+    margin-top: 0.875rem !important;
+    padding: 0.5rem 0.95rem !important;
+    font-size: 12px !important;
+  }
+}
+
+/* ── Hero CTA — mobile overrides ── */
+@media (max-width: 767px) {
+  /* Amaga partner badges a mòbil per fer cabre el CTA */
+  .hero-cta-partners {
+    display: none !important;
+  }
+  .hero-cta-tagline {
+    font-size: 10px !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .hero-cta-h2 {
+    font-size: 1.875rem !important; /* text-3xl */
+    margin-bottom: 0.75rem !important;
+    line-height: 1.15 !important;
+  }
+  .hero-cta-sub {
+    font-size: 0.875rem !important; /* text-sm */
+    margin-bottom: 1.5rem !important;
+  }
+  .hero-cta-stats {
+    gap: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .hero-cta-stat-pill {
+    gap: 0.375rem !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 11px !important;
+  }
+  .hero-cta-stat-pill > span:first-child {
+    font-size: 0.875rem !important;
+  }
+  .hero-cta-buttons {
+    gap: 0.75rem !important;
+    width: 100% !important;
+    padding: 0 1rem !important;
+  }
+  .hero-cta-btn {
+    padding: 0.875rem 2rem !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* ── Hero bubbles — tablet: visibles ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bubble-0, .bubble-1, .bubble-2, .bubble-3, .bubble-4, .bubble-5 {
+    display: flex !important;
+  }
+}
+
+/* ── Hero bubbles — mòbil: TOTES 6 visibles, mida compacta ── */
+@media (max-width: 767px) {
+  /* Totes 6 visibles, distribuïdes 3 a cada banda */
+  .bubble-0, .bubble-1, .bubble-2, .bubble-3, .bubble-4, .bubble-5 {
+    display: flex !important;
+  }
+  /* L'iPhone visual mòbil és ~182px centrat. En un viewport de 360px això
+     deixa ~85px lliures a cada banda. Distribuïm 3 bubbles per costat. */
+  /* Esquerra: 0 (top), 2 (mid), 4 (bottom) */
+  .bubble-0 {
+    top: 2% !important;
+    left: 4px !important;
+    right: auto !important;
+  }
+  .bubble-2 {
+    top: 40% !important;
+    left: 4px !important;
+    right: auto !important;
+  }
+  .bubble-4 {
+    bottom: 2% !important;
+    top: auto !important;
+    left: 4px !important;
+    right: auto !important;
+  }
+  /* Dreta: 1 (top), 3 (mid), 5 (bottom) */
+  .bubble-1 {
+    top: 2% !important;
+    right: 4px !important;
+    left: auto !important;
+  }
+  .bubble-3 {
+    top: 40% !important;
+    right: 4px !important;
+    left: auto !important;
+  }
+  .bubble-5 {
+    bottom: 2% !important;
+    top: auto !important;
+    right: 4px !important;
+    left: auto !important;
+  }
+  /* Tamany compacte perquè càpiguen 3 per banda sense solapar el telèfon */
+  .bubble-0, .bubble-1, .bubble-2, .bubble-3, .bubble-4, .bubble-5 {
+    padding: 0.5rem 0.6rem !important;
+    gap: 0.4rem !important;
+    min-width: 0 !important;
+    max-width: 115px !important;
+    border-radius: 0.75rem !important;
+  }
+  .bubble-0 > div:first-child,
+  .bubble-1 > div:first-child,
+  .bubble-2 > div:first-child,
+  .bubble-3 > div:first-child,
+  .bubble-4 > div:first-child,
+  .bubble-5 > div:first-child {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    flex-shrink: 0 !important;
+  }
+  .bubble-0 > div:first-child span,
+  .bubble-1 > div:first-child span,
+  .bubble-2 > div:first-child span,
+  .bubble-3 > div:first-child span,
+  .bubble-4 > div:first-child span,
+  .bubble-5 > div:first-child span {
+    font-size: 0.75rem !important;
+  }
+  .bubble-0 > div:last-child,
+  .bubble-1 > div:last-child,
+  .bubble-2 > div:last-child,
+  .bubble-3 > div:last-child,
+  .bubble-4 > div:last-child,
+  .bubble-5 > div:last-child {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+  .bubble-0 p,
+  .bubble-1 p,
+  .bubble-2 p,
+  .bubble-3 p,
+  .bubble-4 p,
+  .bubble-5 p {
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+  }
+  .bubble-0 p:last-child,
+  .bubble-1 p:last-child,
+  .bubble-2 p:last-child,
+  .bubble-3 p:last-child,
+  .bubble-4 p:last-child,
+  .bubble-5 p:last-child {
+    font-size: 9px !important;
+    -webkit-line-clamp: 2 !important;
+    margin-top: 1px !important;
   }
 }
 
