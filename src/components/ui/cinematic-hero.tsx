@@ -540,13 +540,12 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         .to(".text-days",     { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0")
         .to(".hero-subtitle", { duration: 1.0, autoAlpha: 1, y: 0, ease: "expo.out" }, "-=0.4");
 
-      // Scroll-driven — a mòbil reduïm el pin (de 12000 → 6500) perquè
-      // el flux cap a la següent secció no demani scroll excessiu
+      // Scroll-driven — totes les bombolles apareixen alhora, scroll reduït ~45%
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: isMobile ? "+=6500" : "+=12000",
+          end: isMobile ? "+=4000" : "+=6500",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -567,65 +566,39 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
           { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 2 }, "-=0.5"
         )
 
-        // ── Phase 3+4: cada notif apareix → ES QUEDA 1.6s llegible → es transforma en bubble → següent ──
-        // 0
-        .to(".phone-notif-0", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.8")
-        .to(".phone-notif-0", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
-        .fromTo(".bubble-0",
-          { autoAlpha: 0, x: "160px", y: "220px", scale: 0.15, rotationZ: 8 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
+        // ── Phase 3: totes les notifs flashen alhora ──
+        .to(
+          [".phone-notif-0",".phone-notif-1",".phone-notif-2",".phone-notif-3",".phone-notif-4",".phone-notif-5"],
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.35, ease: "expo.out", stagger: 0.05 }, "+=0.4"
         )
-        // 1
-        .to(".phone-notif-1", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
-        .to(".phone-notif-1", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
-        .fromTo(".bubble-1",
-          { autoAlpha: 0, x: "-160px", y: "180px", scale: 0.15, rotationZ: -8 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
-        )
-        // 2
-        .to(".phone-notif-2", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
-        .to(".phone-notif-2", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
-        .fromTo(".bubble-2",
-          { autoAlpha: 0, x: "180px", y: "60px", scale: 0.15, rotationZ: 5 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
-        )
-        // 3 — mid-right: surt del telèfon cap a la dreta
-        .to(".phone-notif-3", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
-        .to(".phone-notif-3", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
-        .fromTo(".bubble-3",
-          { autoAlpha: 0, x: "-180px", y: "0px", scale: 0.15, rotationZ: -5 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
-        )
-        // 4 — bottom-left: surt del telèfon cap avall-esquerra
-        .to(".phone-notif-4", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
-        .to(".phone-notif-4", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
-        .fromTo(".bubble-4",
-          { autoAlpha: 0, x: "150px", y: "-180px", scale: 0.15, rotationZ: 6 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
-        )
-        // 5 — bottom-right: surt del telèfon cap avall-dreta (simètric a bubble-4)
-        .to(".phone-notif-5", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, "+=0.6")
-        .to(".phone-notif-5", { autoAlpha: 0, scale: 0.8, duration: 0.3, ease: "power2.in" }, "+=1.6")
-        .fromTo(".bubble-5",
-          { autoAlpha: 0, x: "-150px", y: "-180px", scale: 0.15, rotationZ: -6 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.8 }, "+=0.1"
+        .to(
+          [".phone-notif-0",".phone-notif-1",".phone-notif-2",".phone-notif-3",".phone-notif-4",".phone-notif-5"],
+          { autoAlpha: 0, scale: 0.82, duration: 0.22, ease: "power2.in" }, "+=0.35"
         )
 
-        // ── Phase 5: text entra ──
-        .fromTo(".card-left-text",  { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.2")
+        // ── Phase 4: les 6 bombolles surten simultàniament del telèfon ──
+        .fromTo(".bubble-0", { autoAlpha: 0, x: "160px",  y: "220px",  scale: 0.15, rotationZ:  8 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.85 }, "+=0.08")
+        .fromTo(".bubble-1", { autoAlpha: 0, x: "-160px", y: "180px",  scale: 0.15, rotationZ: -8 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.85 }, "<0.07")
+        .fromTo(".bubble-2", { autoAlpha: 0, x: "180px",  y: "60px",   scale: 0.15, rotationZ:  5 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.85 }, "<0.07")
+        .fromTo(".bubble-3", { autoAlpha: 0, x: "-180px", y: "0px",    scale: 0.15, rotationZ: -5 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.85 }, "<0.07")
+        .fromTo(".bubble-4", { autoAlpha: 0, x: "150px",  y: "-180px", scale: 0.15, rotationZ:  6 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.85 }, "<0.07")
+        .fromTo(".bubble-5", { autoAlpha: 0, x: "-150px", y: "-180px", scale: 0.15, rotationZ: -6 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, rotationZ: 0, ease: "expo.out", duration: 0.85 }, "<0.07")
+
+        // ── Phase 5: text entra solapant l'última bombolla ──
+        .fromTo(".card-left-text",  { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=0.7")
         .fromTo(".card-right-text", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
 
-        // ── Pausa final ──
-        .to({}, { duration: 2.5 })
+        // ── Pausa: l'usuari llegeix ──
+        .to({}, { duration: 2.0 })
 
         // ── Phase 6: contingut de la targeta desapareix ──
         .to(
           [".mockup-scroll-wrapper", ".bubble-0", ".bubble-1", ".bubble-2", ".bubble-3", ".bubble-4", ".bubble-5", ".card-left-text", ".card-right-text"],
           { autoAlpha: 0, y: -30, ease: "power2.in", duration: 1.0, stagger: 0.04 },
-          "+=0.5"
+          "+=0.3"
         )
 
-        // ── Targeta s'enretira (invers de l'entrada) ──
+        // ── Targeta s'enretira ──
         .to(".main-card", {
           width: isMobile ? "92vw" : "85vw",
           height: isMobile ? "88vh" : "82vh",
@@ -634,13 +607,13 @@ export function CinematicHero({ onOpenQuiz, className, ...props }: CinematicHero
         })
         .to(".main-card", { y: window.innerHeight + 300, ease: "power3.in", duration: 1.5 })
 
-        // ── CTA apareix sobre el fons blanc (com el primer hero) ──
+        // ── CTA apareix ──
         .to(".cta-wrapper", { autoAlpha: 1, y: 0, filter: "blur(0px)", ease: "expo.out", duration: 1.8,
           onStart: () => window.dispatchEvent(new CustomEvent('hostly:hero-cta-visible')),
         })
 
-        // ── Pausa: l'usuari llegeix el CTA ──
-        .to({}, { duration: 4.0 });
+        // ── Pausa CTA ──
+        .to({}, { duration: 2.5 });
 
     }, containerRef);
 
